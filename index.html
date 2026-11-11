@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests"><meta name="theme-color" content="#ffffff"><title>stark — tactile keyboard</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+</head><body>
+<div id="fog-background" aria-hidden="true"></div>
+<a class="brand" href="./" aria-label="STARK LAB — главная"><img src="assets/stark-logo.png" alt="STARK LAB" width="1280" height="1280"></a>
+<section class="hero" aria-labelledby="hero-title"><h1 id="hero-title">Создаю <span>цифровые решения,</span> которые работают на ваш бизнес.</h1><p class="hero-description">Разработка сайтов, Telegram-ботов, систем бронирования и автоматизации. Помогаю ресторанам и другим компаниям развиваться с помощью современных технологий.</p></section>
+<main id="scene" aria-label="Интерактивная механическая клавиатура">
+<div class="key-controls" aria-label="Клавиши"><button data-key="1" aria-label="Клавиша 1">1</button><button data-key="2" aria-label="Клавиша 2">2</button><button data-key="3" aria-label="Клавиша 3">3</button><button data-key="4" aria-label="Клавиша 4">4</button><button data-key="5" aria-label="Клавиша 5">5</button><button data-key="6" aria-label="Клавиша 6">6</button><button data-key="7" aria-label="Клавиша 7">7</button></div>
+<!-- Keep the page free of visible captions and instructions. -->
+</main>
+<script src="vendor/three.r134.min.js"></script><script src="vendor/vanta.fog.min.js"></script><script src="fog.js"></script><script type="module" src="keyboard.js"></script>
+</body></html>
