@@ -58,21 +58,22 @@ function capGeometry(width,depth){
 const ivory=new THREE.MeshPhysicalMaterial({color:'#d9d7d3',metalness:0,roughness:.25,clearcoat:.48,clearcoatRoughness:.17,envMapIntensity:.85});
 const black=new THREE.MeshPhysicalMaterial({color:'#08090c',metalness:.12,roughness:.22,clearcoat:.85,clearcoatRoughness:.12});
 // Chrome needs a high-contrast environment, not the soft plastic studio lighting.
-const chromeStudio=new THREE.Scene();chromeStudio.background=new THREE.Color('#11151c');
+const chromeStudio=new THREE.Scene();chromeStudio.background=new THREE.Color('#c4c8ce');
 function chromePanel(w,h,x,y,z,color){
  const panel=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide}));
  panel.position.set(x,y,z);panel.lookAt(0,0,0);chromeStudio.add(panel);
 }
-chromePanel(18,18,0,-6,0,'#8893a2');
+chromePanel(18,18,0,-6,0,'#b9bec6');
 chromePanel(7,12,-5,5,3,'#ffffff');
 chromePanel(2,14,5,4,1,'#e8f2ff');
 chromePanel(12,2,0,6,-4,'#ffffff');
 chromePanel(9,2,0,2,7,'#c4d1e2');
-chromePanel(3,10,-2,6,0,'#080b10');
+chromePanel(.65,10,-2,6,0,'#69717d')
+chromePanel(12,12,0,8,0,'#f2f4f7');;
 const chromePmrem=new THREE.PMREMGenerator(renderer);
 const chromeEnvironment=chromePmrem.fromScene(chromeStudio,0);
 chromePmrem.dispose();
-const chrome=new THREE.MeshPhysicalMaterial({color:'#f2f5fa',metalness:1,roughness:.018,clearcoat:0,envMap:chromeEnvironment.texture,envMapIntensity:1});
+const chrome=new THREE.MeshPhysicalMaterial({color:'#f2f5fa',metalness:1,roughness:.055,clearcoat:0,envMap:chromeEnvironment.texture,envMapIntensity:1.25});
 const orange=new THREE.MeshPhysicalMaterial({color:'#c6ff00',metalness:.07,roughness:.23,clearcoat:.8,clearcoatRoughness:.13,iridescence:.13,iridescenceIOR:1.25,iridescenceThicknessRange:[120,210]});
 const amber=new THREE.MeshPhysicalMaterial({color:'#c6ff00',metalness:0,roughness:.12,transmission:.72,thickness:.5,ior:1.46,clearcoat:1,attenuationColor:new THREE.Color('#719900'),attenuationDistance:1.2,envMapIntensity:1.2});
 const step=1.18,unit=1.06;
