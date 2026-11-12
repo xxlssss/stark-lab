@@ -61,16 +61,16 @@ const chrome=new THREE.MeshPhysicalMaterial({color:'#eeeeed',metalness:1,roughne
 const orange=new THREE.MeshPhysicalMaterial({color:'#00bffe',metalness:.07,roughness:.23,clearcoat:.8,clearcoatRoughness:.13,iridescence:.13,iridescenceIOR:1.25,iridescenceThicknessRange:[120,210]});
 const amber=new THREE.MeshPhysicalMaterial({color:'#00bffe',metalness:0,roughness:.12,transmission:.72,thickness:.5,ior:1.46,clearcoat:1,attenuationColor:new THREE.Color('#007fa9'),attenuationDistance:1.2,envMapIntensity:1.2});
 const step=1.18,unit=1.06;
-const layout=[{n:1,x:-step,z:-step,w:unit,mat:black,ink:'#ffffff'},{n:2,x:step/2,z:-step,w:unit+step,mat:ivory},{n:3,x:-step,z:0,w:unit,mat:ivory},{n:4,x:0,z:0,w:unit,mat:chrome},{n:5,x:step,z:0,w:unit,mat:amber,ink:'#fff6e8'},{n:6,x:-step/2,z:step,w:unit+step,mat:orange,ink:'#fff4e1'},{n:7,x:step,z:step,w:unit,mat:ivory}];
+const layout=[{n:1,x:-step,z:-step,w:unit,mat:black,ink:'#ffffff'},{n:2,x:step/2,z:-step,w:unit+step,mat:ivory},{n:3,x:-step,z:0,w:unit,mat:ivory},{n:4,x:0,z:0,w:unit,mat:chrome},{n:5,x:step,z:0,w:unit,mat:amber,ink:'#13334a'},{n:6,x:-step/2,z:step,w:unit+step,mat:orange,ink:'#13334a'},{n:7,x:step,z:step,w:unit,mat:ivory}];
 const keys=[];
-function labelTexture(n,ink){const c=document.createElement('canvas');c.width=c.height=256;const ctx=c.getContext('2d');ctx.fillStyle=ink||'#29282b';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='500 152px Arial';ctx.fillText(n,128,140);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=renderer.capabilities.getMaxAnisotropy();return t;}
+function labelTexture(n,ink){const c=document.createElement('canvas');c.width=c.height=256;const ctx=c.getContext('2d');ctx.fillStyle=ink||'#29282b';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='600 152px Arial';ctx.fillText(n,128,140);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=renderer.capabilities.getMaxAnisotropy();return t;}
 for(const config of layout){
  box(config.w+.055,.055,unit+.055,.14,inset,config.x,.058,config.z);
  const stemMat=new THREE.MeshPhysicalMaterial({color:config.n===5?'#00bffe':'#d6d8dc',roughness:.32,metalness:.15});
  box(.38,.25,.38,.04,stemMat,config.x,.19,config.z);
  const group=new THREE.Group();group.position.set(config.x,.16,config.z);board.add(group);
  const cap=new THREE.Mesh(capGeometry(config.w,unit),config.mat);cap.castShadow=true;cap.receiveShadow=true;group.add(cap);
- const label=new THREE.Mesh(new THREE.PlaneGeometry(.39,.39),new THREE.MeshBasicMaterial({map:labelTexture(config.n,config.ink),transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,toneMapped:false}));label.rotation.x=-Math.PI/2;label.position.y=.662;group.add(label);
+ const label=new THREE.Mesh(new THREE.PlaneGeometry(.62,.62),new THREE.MeshBasicMaterial({map:labelTexture(config.n,config.ink),transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,toneMapped:false}));label.rotation.x=-Math.PI/2;label.position.y=.662;group.add(label);
  const key={...config,group,cap,down:false,position:0,velocity:0};cap.userData.key=key;keys.push(key);
 }
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let active=null,tiltX=0,tiltY=0,audio;
@@ -92,5 +92,5 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');let last=0;
 function animate(t){const dt=Math.min((t-last)/1000||.016,.032);last=t;for(const key of keys){const target=key.down?-.22:0;const sub=dt/4;for(let i=0;i<4;i++){key.velocity+=((target-key.position)*(key.down?1850:1000)-key.velocity*(key.down?64:37))*sub;key.position+=key.velocity*sub;}key.group.position.y=.16+key.position;key.group.rotation.x=reduced.matches?0:key.position*key.z*.045;key.group.rotation.z=reduced.matches?0:-key.position*key.x*.045;}const ease=1-Math.exp(-dt*7);board.rotation.x+=((reduced.matches?0:tiltX)-board.rotation.x)*ease;board.rotation.y+=((reduced.matches?0:tiltY)-board.rotation.y)*ease;for(let i=0;i<4;i++){const h=dt/4;recoilV+=(-recoil*180-recoilV*17)*h;recoil+=recoilV*h;rockXV+=(-rockX*150-rockXV*16)*h;rockX+=rockXV*h;rockZV+=(-rockZ*150-rockZV*16)*h;rockZ+=rockZV*h;}board.position.y=reduced.matches?0:recoil;board.rotation.x+=reduced.matches?0:rockX;board.rotation.z=reduced.matches?0:rockZ;renderer.render(scene,camera);}
 renderer.setAnimationLoop(animate);
 document.addEventListener('visibilitychange',()=>{releaseAll();last=0;renderer.setAnimationLoop(document.hidden?null:animate);});
-function resize(){const {width,height}=root.getBoundingClientRect();camera.aspect=width/height;const distance=Math.max(13,10.7/camera.aspect);camera.position.set(6.8,8.8,10.4).normalize().multiplyScalar(distance);camera.lookAt(0,-.1,0);camera.updateProjectionMatrix();renderer.setSize(width,height);}
+function resize(){const {width,height}=root.getBoundingClientRect();camera.aspect=width/height;const distance=Math.max(10.5,9.7/camera.aspect);camera.position.set(6.8,8.8,10.4).normalize().multiplyScalar(distance);camera.lookAt(0,-.1,0);camera.updateProjectionMatrix();renderer.setSize(width,height);}
 new ResizeObserver(resize).observe(root);resize();
