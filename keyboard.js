@@ -41,7 +41,7 @@ housing(4.10,.085,4.10,.51,edge,-.095);
 housing(3.94,.065,3.94,.45,inset,-.025);
 // Light silicone feet; no black trim or switch inserts.
 for(const x of [-1.4,1.4])for(const z of [-1.4,1.4])box(.46,.08,.46,.1,inset,x,-.68,z);
-box(.19,.025,.012,.005,new THREE.MeshBasicMaterial({color:'#c6ff00'}),-1.3,-.37,2.064);
+box(.19,.025,.012,.005,new THREE.MeshBasicMaterial({color:'#00bffe'}),-1.3,-.37,2.064);
 const shadowCanvas=document.createElement('canvas');shadowCanvas.width=shadowCanvas.height=256;
 const sc=shadowCanvas.getContext('2d'),gradient=sc.createRadialGradient(128,128,20,128,128,128);gradient.addColorStop(0,'rgba(36,19,13,.36)');gradient.addColorStop(.5,'rgba(36,19,13,.18)');gradient.addColorStop(1,'rgba(36,19,13,0)');sc.fillStyle=gradient;sc.fillRect(0,0,256,256);
 const ground=new THREE.Mesh(new THREE.PlaneGeometry(6.9,6.9),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(shadowCanvas),transparent:true,depthWrite:false}));ground.rotation.x=-Math.PI/2;ground.position.y=-.73;scene.add(ground);
@@ -70,8 +70,8 @@ for(const [x,w] of [[180,130],[780,80],[1470,190]]){
 const chromePanorama=new THREE.CanvasTexture(chromeCanvas);chromePanorama.mapping=THREE.EquirectangularReflectionMapping;chromePanorama.colorSpace=THREE.SRGBColorSpace;
 const chromePmrem=new THREE.PMREMGenerator(renderer);const chromeEnvironment=chromePmrem.fromEquirectangular(chromePanorama);chromePmrem.dispose();chromePanorama.dispose();
 const chrome=new THREE.MeshPhysicalMaterial({color:'#ffffff',metalness:1,roughness:.035,clearcoat:0,envMap:chromeEnvironment.texture,envMapIntensity:1.05});
-const orange=new THREE.MeshPhysicalMaterial({color:'#c6ff00',metalness:.07,roughness:.23,clearcoat:.8,clearcoatRoughness:.13,iridescence:.13,iridescenceIOR:1.25,iridescenceThicknessRange:[120,210]});
-const amber=new THREE.MeshPhysicalMaterial({color:'#c6ff00',metalness:0,roughness:.12,transmission:.72,thickness:.5,ior:1.46,clearcoat:1,attenuationColor:new THREE.Color('#719900'),attenuationDistance:1.2,envMapIntensity:1.2});
+const orange=new THREE.MeshPhysicalMaterial({color:'#00bffe',metalness:.07,roughness:.23,clearcoat:.8,clearcoatRoughness:.13,iridescence:.13,iridescenceIOR:1.25,iridescenceThicknessRange:[120,210]});
+const amber=new THREE.MeshPhysicalMaterial({color:'#00bffe',metalness:0,roughness:.12,transmission:.72,thickness:.5,ior:1.46,clearcoat:1,attenuationColor:new THREE.Color('#007ca8'),attenuationDistance:1.2,envMapIntensity:1.2});
 const step=1.18,unit=1.06;
 const layout=[{n:1,x:-step,z:-step,w:unit,mat:black,ink:'#ffffff'},{n:2,x:step/2,z:-step,w:unit+step,mat:ivory},{n:3,x:-step/2,z:0,w:unit+step,mat:chrome},{n:5,x:step,z:0,w:unit,mat:ivory,ink:'#13334a'},{n:6,x:-step/2,z:step,w:unit+step,mat:orange,ink:'#13334a'},{n:7,x:step,z:step,w:unit,mat:amber}];
 await document.fonts.load('600 64px Unbounded');
@@ -80,7 +80,7 @@ const keys=[];
 function labelTexture(n,ink){const c=document.createElement('canvas');c.width=c.height=256;const ctx=c.getContext('2d');ctx.fillStyle=ink||'#29282b';ctx.textAlign='center';ctx.textBaseline='middle';if(n===1){ctx.fillStyle='#ffffff';ctx.font='500 58px Unbounded';ctx.fillText('о нас',128,134);}else if(n===7){ctx.save();ctx.translate(24,24);ctx.scale(8.7,8.7);ctx.fill(new Path2D('M21.5 3.2 18.3 20c-.2 1-1 1.2-1.8.7l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.3-.1-.5-.6-.2L5.8 13.6 1 12.1c-1-.3-1-1 .2-1.5L20 3c.9-.3 1.6.2 1.5.2Z'));ctx.restore();}else if(n===5){ctx.font='600 62px Unbounded';ctx.fillText('tg-',128,86);ctx.fillText('боты',128,169);}else if(n===6||n===3||n===2){c.width=768;c.height=256;ctx.fillStyle=ink||'#29282b';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=n===6?'600 74px Unbounded':'600 88px Unbounded';ctx.fillText(({2:'сайты',3:'услуги',6:'наши проекты'})[n],384,134);}else{ctx.font='600 152px Arial';ctx.fillText(n,128,140);}const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=renderer.capabilities.getMaxAnisotropy();return t;}
 for(const config of layout){
  box(config.w+.055,.055,unit+.055,.14,inset,config.x,.058,config.z);
- const stemMat=new THREE.MeshPhysicalMaterial({color:config.n===7?'#c6ff00':'#d6d8dc',roughness:.32,metalness:.15});
+ const stemMat=new THREE.MeshPhysicalMaterial({color:config.n===7?'#00bffe':'#d6d8dc',roughness:.32,metalness:.15});
  box(.38,.25,.38,.04,stemMat,config.x,.19,config.z);
  const group=new THREE.Group();group.position.set(config.x,.16,config.z);board.add(group);
  const cap=new THREE.Mesh(capGeometry(config.w,unit),config.mat);cap.castShadow=true;cap.receiveShadow=true;group.add(cap);
