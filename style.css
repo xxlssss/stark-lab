@@ -42,3 +42,11 @@
 [hidden]{display:none!important}.contact-panel{padding-top:45px}.contact-panel h1{outline:none}.telegram-link{display:inline-flex;align-items:center;gap:14px;padding:20px 24px;margin-top:34px;border-radius:18px;background:#C6FF00;color:#102443;font-family:var(--brand-font);font-size:clamp(13px,1.25vw,19px);text-decoration:none;font-weight:500}.telegram-link svg{width:28px;height:28px;fill:currentColor;flex:none}.telegram-link:focus-visible{outline:3px solid #102443;outline-offset:5px}.telegram-link:hover{background:#d6ff48}
 
 .whatsapp-link{display:flex;width:fit-content;margin-top:14px}
+
+.keyboard-hint{position:absolute;top:5%;left:12%;width:76%;margin:0;text-align:center;z-index:2;font-size:clamp(11px,1.05vw,17px);font-weight:600;line-height:1.7;letter-spacing:.07em;color:#102443;transition:transform .3s ease;cursor:default}
+.keyboard-hint span{background:linear-gradient(100deg,#102443 0%,#008caf 25%,#C6FF00 48%,#008caf 72%,#102443 100%);background-size:220% 100%;background-clip:text;-webkit-background-clip:text;color:transparent;animation:hint-colors 6s ease-in-out infinite}
+.keyboard-hint:hover{transform:translateY(-3px)}
+.keyboard-hint:hover span{animation-duration:2s}
+@keyframes hint-colors{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@media(max-width:700px){.keyboard-hint{top:0;left:5%;width:90%;font-size:11px}}
+@media(prefers-reduced-motion:reduce){.keyboard-hint,.keyboard-hint span{animation:none;transition:none}}
