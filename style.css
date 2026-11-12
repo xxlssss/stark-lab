@@ -55,4 +55,4 @@
 
 .home-hero h1 .possibilities{color:#FF5B4D;text-shadow:none}.home-services{background:transparent;color:#102443;padding-left:0;padding-right:0}.home-services li::before{color:#C6FF00}.keyboard-hint{text-transform:lowercase}
 
-#fog-background{background-color:#fff;background-image:linear-gradient(#e8e9ed 1px,transparent 1px),linear-gradient(90deg,#e8e9ed 1px,transparent 1px);background-size:64px 64px;background-position:center center}@media(max-width:700px){#fog-background{background-size:40px 40px}}
+#fog-background{background-color:#eceef1;background-image:linear-gradient(#d9dce2 1px,transparent 1px),linear-gradient(90deg,#d9dce2 1px,transparent 1px);background-size:64px 64px;background-position:center center}@media(max-width:700px){#fog-background{background-size:40px 40px}}
