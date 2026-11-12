@@ -38,3 +38,5 @@
 
 @media(min-width:701px){#scene{width:58%}.hero{left:3.5vw;width:39vw}}
 @media(max-width:700px){#scene{height:58vh;min-height:360px}}
+
+[hidden]{display:none!important}.contact-panel{padding-top:45px}.contact-panel h1{outline:none}.contact-close{position:absolute;right:0;top:0;border:0;background:transparent;color:#102443;font-size:32px;cursor:pointer}.telegram-link{display:inline-flex;align-items:center;gap:14px;padding:20px 24px;margin-top:34px;border-radius:18px;background:#C6FF00;color:#102443;font-family:var(--brand-font);font-size:clamp(13px,1.25vw,19px);text-decoration:none;font-weight:500}.telegram-link svg{width:28px;height:28px;fill:currentColor;flex:none}.telegram-link:focus-visible,.contact-close:focus-visible{outline:3px solid #102443;outline-offset:5px}.telegram-link:hover{background:#d6ff48}
