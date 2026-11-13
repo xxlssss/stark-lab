@@ -28,7 +28,7 @@
 }
 
 :root{--brand-font:'Unbounded',sans-serif;--brand-accent:#C6FF00}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#ffffff;font-family:'Unbounded',sans-serif}#fog-background{position:fixed;inset:0;background:radial-gradient(ellipse at 25% 35%,#00bffe 0%,#d9f6ff 48%,#ffffff 100%)}#fog-background canvas{display:block}#scene{position:fixed;right:0;top:0;width:59%;height:100%;touch-action:none}#scene>canvas{display:block;width:100%;height:100%;outline:none}.key-controls{position:absolute;bottom:56px;left:50%;transform:translateX(-50%);display:flex;gap:7px}.key-controls button{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);border:0}.key-controls:focus-within button{position:relative;clip-path:none;width:32px;height:32px;border-radius:8px;background:#f5eee7;color:#332315;box-shadow:0 2px 9px #4c280b30}.key-controls button:focus-visible{outline:2px solid var(--brand-accent);outline-offset:3px}@media(max-width:700px){#scene{width:100%}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#ffffff;font-family:'Unbounded',sans-serif}#fog-background{position:fixed;inset:0;pointer-events:none}#fog-background canvas{display:block}#scene{position:fixed;right:0;top:0;width:59%;height:100%;touch-action:none}#scene>canvas{display:block;width:100%;height:100%;outline:none}.key-controls{position:absolute;bottom:56px;left:50%;transform:translateX(-50%);display:flex;gap:7px}.key-controls button{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);border:0}.key-controls:focus-within button{position:relative;clip-path:none;width:32px;height:32px;border-radius:8px;background:#f5eee7;color:#332315;box-shadow:0 2px 9px #4c280b30}.key-controls button:focus-visible{outline:2px solid var(--brand-accent);outline-offset:3px}@media(max-width:700px){#scene{width:100%}}
 
 .brand{position:fixed;left:24px;top:20px;width:clamp(110px,14vw,200px);z-index:2;display:block}.brand img{display:block;width:100%;height:auto}.brand:focus-visible{outline:2px solid #00bffe;outline-offset:6px;border-radius:20px}@media(max-width:700px){.brand{left:12px;top:12px;width:110px}}
 
@@ -58,3 +58,21 @@
 #fog-background{background-color:#eceef1;background-image:linear-gradient(rgba(150,158,173,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(150,158,173,.12) 1px,transparent 1px);background-size:64px 64px;background-position:center center}@media(max-width:700px){#fog-background{background-size:40px 40px}}
 
 .contact-panel h1 span{color:#00BFFE}.contact-panel .telegram-link:not(.whatsapp-link){background:#00BFFE}.contact-panel .telegram-link:not(.whatsapp-link):hover{background:#38ceff}.contact-panel .whatsapp-link{background:#C6FF00}.contact-panel .whatsapp-link:hover{background:#d6ff48}.home-hero h1 .possibilities,.home-services li::before{text-shadow:0 1px 1px #10244355}
+
+/* Clean Tech: static CSS layers, no images or animation work. */
+body:has(.home-hero:not([hidden])) #fog-background{
+ background-color:#F3F6FA;
+ background-image:radial-gradient(ellipse 42% 53% at 75% 46%,rgba(221,245,255,.85),rgba(0,183,255,.065) 44%,transparent 78%),radial-gradient(ellipse 32% 35% at 96% 94%,rgba(0,183,255,.055),transparent 76%);
+ background-size:100% 100%;background-position:center;
+}
+body:has(.home-hero:not([hidden])) #fog-background::after{
+ content:"";position:absolute;inset:0;pointer-events:none;opacity:.48;
+ background-image:linear-gradient(#DCE4EC 1px,transparent 1px),linear-gradient(90deg,#DCE4EC 1px,transparent 1px);
+ background-size:64px 64px;background-position:center;
+}
+@media(max-width:700px){
+ body:has(.home-hero:not([hidden])) #fog-background{
+  background-image:radial-gradient(ellipse 85% 44% at 65% 78%,rgba(221,245,255,.55),rgba(0,183,255,.025) 45%,transparent 80%),radial-gradient(ellipse 60% 30% at 100% 100%,rgba(0,183,255,.025),transparent 78%);
+ }
+ body:has(.home-hero:not([hidden])) #fog-background::after{background-size:40px 40px;opacity:.4}
+}
