@@ -1,5 +1,6 @@
 # STARK LAB
 
-Typeface: Unbounded. Accent: #C6FF00.
+Typeface: Unbounded. Premium Cream & Blue palette is defined in style.css and read by the 3D keyboard.
+Brown #3B2418; Cream #F2E8DA; Baby Blue #8EC5FF; surface #FFF9F2; grid #D8CBBE; muted #A98D7B.
 
-The 3D keyboard is the main navigation. Key 1 shows the white STARK LAB logo and opens home; key 7 shows Telegram and opens contacts. The top-left logo also opens home. Switch page content on the left; retain the keyboard. No close icons on pages. No helper instructions.
+Preserve the chrome logo, keyboard geometry and tactile animations. The keyboard is the main navigation: key 1 (“о нас”) and the top-left logo open home; key 7 opens contacts. The existing short keyboard hint is intentional. No close icons on pages. Other keys retain their current press behavior; their sections are not implemented yet.
