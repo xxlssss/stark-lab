@@ -61,3 +61,10 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 @media(prefers-reduced-motion:reduce){html:has(.studio-page){scroll-behavior:auto}.header-socials a{transition:none}}
 
 .studio-page .home-hero h1 .technology-gradient{display:inline-block;background:linear-gradient(to bottom,var(--brand-brown) 0%,var(--brand-brown) 50%,#65A8EA 50%,#65A8EA 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none}
+
+/* Centered menu and higher keyboard composition. */
+.site-header nav{position:absolute;left:50%;transform:translateX(-50%)}
+.site-header nav span{font-size:12px;font-weight:500;color:inherit;padding:14px 0;cursor:default;white-space:nowrap}
+.studio-page:not(.show-contacts) #scene{top:65px}
+@media(max-width:1000px) and (min-width:701px){.site-header nav span{font-size:10px}.studio-page:not(.show-contacts) #scene{top:100px}}
+@media(max-width:700px){.site-header nav{position:static;transform:none;justify-content:center;gap:20px}.site-header nav span{font-size:10px;padding:9px 0}.studio-page:not(.show-contacts) #scene{top:auto;margin-top:12px}}
