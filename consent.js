@@ -1,7 +1,8 @@
 (() => {
   'use strict';
   const KEY = 'stark.analytics-consent';
-  const VERSION = '2026-11-15';
+  const VERSION = '2026-11-15.2';
+  const NOTICE = 'Для анализа посещаемости сайта мы используем Яндекс Метрику. Подробнее — в Политике конфиденциальности.';
   const TTL = 180 * 24 * 60 * 60 * 1000;
   const COUNTER = 114258827;
   let allowed = false, started = false, script = null, previousFocus = null;
@@ -15,7 +16,7 @@
     return null;
   }
   function saveChoice(choice) {
-    try { localStorage.setItem(KEY, JSON.stringify({ choice, version: VERSION, time: Date.now() })); return true; } catch { return false; }
+    try { localStorage.setItem(KEY, JSON.stringify({ choice, version: VERSION, time: Date.now(), recordedAt: new Date().toISOString(), action: choice === 'accepted' ? 'accept-button' : 'reject-button', notice: NOTICE, policy: 'privacy.html', consentDocument: 'consent.html', consentDocumentVersion: '2026-11-15', counter: COUNTER })); return true; } catch { return false; }
   }
   function cleanAnalyticsStorage() {
     try { for (const key of Object.keys(localStorage)) if (/^_ym/.test(key)) localStorage.removeItem(key); } catch {}
