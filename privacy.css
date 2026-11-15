@@ -10,3 +10,12 @@ html:has(.legal-page),body.legal-page{height:auto;min-height:100%;overflow-x:hid
 @media(max-width:700px){.legal-footer{position:relative;gap:10px 18px;font-size:10px;padding:18px 16px}.privacy-banner{bottom:12px;left:12px;width:calc(100% - 24px);padding:18px;max-height:65dvh;border-radius:18px}.privacy-banner h2{font-size:14px}.privacy-banner p{font-size:11px}.privacy-actions{gap:10px}.privacy-actions button{padding:13px 12px;font-size:11px}.legal-document{padding:10px 20px}.legal-document h1{font-size:clamp(17px,5vw,24px)}.legal-document h2{font-size:17px}.legal-document p,.legal-document li{font-size:12px}.legal-document ul{padding-left:20px}}
 
 .privacy-consent-link{display:inline-block;font-size:10px;line-height:1.6;margin-top:4px}
+
+/* Compact cookie notice and borderless actions. */
+.privacy-banner p{margin-bottom:2px}
+.privacy-consent-link{margin-top:0}
+.privacy-actions button{border-color:transparent}
+
+.legal-footer{background:transparent}
+.legal-footer a,.legal-footer button,.privacy-banner a{text-decoration:none}
+.privacy-banner a:hover,.legal-footer a:hover,.legal-footer button:hover{opacity:.75}
