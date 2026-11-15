@@ -97,5 +97,5 @@
 .contact-panel h1 + .telegram-link{margin-top:34px}
 .contact-panel .telegram-link span{min-width:0}
 
-.home-hero h1{color:var(--brand-cream);text-shadow:0 1px 2px rgba(59,36,24,.3)}
+.home-hero h1{color:var(--brand-brown);text-shadow:none}
 .home-hero h1 .headline-blue{color:var(--brand-blue);text-shadow:0 1px 1px var(--brand-shadow)}
