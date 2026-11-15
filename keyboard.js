@@ -98,7 +98,7 @@ for(const config of layout){
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let active=null,tiltX=0,tiltY=0,audio;
 let recoil=0,recoilV=0,rockX=0,rockXV=0,rockZ=0,rockZV=0;
 function sound(up=false){try{audio??=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const now=audio.currentTime,osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.setValueAtTime(up?480:220,now);osc.frequency.exponentialRampToValueAtTime(up?180:70,now+.035);gain.gain.setValueAtTime(up?.018:.035,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.045);osc.connect(gain).connect(audio.destination);osc.start(now);osc.stop(now+.05);const buffer=audio.createBuffer(1,audio.sampleRate*.018,audio.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.exp(-i/(audio.sampleRate*.003));const noise=audio.createBufferSource(),ng=audio.createGain(),filter=audio.createBiquadFilter();noise.buffer=buffer;filter.type='lowpass';filter.frequency.value=up?2300:1400;ng.gain.value=up?.026:.05;noise.connect(filter).connect(ng).connect(audio.destination);noise.start();}catch{}}
-function setDown(key,down){if(!key||key.down===down)return;key.down=down;if(down&&key.n===7)navigateTo('contacts');if(down&&key.n===1)navigateTo('home');sound(!down);if(!reduced.matches){recoilV+=down?-.65:.26;rockXV+=key.z*(down?.18:-.07);rockZV-=key.x*(down?.18:-.07);}}
+function setDown(key,down){if(!key||key.down===down)return;key.down=down;if(down&&key.n===7)navigateTo('contacts');if(down&&key.n===1)navigateTo('about');if(down&&[2,3,5].includes(key.n))navigateTo('services');if(down&&key.n===6)navigateTo('projects');sound(!down);if(!reduced.matches){recoilV+=down?-.65:.26;rockXV+=key.z*(down?.18:-.07);rockZV-=key.x*(down?.18:-.07);}}
 function release(){if(active)setDown(active,false);active=null;}
 function hit(event){const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);return raycaster.intersectObjects(keys.map(k=>k.cap),false)[0]?.object.userData.key;}
 renderer.domElement.addEventListener('pointerdown',e=>{if(e.button!==0)return;release();active=hit(e);if(active){setDown(active,true);renderer.domElement.setPointerCapture(e.pointerId);}});
@@ -118,7 +118,15 @@ function resize(){const {width,height}=root.getBoundingClientRect();camera.aspec
 new ResizeObserver(resize).observe(root);resize();
 
 
-function renderPage(){const contacts=location.hash==='#contacts';document.querySelector('.hero:not(.contact-panel)').hidden=contacts;document.querySelector('.contact-panel').hidden=!contacts;}
-function navigateTo(page){const hash=page==='contacts'?'#contacts':'#home';if(location.hash!==hash)location.hash=hash;else renderPage();}
+function renderPage(){
+ const contacts=location.hash==='#contacts';
+ document.querySelector('.home-hero').hidden=contacts;
+ document.querySelector('.contact-panel').hidden=!contacts;
+ document.querySelector('.home-details').hidden=contacts;
+ document.body.classList.toggle('show-contacts',contacts);
+ document.querySelectorAll('.site-header nav a').forEach(a=>{if(a.hash===location.hash)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
+ requestAnimationFrame(()=>{const target=document.getElementById(location.hash.slice(1));if(contacts||!target||location.hash==='#home')window.scrollTo({top:0,behavior:'instant'});else target.scrollIntoView({block:'start',behavior:reduced.matches?'instant':'smooth'});});
+}
+function navigateTo(page){const hash='#'+page;if(location.hash!==hash)location.hash=hash;else renderPage();}
 document.querySelector('.brand').addEventListener('click',event=>{event.preventDefault();navigateTo('home');});
 window.addEventListener('hashchange',renderPage);renderPage();
