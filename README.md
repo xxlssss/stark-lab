@@ -2,7 +2,7 @@
 
 Static website. Publish the repository root with GitHub Pages.
 
-Fonts and 3D runtime libraries are hosted locally. Yandex.Metrika counter 114258827 loads asynchronously with Webvisor, clickmap and link tracking. Hash navigation is tracked as page views. No forms or API credentials are stored in this repository.
+Fonts and 3D runtime libraries are hosted locally. Yandex.Metrika counter 114258827 loads only after explicit analytics consent, asynchronously with Webvisor, clickmap and link tracking. Rejecting consent leaves it unloaded. Cookie settings allow withdrawal. The local consent record expires after 180 days. Hash navigation is tracked as page views. No forms or API credentials are stored in this repository.
 
 Custom domain: starklab.art. HTTPS is enabled through GitHub Pages.
 
