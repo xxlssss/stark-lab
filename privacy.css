@@ -26,3 +26,5 @@ html:has(.legal-page),body.legal-page{height:auto;min-height:100%;overflow-x:hid
 .legal-page .brand{position:absolute}
 @media(max-width:700px){.legal-page .legal-header{height:120px}}
 @media(min-width:701px) and (max-height:700px){.legal-page .legal-header{height:129px}}
+
+.legal-settings{border:0}
