@@ -89,3 +89,5 @@
 #fog-background::after{background-size:96px 96px;opacity:.12}
 .keyboard-arrow{right:15%;top:calc(5% + 51px);width:48px;height:92px;stroke-width:1.5}
 @media(max-width:700px){#fog-background{background-image:radial-gradient(ellipse 100% 65% at 70% 65%,rgba(255,247,235,.6),transparent 85%),linear-gradient(120deg,#E9D8C7,#F2E5D6 55%,#E6D4C2)}#fog-background::after{background-size:64px 64px;opacity:.1}.keyboard-arrow{right:19%;top:42px;width:38px;height:72px}}
+
+.metrika-pixel{position:absolute;left:-9999px}
