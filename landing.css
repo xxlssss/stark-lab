@@ -60,4 +60,4 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 @media(prefers-reduced-motion:reduce){html:has(.studio-page){scroll-behavior:auto}.header-socials a{transition:none}}
 
-.studio-page .home-hero h1 .technology-gradient{display:inline-block;background:linear-gradient(to bottom,var(--brand-brown) 12%,#65A8EA 90%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none}
+.studio-page .home-hero h1 .technology-gradient{display:inline-block;background:linear-gradient(to bottom,var(--brand-brown) 0%,var(--brand-brown) 50%,#65A8EA 50%,#65A8EA 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none}
