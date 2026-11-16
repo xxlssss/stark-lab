@@ -2,7 +2,7 @@
   'use strict';
   const KEY = 'stark.analytics-consent';
   const VERSION = '2026-11-15.3';
-  const NOTICE = 'Мы используем cookies. Подробнее — в Политике конфиденциальности.';
+  const NOTICE = 'мы используем cookies. подробнее — в Политике конфиденциальности.';
   const TTL = 180 * 24 * 60 * 60 * 1000;
   const COUNTER = 114258827;
   let allowed = false, started = false, script = null, previousFocus = null;
