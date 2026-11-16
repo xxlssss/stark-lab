@@ -86,3 +86,5 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
  .studio-page #scene,.studio-page:not(.show-contacts) #scene,.studio-page.show-contacts #scene{position:relative;top:auto;right:auto;height:400px;min-height:0;margin-top:32px}
 }
 @media(max-width:360px){.studio-page .hero,.studio-page.show-contacts .contact-panel{min-height:440px}}
+
+.studio-page .home-hero h1 .technology-gradient{background:none;color:#896650;-webkit-text-fill-color:#896650;-webkit-text-stroke:0;filter:none;text-shadow:none}
