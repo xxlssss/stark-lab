@@ -88,3 +88,5 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 @media(max-width:360px){.studio-page .hero,.studio-page.show-contacts .contact-panel{min-height:440px}}
 
 .studio-page .home-hero h1 .technology-gradient{background:none;color:#896650;-webkit-text-fill-color:#896650;-webkit-text-stroke:0;filter:none;text-shadow:none}
+
+.project-card.glass-frame{border:0;box-shadow:0 14px 40px rgba(59,36,24,.035)}
