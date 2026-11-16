@@ -68,3 +68,6 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .studio-page:not(.show-contacts) #scene{top:-65px}
 @media(max-width:1000px) and (min-width:701px){.site-header nav span{font-size:10px}.studio-page:not(.show-contacts) #scene{top:-30px}}
 @media(max-width:700px){.site-header nav{position:static;transform:none;justify-content:center;gap:20px}.site-header nav span{font-size:10px;padding:9px 0}.studio-page:not(.show-contacts) #scene{top:auto;margin-top:12px}}
+
+/* Polished chrome lettering: bright faces and sharp reflected bands. */
+.studio-page .home-hero h1 .technology-gradient{background:linear-gradient(178deg,#fafcff 0%,#a3b0bb 18%,#f8fcff 33%,#fff 43%,#56616b 47%,#a8b4bf 52%,#f5faff 65%,#b6c4ce 78%,#faffff 88%,#788793 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;-webkit-text-stroke:.45px rgba(70,81,91,.55);filter:drop-shadow(0 1px 0 #f7fbff) drop-shadow(0 2px 1px rgba(59,36,24,.23));text-shadow:none}
