@@ -75,3 +75,14 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .platform-icons{align-items:center;gap:5px;line-height:1;color:var(--brand-brown)}
 .platform-icons svg{display:block;flex:none;width:16px;height:18px}
 @media(max-width:1000px){.platform-icons svg{width:14px;height:16px}}
+
+/* Identical keyboard geometry for home and contacts. */
+@media(min-width:701px){
+ .studio-page .hero-stage,.studio-page.show-contacts .hero-stage{min-height:max(480px,calc(100svh - 225px))}
+ .studio-page #scene,.studio-page:not(.show-contacts) #scene,.studio-page.show-contacts #scene{position:absolute;top:0;right:0;height:max(480px,calc(100svh - 225px));min-height:0;margin-top:0}
+}
+@media(max-width:700px){
+ .studio-page .hero,.studio-page.show-contacts .contact-panel{min-height:390px}
+ .studio-page #scene,.studio-page:not(.show-contacts) #scene,.studio-page.show-contacts #scene{position:relative;top:auto;right:auto;height:400px;min-height:0;margin-top:32px}
+}
+@media(max-width:360px){.studio-page .hero,.studio-page.show-contacts .contact-panel{min-height:440px}}
