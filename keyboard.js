@@ -149,15 +149,19 @@ function resize() {
 new ResizeObserver(resize).observe(root);resize();
 
 
-function renderPage(){
- const contacts=location.hash==='#contacts';
- document.querySelector('.home-hero').hidden=contacts;
- document.querySelector('.contact-panel').hidden=!contacts;
- document.querySelector('.home-details').hidden=contacts;
- document.body.classList.toggle('show-contacts',contacts);
- document.querySelectorAll('.site-header nav a').forEach(a=>{if(a.hash===location.hash)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
- requestAnimationFrame(()=>{const target=document.getElementById(location.hash.slice(1));if(contacts||!target||location.hash==='#home')window.scrollTo({top:0,behavior:'instant'});else target.scrollIntoView({block:'start',behavior:reduced.matches?'instant':'smooth'});});
+const panels = [...document.querySelectorAll('[data-page]')];
+function renderPage() {
+  const requested = location.hash.slice(1);
+  const page = panels.some(panel => panel.dataset.page === requested) ? requested : 'home';
+  for (const panel of panels) panel.hidden = panel.dataset.page !== page;
+  for (const link of document.querySelectorAll('.site-header nav a')) {
+    if (link.hash === '#' + page) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  }
 }
-function navigateTo(page){const hash='#'+page;if(location.hash!==hash)location.hash=hash;else renderPage();}
-document.querySelector('.brand').addEventListener('click',event=>{event.preventDefault();navigateTo('home');});
-window.addEventListener('hashchange',renderPage);renderPage();
+function navigateTo(page) {
+  if (location.hash !== '#' + page) location.hash = page;
+  renderPage();
+}
+window.addEventListener('hashchange', renderPage);
+renderPage();
