@@ -1,6 +1,3 @@
-Traceback (most recent call last):
-  File "<stdin>", line 2, in <module>
-ValueError: substring not found
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from './vendor/RoundedBoxGeometry.js';
 
