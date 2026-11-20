@@ -65,7 +65,15 @@
 
 /* Premium Cream & Blue: shared surfaces for every existing route. */
 #fog-background{overflow:hidden;background-color:var(--brand-cream);background-image:radial-gradient(ellipse 55% 65% at 76% 44%,rgba(255,249,242,.92),transparent 78%),radial-gradient(ellipse 45% 40% at 98% 100%,rgba(169,141,123,.17),transparent 78%),linear-gradient(125deg,rgba(216,203,190,.32),transparent 35%,rgba(255,249,242,.35) 67%,transparent);background-size:100% 100%}
-#fog-background::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;background-image:linear-gradient(var(--brand-line) 1px,transparent 1px),linear-gradient(90deg,var(--brand-line) 1px,transparent 1px);background-size:64px 64px;background-position:center}
+#fog-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("assets/paper.svg") repeat;
+  mix-blend-mode: soft-light;
+  opacity: .62;
+}
 .hero h1 span{color:var(--brand-brown);text-shadow:none}
 .home-hero h1 .possibilities,.contact-panel h1 span{color:var(--brand-blue);text-shadow:0 1px 1px var(--brand-shadow)}
 .home-services li::before{text-shadow:none;color:var(--brand-blue)}
@@ -78,7 +86,7 @@
 .telegram-link:active{transform:translateY(0)}
 @media(min-width:701px){.home-hero .hero-description{max-width:36vw}.home-hero{max-height:calc(100dvh - clamp(165px,24vh,230px) - 20px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--brand-line) transparent}}
 @media(min-width:701px) and (max-height:700px){.home-hero{max-height:calc(100dvh - 150px)}.home-hero .hero-description{margin-top:12px}.home-services{margin-top:12px;padding-top:6px;gap:12px 14px}}
-@media(max-width:700px){#fog-background{background-image:radial-gradient(ellipse 95% 58% at 65% 80%,rgba(255,249,242,.8),transparent 80%),linear-gradient(125deg,rgba(216,203,190,.2),transparent 60%)}#fog-background::after{background-size:40px 40px;opacity:.23}.home-hero .hero-description{margin-top:20px}.home-services{margin-top:20px;padding-top:0;padding-bottom:24px}}
+@media(max-width:700px){#fog-background{background-image:radial-gradient(ellipse 95% 58% at 65% 80%,rgba(255,249,242,.8),transparent 80%),linear-gradient(125deg,rgba(216,203,190,.2),transparent 60%)}.home-hero .hero-description{margin-top:20px}.home-services{margin-top:20px;padding-top:0;padding-bottom:24px}}
 @media(prefers-reduced-motion:reduce){.telegram-link{transition:none}.telegram-link:hover{transform:none}}
 
 .keyboard-arrow{position:absolute;right:8%;top:calc(5% + 55px);width:56px;height:100px;color:var(--brand-blue);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;z-index:2}
@@ -86,9 +94,9 @@
 
 /* Softer oversized grid and warmer cream light. */
 #fog-background{background-color:#EBDCCB;background-image:radial-gradient(ellipse 55% 70% at 70% 40%,rgba(255,247,235,.8),transparent 82%),radial-gradient(ellipse 65% 55% at 0% 0%,rgba(169,141,123,.17),transparent 80%),linear-gradient(120deg,#E9D8C7,#F2E5D6 50%,#E6D4C2)}
-#fog-background::after{background-size:96px 96px;opacity:.12}
+
 .keyboard-arrow{right:15%;top:calc(5% + 51px);width:48px;height:92px;stroke-width:1.5}
-@media(max-width:700px){#fog-background{background-image:radial-gradient(ellipse 100% 65% at 70% 65%,rgba(255,247,235,.6),transparent 85%),linear-gradient(120deg,#E9D8C7,#F2E5D6 55%,#E6D4C2)}#fog-background::after{background-size:64px 64px;opacity:.1}.keyboard-arrow{right:19%;top:42px;width:38px;height:72px}}
+@media(max-width:700px){#fog-background{background-image:radial-gradient(ellipse 100% 65% at 70% 65%,rgba(255,247,235,.6),transparent 85%),linear-gradient(120deg,#E9D8C7,#F2E5D6 55%,#E6D4C2)}.keyboard-arrow{right:19%;top:42px;width:38px;height:72px}}
 
 .metrika-pixel{position:absolute;left:-9999px}
 
