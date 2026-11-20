@@ -120,7 +120,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
     font-size: clamp(9px, 2.4vw, 12px);
     border: 0;
     border-radius: 10px;
-    background: var(--brand-surface);
+    background: transparent;
   }
   .header-socials { grid-area: 1 / 3; flex-direction: column; gap: 4px; }
   .header-socials a { width: 34px; height: 34px; border-radius: 10px; }
