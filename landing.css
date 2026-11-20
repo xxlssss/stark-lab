@@ -137,3 +137,17 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   .studio-page .hero,
   .studio-page.show-contacts .contact-panel { min-height: 0; padding: 12px 20px 24px; }
 }
+
+.studio-page .hero-stage { min-height: 0; }
+.studio-page:not(.show-contacts) #scene {
+  position: relative;
+  inset: auto;
+  margin: 0 auto;
+}
+.section-content { max-width: 1500px; margin: 0 auto; padding: 0 4vw 32px; }
+.section-content .hero { width: auto; padding: 12px 0; }
+.section-content .menu-detail:not([hidden]) { display: block; }
+.section-content .project-card { margin-top: 0; }
+@media (min-width: 701px) {
+  .studio-page:not(.show-contacts) #scene { height: clamp(280px, 44vh, 530px); }
+}
