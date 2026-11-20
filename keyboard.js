@@ -114,7 +114,38 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');let last=0;
 function animate(t){const dt=Math.min((t-last)/1000||.016,.032);last=t;for(const key of keys){const target=key.down?-.22:0;const sub=dt/4;for(let i=0;i<4;i++){key.velocity+=((target-key.position)*(key.down?1850:1000)-key.velocity*(key.down?64:37))*sub;key.position+=key.velocity*sub;}key.group.position.y=.16+key.position;key.group.rotation.x=reduced.matches?0:key.position*key.z*.045;key.group.rotation.z=reduced.matches?0:-key.position*key.x*.045;}const ease=1-Math.exp(-dt*7);board.rotation.x+=((reduced.matches?0:tiltX)-board.rotation.x)*ease;board.rotation.y+=((reduced.matches?0:tiltY)-board.rotation.y)*ease;for(let i=0;i<4;i++){const h=dt/4;recoilV+=(-recoil*180-recoilV*17)*h;recoil+=recoilV*h;rockXV+=(-rockX*150-rockXV*16)*h;rockX+=rockXV*h;rockZV+=(-rockZ*150-rockZV*16)*h;rockZ+=rockZV*h;}board.position.y=reduced.matches?0:recoil;board.rotation.x+=reduced.matches?0:rockX;board.rotation.z=reduced.matches?0:rockZ;renderer.render(scene,camera);}
 renderer.setAnimationLoop(animate);
 document.addEventListener('visibilitychange',()=>{releaseAll();last=0;renderer.setAnimationLoop(document.hidden?null:animate);});
-function resize(){const {width,height}=root.getBoundingClientRect();camera.aspect=width/height;const distance=Math.max(10.5,9.7/camera.aspect);camera.position.set(6.8,8.8,10.4).normalize().multiplyScalar(distance);camera.lookAt(0,-.1,0);camera.updateProjectionMatrix();renderer.setSize(width,height);}
+// Fit the mobile view to the case, excluding the wider shadow plane.
+const caseBounds = new THREE.Box3().setFromObject(board);
+function resize() {
+  const {width, height} = root.getBoundingClientRect();
+  if (!width || !height) return;
+  camera.aspect = width / height;
+  camera.zoom = 1;
+  camera.clearViewOffset();
+  const distance = Math.max(10.5, 9.7 / camera.aspect);
+  camera.position.set(6.8, 8.8, 10.4).normalize().multiplyScalar(distance);
+  camera.lookAt(0, -.1, 0);
+  camera.updateMatrixWorld();
+  camera.updateProjectionMatrix();
+
+  if (matchMedia('(max-width: 700px)').matches) {
+    const frame = new THREE.Box2();
+    for (const x of [caseBounds.min.x, caseBounds.max.x]) {
+      for (const y of [caseBounds.min.y, caseBounds.max.y]) {
+        for (const z of [caseBounds.min.z, caseBounds.max.z]) {
+          const point = new THREE.Vector3(x, y, z).project(camera);
+          frame.expandByPoint(new THREE.Vector2(point.x, point.y));
+        }
+      }
+    }
+    const size = frame.getSize(new THREE.Vector2());
+    const center = frame.getCenter(new THREE.Vector2());
+    camera.zoom = 1.94 / Math.max(size.x, size.y);
+    camera.setViewOffset(width, height, center.x * camera.zoom * width / 2,
+      -center.y * camera.zoom * height / 2, width, height);
+  }
+  renderer.setSize(width, height);
+}
 new ResizeObserver(resize).observe(root);resize();
 
 
