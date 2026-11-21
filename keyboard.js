@@ -167,6 +167,7 @@ function renderPage() {
 }
 function navigateTo(page) {
   if (location.hash !== '#' + page) location.hash = page;
+  else document.getElementById(page)?.scrollIntoView({behavior: reduced.matches ? 'instant' : 'smooth'});
   renderPage();
 }
 window.addEventListener('hashchange', renderPage);
