@@ -324,3 +324,63 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   letter-spacing: -.04em;
 }
 .new-work-title span:last-child { color: #65A8EA; }
+
+.restaurant-work {
+  grid-column: 1 / -1;
+  position: relative;
+  width: min(100%, 1220px);
+  margin: 0 auto;
+  padding: clamp(28px, 4vw, 60px) clamp(14px, 4vw, 56px) clamp(36px, 5vw, 72px);
+  color: var(--brand-brown);
+}
+.restaurant-work-link { display: block; color: inherit; text-decoration: none; }
+.restaurant-work-link:focus-visible { outline: 3px solid #65a8ea; outline-offset: 5px; border-radius: 12px; }
+.notebook-lid {
+  position: relative;
+  width: 89%;
+  margin-inline: auto;
+  padding: clamp(6px, 1vw, 14px) clamp(4px, .7vw, 9px) clamp(7px, 1.2vw, 15px);
+  background: #1c1d1d;
+  border: 2px solid #a7a7a5;
+  border-radius: clamp(9px, 1.6vw, 22px) clamp(9px, 1.6vw, 22px) 4px 4px;
+}
+.notebook-lid::before {
+  content: "";
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  width: clamp(2px, .34vw, 5px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #364047;
+}
+.notebook-browser {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: clamp(13px, 2vw, 30px);
+  background: #eeedeb;
+  color: #555551;
+  border-radius: 3px 3px 0 0;
+  font: 500 clamp(6px, .8vw, 11px)/1 system-ui, sans-serif;
+}
+.notebook-browser i {
+  position: absolute; left: 1.4%; width: .55em; height: .55em;
+  background: #cb9189; border-radius: 50%;
+  box-shadow: 1em 0 #d4bd87, 2em 0 #9fb6a1;
+}
+.notebook-lid img { display: block; width: 100%; height: auto; }
+.notebook-base {
+  position: relative;
+  height: clamp(7px, 1.35vw, 18px);
+  margin-top: -2px;
+  background: linear-gradient(to bottom, #eeefec, #bdbebb 46%, #868784 74%, #62635f);
+  border-radius: 2px 2px 7% 7% / 2px 2px 90% 90%;
+}
+.notebook-base::before {
+  content: ""; display: block; margin: auto; width: 12%; height: 38%;
+  border-radius: 0 0 7px 7px; background: #969895;
+}
+.restaurant-work figcaption { margin-top: clamp(18px, 2.6vw, 36px); text-align: center; }
+.restaurant-work figcaption span { font-size: clamp(11px, 1vw, 14px); }
+.restaurant-work h3 { font-size: clamp(22px, 3vw, 40px); font-weight: 500; margin: .18em 0; letter-spacing: -.04em; }
