@@ -575,3 +575,12 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 
 .studio-accent, .studio-roles th { color: #65a8ea; }
 .studio-profile :is(h3, h4, p, table) { transform-origin: left center; }
+
+.new-work-title::before,
+#studio-heading::before {
+  content: "";
+  display: block;
+  max-width: 1100px;
+  margin: 0 auto clamp(20px, 3vw, 42px);
+  border-top: 1px solid rgba(83, 57, 39, .19);
+}
