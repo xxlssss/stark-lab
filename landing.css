@@ -227,7 +227,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 .home-statement .statement-word { display: inline-block; }
 @media (prefers-reduced-motion: no-preference) {
-  .statement-word {
+  .statement-word, .new-work-title span {
+    display: inline-block;
     opacity: calc(.25 + .75 * var(--clarity, 1));
     filter: blur(calc(6px * (1 - var(--clarity, 1))));
     transform: scale(calc(.96 + .04 * var(--clarity, 1)));
@@ -321,4 +322,4 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   line-height: 1.2;
   letter-spacing: -.04em;
 }
-.new-work-title span { color: #65A8EA; }
+.new-work-title span:last-child { color: #65A8EA; }
