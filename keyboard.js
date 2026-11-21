@@ -111,7 +111,13 @@ window.addEventListener('keydown',e=>{if(e.repeat||e.metaKey||e.ctrlKey||e.altKe
 window.addEventListener('keyup',e=>setDown(keys.find(k=>String(k.n)===e.key),false));
 for(const button of document.querySelectorAll('[data-key]')){const key=keys.find(k=>k.n===Number(button.dataset.key));button.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!e.repeat){e.preventDefault();setDown(key,true);}});button.addEventListener('keyup',()=>setDown(key,false));button.addEventListener('blur',()=>setDown(key,false));}
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');let last=0;
-function animate(t){const dt=Math.min((t-last)/1000||.016,.032);last=t;for(const key of keys){const target=key.down?-.22:0;const sub=dt/4;for(let i=0;i<4;i++){key.velocity+=((target-key.position)*(key.down?1850:1000)-key.velocity*(key.down?64:37))*sub;key.position+=key.velocity*sub;}key.group.position.y=.16+key.position;key.group.rotation.x=reduced.matches?0:key.position*key.z*.045;key.group.rotation.z=reduced.matches?0:-key.position*key.x*.045;}const ease=1-Math.exp(-dt*7);board.rotation.y+=((reduced.matches?0:tiltY)-board.rotation.y)*ease;for(let i=0;i<4;i++){const h=dt/4;recoilV+=(-recoil*180-recoilV*12)*h;recoil+=recoilV*h;rockXV+=(-rockX*150-rockXV*16)*h;rockX+=rockXV*h;rockZV+=(-rockZ*150-rockZV*16)*h;rockZ+=rockZV*h;}board.position.y=reduced.matches?0:recoil;board.rotation.x=reduced.matches?0:THREE.MathUtils.clamp(tiltX+rockX,-.24,.24);board.rotation.z=reduced.matches?0:THREE.MathUtils.clamp(rockZ,-.24,.24);renderer.render(scene,camera);}
+function animate(t){const dt=Math.min((t-last)/1000||.016,.032);last=t;for(const key of keys){const target=key.down?-.22:0;const sub=dt/4;for(let i=0;i<4;i++){key.velocity+=((target-key.position)*(key.down?1850:1000)-key.velocity*(key.down?64:37))*sub;key.position+=key.velocity*sub;}key.group.position.y=.16+key.position;key.group.rotation.x=reduced.matches?0:key.position*key.z*.045;key.group.rotation.z=reduced.matches?0:-key.position*key.x*.045;}const ease=1-Math.exp(-dt*7);board.rotation.y+=((reduced.matches?0:tiltY)-board.rotation.y)*ease;for(let i=0;i<4;i++){const h=dt/4;recoilV+=(-recoil*180-recoilV*12)*h;recoil+=recoilV*h;rockXV+=(-rockX*150-rockXV*16)*h;rockX+=rockXV*h;rockZV+=(-rockZ*150-rockZV*16)*h;rockZ+=rockZV*h;}board.position.y=reduced.matches?0:recoil;board.rotation.x=reduced.matches?0:THREE.MathUtils.clamp(tiltX+rockX,-.24,.24);board.rotation.z=reduced.matches?0:THREE.MathUtils.clamp(rockZ,-.24,.24);renderer.render(scene,camera);
+ if (firstFrame) {
+   firstFrame = false;
+   window.dispatchEvent(new Event('keyboard:first-frame'));
+ }
+}
+let firstFrame = true;
 renderer.setAnimationLoop(animate);
 document.addEventListener('visibilitychange',()=>{releaseAll();last=0;renderer.setAnimationLoop(document.hidden?null:animate);});
 // Fit the mobile view to the case, excluding the wider shadow plane.
