@@ -413,3 +413,26 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   .site-header nav span { display: grid; place-items: center; font-size: clamp(9px, 2.4vw, 12px); padding: 4px 1px; }
   .site-header nav a { text-align: center; }
 }
+
+@media (max-width: 700px) {
+  .site-header {
+    --header-side: clamp(44px, 13vw, 76px);
+    grid-template-columns: var(--header-side) minmax(0, 1fr) var(--header-side);
+    align-items: center;
+  }
+  .site-header .header-socials { justify-self: end; }
+  .site-header nav {
+    width: fit-content;
+    max-width: 100%;
+    grid-template-columns: auto minmax(0, auto);
+    gap: 2px clamp(10px, 3vw, 20px);
+    justify-self: center;
+  }
+  .site-header nav :is(a, span) {
+    justify-items: start;
+    align-content: center;
+    text-align: left;
+    padding-inline: 0;
+    line-height: 1.35;
+  }
+}
