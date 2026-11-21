@@ -487,12 +487,17 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   }
 }
 
-.work-pricing-link {
+.work-actions {
   position: relative;
-  display: block;
   grid-column: 1 / -1;
-  width: fit-content;
-  margin: 0 auto clamp(28px, 4vw, 60px);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 16px clamp(28px, 4vw, 60px);
+}
+.work-pricing-link {
+  display: block;
   padding: 14px 26px;
   border-radius: 16px;
   background: var(--brand-blue);
@@ -502,3 +507,6 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 .work-pricing-link:hover { background: #a3d0ff; }
 .work-pricing-link:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
+
+.work-pricing-link.messenger { background: var(--brand-surface); }
+.work-pricing-link.messenger:hover { background: #fff; }
