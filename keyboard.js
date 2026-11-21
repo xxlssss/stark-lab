@@ -82,7 +82,41 @@ const layout=[{n:1,x:-step,z:-step,w:unit,mat:black,ink:'#ffffff'},{n:2,x:step/2
 await document.fonts.load('600 64px Unbounded');
 
 const keys=[];
-function labelTexture(n,ink){const c=document.createElement('canvas');c.width=c.height=256;const ctx=c.getContext('2d');ctx.fillStyle=ink||brand.brown;ctx.textAlign='center';ctx.textBaseline='middle';if(n===1){ctx.fillStyle='#ffffff';ctx.font='500 58px Unbounded';ctx.fillText('о нас',128,134);}else if(n===7){ctx.save();ctx.translate(24,24);ctx.scale(8.7,8.7);ctx.fill(new Path2D('M21.5 3.2 18.3 20c-.2 1-1 1.2-1.8.7l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.3-.1-.5-.6-.2L5.8 13.6 1 12.1c-1-.3-1-1 .2-1.5L20 3c.9-.3 1.6.2 1.5.2Z'));ctx.restore();}else if(n===5){ctx.font='600 62px Unbounded';ctx.fillText('tg-',128,86);ctx.fillText('боты',128,169);}else if(n===6||n===3||n===2){c.width=768;c.height=256;ctx.fillStyle=ink||brand.brown;ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=n===6?'600 74px Unbounded':'600 88px Unbounded';ctx.fillText(({2:'сайты',3:'услуги',6:'наши проекты'})[n],384,134);}else{ctx.font='600 152px Arial';ctx.fillText(n,128,140);}const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=renderer.capabilities.getMaxAnisotropy();return t;}
+const logo = new Image();
+logo.src = new URL('./assets/stark-logo.png', import.meta.url);
+await logo.decode();
+function labelTexture(n, ink) {
+  const canvas = document.createElement('canvas');
+  canvas.width = [2,3,6].includes(n) ? 768 : 256;
+  canvas.height = 256;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = ctx.strokeStyle = ink || brand.brown;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  if (n === 1) {
+    ctx.drawImage(logo, 180, 155, 920, 830, 5, 17, 246, 222);
+  } else if (n === 2) {
+    ctx.lineWidth = 13;
+    ctx.lineJoin = 'round';
+    ctx.strokeRect(274, 49, 220, 158);
+    ctx.beginPath();
+    ctx.moveTo(274, 89);
+    ctx.lineTo(494, 89);
+    ctx.stroke();
+    for (const x of [296, 315, 334]) ctx.fillRect(x, 64, 9, 9);
+  } else if (n === 3 || n === 5) {
+    ctx.font = n === 3 ? '600 148px Unbounded' : '184px system-ui';
+    ctx.fillText(n === 3 ? 'AI' : '⌘', canvas.width / 2, 134);
+  } else if (n === 7) {
+    ctx.translate(24, 24);
+    ctx.scale(8.7, 8.7);
+    ctx.fill(new Path2D('M21.5 3.2 18.3 20c-.2 1-1 1.2-1.8.7l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.3-.1-.5-.6-.2L5.8 13.6 1 12.1c-1-.3-1-1 .2-1.5L20 3c.9-.3 1.6.2 1.5.2Z'));
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  return texture;
+}
 for(const config of layout){
  box(config.w+.055,.055,unit+.055,.14,inset,config.x,.058,config.z);
  const stemMat=new THREE.MeshPhysicalMaterial({color:config.n===7?brand.blue:brand.line,roughness:.32,metalness:.15});
