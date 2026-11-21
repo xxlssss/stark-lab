@@ -35,6 +35,15 @@
       frame = requestAnimationFrame(() => {
         curtain.classList.add('is-leaving');
         const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reducedMotion && isHome()) {
+          document.getElementById('hero-title')?.animate(
+            [
+              { transform: 'scale(.72)', transformOrigin: 'left center' },
+              { transform: 'scale(1)', transformOrigin: 'left center' }
+            ],
+            { duration: 850, delay: 180, easing: 'cubic-bezier(.22,.7,.25,1)', fill: 'backwards' }
+          );
+        }
         hideTimer = setTimeout(() => { curtain.hidden = true; }, reducedMotion ? 0 : 350);
       });
     }
