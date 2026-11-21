@@ -349,51 +349,56 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 .restaurant-work-link { display: block; color: inherit; text-decoration: none; }
 .restaurant-work-link:focus-visible { outline: 3px solid #65a8ea; outline-offset: 5px; border-radius: 12px; }
+.restaurant-work-link { container-type: inline-size; }
 .notebook-lid {
   position: relative;
-  width: 89%;
+  width: 84%;
   margin-inline: auto;
-  padding: clamp(6px, 1vw, 14px) clamp(4px, .7vw, 9px) clamp(7px, 1.2vw, 15px);
-  background: linear-gradient(130deg, #e5f0fa, #afc9e0 49%, #cbdff0);
-  border: 1px solid #9db8cd;
-  border-radius: clamp(9px, 1.6vw, 22px) clamp(9px, 1.6vw, 22px) 4px 4px;
+  padding: .95% .95% 1.6%;
+  background: #101114;
+  border: 1px solid #41454b;
+  border-radius: 2.5cqw 2.5cqw .7cqw .7cqw;
 }
-.notebook-lid::before {
+.notebook-lid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.45cqw;
+}
+.notebook-lid::after {
   content: "";
   position: absolute;
-  top: 1%;
+  top: 1.65cqw;
   left: 50%;
-  width: clamp(2px, .34vw, 5px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #364047;
+  transform: translateX(-50%);
+  width: 3.15cqw;
+  height: 1.55cqw;
+  border-radius: 99px;
+  background: radial-gradient(circle at 72% 46%, #253246 0 4%, transparent 10%), #050506;
 }
-.notebook-browser {
-  position: relative;
-  display: grid;
-  place-items: center;
-  height: clamp(13px, 2vw, 30px);
-  background: #eeedeb;
-  color: #555551;
-  border-radius: 3px 3px 0 0;
-  font: 500 clamp(6px, .8vw, 11px)/1 system-ui, sans-serif;
-}
-.notebook-browser i {
-  position: absolute; left: 1.4%; width: .55em; height: .55em;
-  background: #cb9189; border-radius: 50%;
-  box-shadow: 1em 0 #d4bd87, 2em 0 #9fb6a1;
-}
-.notebook-lid img { display: block; width: 100%; height: auto; }
 .notebook-base {
   position: relative;
-  height: clamp(7px, 1.35vw, 18px);
-  margin-top: -2px;
-  background: linear-gradient(to bottom, #e2eff9, #bcd3e6 46%, #9bb8cf 74%, #7c9bb4);
-  border-radius: 2px 2px 7% 7% / 2px 2px 90% 90%;
+  height: 7.1cqw;
+  background: linear-gradient(92deg, #0b1017 1%, #27323e 16%, #19232e 44%, #51677a 72%, #18232e 91%, #080c11);
+  clip-path: polygon(8.15% 0, 91.85% 0, 100% 83%, 99.8% 97%, 98.5% 100%, 1.5% 100%, .2% 97%, 0 83%);
+  border-bottom: 1cqw solid #161a20;
 }
 .notebook-base::before {
-  content: ""; display: block; margin: auto; width: 12%; height: 38%;
-  border-radius: 0 0 7px 7px; background: #90acc2;
+  content: "";
+  position: absolute;
+  inset: 2% 16% 49%;
+  transform: perspective(12cqw) rotateX(40deg);
+  background: repeating-linear-gradient(0deg, transparent 0 19%, #45505b 20% 23%),
+    repeating-linear-gradient(90deg, #10161e 0 5.9%, #45505b 6% 6.45%);
+  border-radius: .5cqw;
+}
+.notebook-base::after {
+  content: "";
+  position: absolute;
+  inset: 55% 31% 4%;
+  border: 1px solid #202832;
+  transform: perspective(10cqw) rotateX(32deg);
+  border-radius: .4cqw;
 }
 .restaurant-work figcaption { margin-top: clamp(18px, 2.6vw, 36px); text-align: center; }
 .restaurant-work figcaption span { font-size: clamp(11px, 1vw, 14px); }
