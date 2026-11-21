@@ -116,6 +116,7 @@
       return word;
     });
     paragraph.replaceChildren(...words.flatMap((word, i) => i ? [' ', word] : [word]));
+    const figures = document.querySelectorAll('.studio-figures strong');
     const cardGrids = document.querySelectorAll('.offerings, .work-gallery');
     const workTitle = document.querySelector('.new-work-title');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -138,6 +139,12 @@
 
       // Measure grid positions before transforms so each card has a stable destination.
       const scrollLimit = page.scrollHeight - page.clientHeight;
+      for (const number of figures) {
+        const rowTop = number.parentElement.getBoundingClientRect().top;
+        const growth = Math.max(0, Math.min(1, (page.clientHeight - rowTop) / (page.clientHeight * .34)));
+        number.style.transform = reduced.matches ? 'none' : `scale(${.72 + .28 * growth})`;
+      }
+
       for (const grid of cardGrids) {
         const gridTop = grid.getBoundingClientRect().top + page.scrollTop;
         Array.from(grid.children).forEach((card, index) => {
