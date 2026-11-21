@@ -8,7 +8,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .site-header nav a:hover,.site-header nav a[aria-current]{color:#498ac5}
 .header-socials{display:flex;gap:10px;margin-left:16px}
 .header-socials a{display:grid;place-items:center;width:44px;height:44px;border-radius:16px;background:var(--brand-blue);color:var(--brand-brown);transition:transform .2s}
-.header-socials a:last-child{background:var(--brand-surface)}
+
 .header-socials a:hover{transform:translateY(-3px)}
 .header-socials svg{width:23px;height:23px;fill:currentColor}
 .site-header a:focus-visible{outline:2px solid var(--brand-brown);outline-offset:5px}
@@ -533,4 +533,4 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   margin-top: clamp(20px, 3vw, 36px);
 }
 .contact-actions .telegram-link { margin: 0; box-shadow: none; }
-.contact-actions .whatsapp-link { background: var(--brand-surface); }
+
