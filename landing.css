@@ -178,3 +178,31 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   .section-content .home-hero h1 { width: auto; font-size: clamp(29px, 3.1vw, 59px); }
   .section-content .project-card { grid-template-columns: 1fr; }
 }
+
+#intro-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(18px, 3vw, 52px);
+  color: var(--brand-brown);
+  background: #f2e8da;
+  touch-action: none;
+  transition: transform 330ms cubic-bezier(.76, 0, .92, .48);
+}
+#intro-curtain.is-leaving { transform: translateY(-101%); }
+.intro-masthead { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.intro-masthead img { width: clamp(54px, 6vw, 82px); height: auto; }
+.intro-masthead p {
+  max-width: 27em; margin: 0; padding-top: .4em; text-align: right;
+  font-size: clamp(10px, 1vw, 14px); line-height: 1.5; text-wrap: balance;
+}
+.intro-progress {
+  font-size: clamp(64px, 13vw, 200px); font-weight: 600;
+  line-height: 1; letter-spacing: -.055em; font-variant-numeric: tabular-nums;
+}
+@media (prefers-reduced-motion: reduce) {
+  #intro-curtain { transition: none; }
+}
