@@ -436,3 +436,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
     line-height: 1.35;
   }
 }
+
+.offering { position: relative; }
+.service-link { color: inherit; text-decoration: none; }
+.service-link::after { content: ""; position: absolute; inset: 0; border-radius: 28px; }
+.offering:focus-within { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
