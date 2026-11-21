@@ -398,3 +398,19 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .restaurant-work figcaption { margin-top: clamp(18px, 2.6vw, 36px); text-align: center; }
 .restaurant-work figcaption span { font-size: clamp(11px, 1vw, 14px); }
 .restaurant-work h3 { font-size: clamp(22px, 3vw, 40px); font-weight: 500; margin: .18em 0; letter-spacing: -.04em; }
+
+.back-to-top {
+  position: relative;
+  display: block;
+  grid-column: 1 / -1;
+  justify-self: end;
+  margin: 0 clamp(18px, 4vw, 60px) 0 auto;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--brand-blue);
+  color: var(--brand-brown);
+  font: 500 12px/1.5 var(--brand-font);
+  cursor: pointer;
+}
+.back-to-top:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
