@@ -508,5 +508,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .work-pricing-link:hover { background: #a3d0ff; }
 .work-pricing-link:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
 
-.work-pricing-link.messenger { background: var(--brand-surface); }
-.work-pricing-link.messenger:hover { background: #fff; }
+.work-actions .header-socials {
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+}
