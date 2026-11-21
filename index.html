@@ -9,7 +9,7 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=gallery-31">
+<link rel="stylesheet" href="landing.css?v=top-32">
 </head><body class="studio-page">
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
@@ -174,4 +174,11 @@
   })();
 </script>
 
+<button class="back-to-top" type="button">НАВЕРХ</button>
+<script>
+  document.querySelector(".back-to-top").addEventListener("click", () => {
+    document.querySelector(".site-header .brand").focus({preventScroll: true});
+    window.scrollTo({top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"});
+  });
+</script>
 <footer class="legal-footer"><a href="privacy.html">конфиденциальность</a><a href="consent.html">согласие</a><button type="button" data-privacy-settings>cookies</button></footer><section id="privacy-banner" class="privacy-banner" role="region" aria-label="настройки cookies" hidden><p>мы используем cookies. подробнее — в <a href="privacy.html">политике конфиденциальности</a>.</p><a class="privacy-consent-link" href="consent.html">согласие на обработку персональных данных</a><div class="privacy-actions"><button type="button" data-reject>Отклонить</button><button type="button" data-accept>Принять</button></div></section><p id="privacy-status" class="privacy-status" role="status" aria-live="polite"></p><script src="consent.js?v=3" defer></script></body></html>
