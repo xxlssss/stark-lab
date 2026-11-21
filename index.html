@@ -9,8 +9,7 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=studio-54">
-<style>.studio-accent, .studio-roles th { color: #65a8ea; }</style>
+<link rel="stylesheet" href="landing.css?v=studio-55">
 </head><body class="studio-page">
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
@@ -168,6 +167,7 @@
       return word;
     });
     paragraph.replaceChildren(...words.flatMap((word, i) => i ? [' ', word] : [word]));
+    const studioText = document.querySelectorAll('.studio-profile h3, .studio-profile p, .studio-profile h4, .studio-roles');
     const figures = document.querySelectorAll('.studio-figures strong, .team-number');
     const cardGrids = document.querySelectorAll('.offerings, .work-gallery');
     const titles = document.querySelectorAll('[data-reveal-title]');
@@ -191,6 +191,12 @@
 
       // Measure grid positions before transforms so each card has a stable destination.
       const scrollLimit = page.scrollHeight - page.clientHeight;
+      for (const block of studioText) {
+        const bounds = block.getBoundingClientRect();
+        const distance = Math.abs(bounds.top + bounds.height / 2 - page.clientHeight / 2);
+        const proximity = Math.max(0, 1 - distance / ((page.clientHeight + bounds.height) / 2));
+        block.style.transform = reduced.matches ? 'none' : `scale(${0.94 + 0.06 * proximity})`;
+      }
       for (const number of figures) {
         const rowTop = number.parentElement.getBoundingClientRect().top;
         const growth = Math.max(0, Math.min(1, (page.clientHeight - rowTop) / (page.clientHeight * .34)));
