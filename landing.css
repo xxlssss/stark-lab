@@ -260,7 +260,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   background: linear-gradient(150deg, #fffcf7, #fbf3e9);
 }
 .offering:nth-child(n+4) { grid-column: span 3; }
-.offering:last-child { background: linear-gradient(145deg, #eff6fe, #dceafa); }
+.offering-blue { background: linear-gradient(145deg, #eff6fe, #dceafa); }
 .offering-icon {
   display: block;
   width: clamp(120px, 10vw, 140px);
