@@ -262,15 +262,15 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .offering:nth-child(n+4) { grid-column: span 3; }
 .offering:last-child { background: linear-gradient(145deg, #eff6fe, #dceafa); }
 .offering-icon {
-  display: grid;
-  place-items: center;
-  width: 54px;
-  height: 54px;
-  margin-bottom: clamp(20px, 2vw, 30px);
-  border-radius: 15px;
-  color: #24517b;
-  background: linear-gradient(155deg, #e4f2ff, #a5cef4);
-  box-shadow: inset 0 1px 1px #fff, inset 0 -1px 2px #7aa9d8, 0 3px 6px #31557014;
+  display: block;
+  width: clamp(120px, 10vw, 140px);
+  height: clamp(104px, 9vw, 126px);
+  object-fit: contain;
+  object-position: left bottom;
+  margin-bottom: 20px;
+}
+@media (max-width: 700px) {
+  .offering-icon { width: 100px; height: 92px; }
 }
 .offering h2 {
   color: #65A8EA;
