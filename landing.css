@@ -236,3 +236,5 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 @media (max-width: 700px) {
   .section-content:has(.home-hero:not([hidden])) { padding-bottom: 0; }
 }
+
+.home-statement .statement-accent { color: #65A8EA; }
