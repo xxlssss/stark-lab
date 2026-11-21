@@ -94,7 +94,13 @@ function labelTexture(n, ink) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   if (n === 1) {
-    ctx.drawImage(logo, 180, 155, 920, 830, 5, 17, 246, 222);
+    ctx.drawImage(logo, 180, 155, 900, 812, 63, 69, 130, 118);
+    ctx.globalCompositeOperation = 'source-in';
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, 256, 256);
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = brand.brown;
+    ctx.fillRect(0, 0, 256, 256);
   } else if (n === 2) {
     ctx.lineWidth = 13;
     ctx.lineJoin = 'round';
@@ -125,8 +131,17 @@ for(const config of layout){
  const capGeo=capGeometry(config.w,unit);
  // Preserve all vertices; assign cream to the dish and chrome to the skirt/shoulder.
  if(config.n===3){const rimIndices=5*4*13*6;capGeo.clearGroups();capGeo.addGroup(0,rimIndices,0);capGeo.addGroup(rimIndices,capGeo.index.count-rimIndices,1);}
+ if (config.n === 1) {
+   const logoMaterial = config.mat.clone();
+   logoMaterial.color.set(0xffffff);
+   logoMaterial.map = labelTexture(1);
+   logoMaterial.map.flipY = false;
+   config.mat = logoMaterial;
+ }
  const cap=new THREE.Mesh(capGeo,config.n===3?[chrome,serviceTop]:config.mat);cap.castShadow=true;cap.receiveShadow=true;group.add(cap);
- const label=new THREE.Mesh(new THREE.PlaneGeometry((config.n===6||config.n===3||config.n===2)?1.75:config.n===5?.76:config.n===1?.78:.62,(config.n===6||config.n===3||config.n===2)?.58:config.n===5?.76:config.n===1?.78:.62),new THREE.MeshBasicMaterial({map:labelTexture(config.n,config.ink),transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,toneMapped:false}));label.rotation.x=-Math.PI/2;label.position.y=.662;group.add(label);
+ if (config.n !== 1) {
+  const label=new THREE.Mesh(new THREE.PlaneGeometry((config.n===6||config.n===3||config.n===2)?1.75:config.n===5?.76:.62,(config.n===6||config.n===3||config.n===2)?.58:config.n===5?.76:.62),new THREE.MeshBasicMaterial({map:labelTexture(config.n,config.ink),transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,toneMapped:false}));label.rotation.x=-Math.PI/2;label.position.y=.662;group.add(label);
+ }
  const key={...config,group,cap,down:false,position:0,velocity:0};cap.userData.key=key;keys.push(key);
 }
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let active=null,tiltX=0,tiltY=0,audio;
