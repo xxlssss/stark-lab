@@ -9,7 +9,7 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=cards-25">
+<link rel="stylesheet" href="landing.css?v=work-27">
 </head><body class="studio-page">
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
@@ -71,6 +71,7 @@
     <p>внутренняя система компании: заявки, сделки, клиенты, задачи, документы и деньги в одном окне, у каждого свой доступ. собственник видит свои цифры, документы собираются из карточек сами, рутина уезжает в систему. собирается под ваши процессы и роли.</p>
   </article>
 </section>
+<h2 class="new-work-title" data-page="home"><span>новые</span> <span>работы</span></h2>
 <script>
   (() => {
     const paragraph = document.querySelector('.home-statement p');
@@ -84,6 +85,7 @@
     });
     paragraph.replaceChildren(...words.flatMap((word, i) => i ? [' ', word] : [word]));
     const grid = document.querySelector('.offerings');
+    const workTitle = document.querySelector('.new-work-title');
     const cards = [...grid.querySelectorAll('.offering')];
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     let pending = false;
@@ -117,6 +119,15 @@
       cards.forEach((card, index) => {
         card.style.setProperty('--travel', arrivals[index].toFixed(4));
       });
+
+      const titleTop = workTitle.getBoundingClientRect().top + page.scrollTop;
+      const titleStart = Math.max(0, titleTop - page.clientHeight);
+      const titleEnd = Math.min(scrollLimit, titleStart + page.clientHeight * .28);
+      const reveal = titleEnd <= titleStart ? 1 : (page.scrollTop - titleStart) / (titleEnd - titleStart);
+      Array.from(workTitle.children).forEach((word, i) => {
+        const clarity = Math.max(0, Math.min(1, (reveal - i * .2) / .8));
+        word.style.setProperty('--clarity', clarity.toFixed(3));
+      });
     }
     function schedule() {
       if (!pending) {
@@ -134,4 +145,5 @@
     schedule();
   })();
 </script>
+
 <footer class="legal-footer"><a href="privacy.html">конфиденциальность</a><a href="consent.html">согласие</a><button type="button" data-privacy-settings>cookies</button></footer><section id="privacy-banner" class="privacy-banner" role="region" aria-label="настройки cookies" hidden><p>мы используем cookies. подробнее — в <a href="privacy.html">политике конфиденциальности</a>.</p><a class="privacy-consent-link" href="consent.html">согласие на обработку персональных данных</a><div class="privacy-actions"><button type="button" data-reject>Отклонить</button><button type="button" data-accept>Принять</button></div></section><p id="privacy-status" class="privacy-status" role="status" aria-live="polite"></p><script src="consent.js?v=3" defer></script></body></html>
