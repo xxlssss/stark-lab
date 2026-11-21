@@ -311,7 +311,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   }
 }
 
-.new-work-title, .studio-about h2 {
+.new-work-title, .studio-about h2, .studio-contacts h2 {
   text-align: center;
   grid-column: 1 / -1;
   position: relative;
@@ -323,7 +323,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   line-height: 1.2;
   letter-spacing: -.04em;
 }
-.new-work-title span:last-child, .studio-about h2 span:last-child { color: #65A8EA; }
+.new-work-title span:last-child, .studio-about h2 span:last-child, .studio-contacts h2 span { color: #65A8EA; }
 
 .work-gallery {
   grid-column: 1 / -1;
@@ -520,4 +520,15 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .work-actions a { --action-radius: 16px; }
 .work-actions .work-pricing-link, .work-actions .header-socials a { border-radius: var(--action-radius); }
 
-.studio-about { position: relative; grid-column: 1 / -1; padding-bottom: clamp(28px, 4vw, 60px); scroll-margin-top: 20px; }
+.studio-about, .studio-contacts { position: relative; grid-column: 1 / -1; padding-bottom: clamp(28px, 4vw, 60px); scroll-margin-top: 20px; }
+
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 16px;
+  margin-top: clamp(20px, 3vw, 36px);
+}
+.contact-actions .telegram-link { margin: 0; box-shadow: none; }
+.contact-actions .whatsapp-link { background: var(--brand-surface); }
