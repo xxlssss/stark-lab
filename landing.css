@@ -517,3 +517,5 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 
 .work-actions .header-socials a { width: 44px; height: 44px; }
+.work-actions a { --action-radius: 16px; }
+.work-actions .work-pricing-link, .work-actions .header-socials a { border-radius: var(--action-radius); }
