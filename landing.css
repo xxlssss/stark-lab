@@ -414,3 +414,12 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   cursor: pointer;
 }
 .back-to-top:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
+
+#uslugi, #works { scroll-margin-top: 20px; }
+.site-header nav [aria-disabled="true"] { opacity: .58; }
+.pricing-content { position: relative; grid-column: 1 / -1; width: min(100%, 1440px); margin: auto; min-height: 55vh; padding: clamp(36px, 6vw, 88px) 4vw; }
+.pricing-content h1 { font-size: clamp(28px, 4vw, 60px); letter-spacing: -.05em; }
+@media (max-width: 700px) {
+  .site-header nav span { display: grid; place-items: center; font-size: clamp(9px, 2.4vw, 12px); padding: 4px 1px; }
+  .site-header nav a { text-align: center; }
+}
