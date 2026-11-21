@@ -11,12 +11,41 @@
   }
   window.addEventListener('keyboard:first-frame', finishLoading, { once: true });
   document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.back-to-top').addEventListener('click', backToTop);
     import('./keyboard.js?v=section-16').catch(finishLoading);
   }, { once: true });
   // Keep the site accessible if the renderer never produces a frame.
   const timeout = setTimeout(finishLoading, 15000);
 
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let headlineAnimation;
+  let returnFrame;
+  function growHeadline(delay = 0) {
+    if (motion.matches) return;
+    headlineAnimation?.cancel();
+    headlineAnimation = document.getElementById('hero-title')?.animate(
+      [
+        { transform: 'scale(.72)', transformOrigin: 'left center' },
+        { transform: 'scale(1)', transformOrigin: 'left center' }
+      ],
+      { duration: 850, delay, easing: 'cubic-bezier(.22,.7,.25,1)', fill: 'backwards' }
+    );
+  }
+
+  function backToTop() {
+    cancelAnimationFrame(returnFrame);
+    document.querySelector('.site-header .brand').focus({preventScroll: true});
+    window.scrollTo({top: 0, behavior: motion.matches ? 'instant' : 'smooth'});
+    const deadline = performance.now() + 3000;
+    function onReturn(now) {
+      if (window.scrollY <= 1) growHeadline();
+      else if (now < deadline) returnFrame = requestAnimationFrame(onReturn);
+    }
+    returnFrame = requestAnimationFrame(onReturn);
+  }
+
   function showCurtain() {
+    cancelAnimationFrame(returnFrame);
     cancelAnimationFrame(frame);
     clearTimeout(hideTimer);
     curtain.classList.remove('is-leaving');
@@ -35,15 +64,7 @@
       frame = requestAnimationFrame(() => {
         curtain.classList.add('is-leaving');
         const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!reducedMotion && isHome()) {
-          document.getElementById('hero-title')?.animate(
-            [
-              { transform: 'scale(.72)', transformOrigin: 'left center' },
-              { transform: 'scale(1)', transformOrigin: 'left center' }
-            ],
-            { duration: 850, delay: 180, easing: 'cubic-bezier(.22,.7,.25,1)', fill: 'backwards' }
-          );
-        }
+        if (isHome()) growHeadline(180);
         hideTimer = setTimeout(() => { curtain.hidden = true; }, reducedMotion ? 0 : 350);
       });
     }
