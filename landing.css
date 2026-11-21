@@ -534,3 +534,30 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 .contact-actions .telegram-link { margin: 0; box-shadow: none; }
 
+
+.studio-profile {
+  width: min(100%, 1100px);
+  margin: clamp(28px, 5vw, 72px) auto 0;
+  padding-block: clamp(24px, 3vw, 42px);
+  border-block: 1px solid rgba(83, 57, 39, .19);
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: clamp(26px, 5vw, 76px);
+  text-align: left;
+}
+.studio-role { margin: 0 0 10px; font-size: 14px; }
+.studio-profile h3 {
+  margin: 0;
+  color: #65a8ea;
+  font-size: clamp(30px, 4.8vw, 68px);
+  line-height: 1.08;
+}
+.studio-story { font-size: clamp(14px, 1.1vw, 17px); line-height: 1.65; }
+.studio-story p { margin: 0 0 1em; }
+.studio-lead { font-size: clamp(21px, 2.3vw, 34px); line-height: 1.3; font-weight: 600; }
+.studio-steps { margin: 24px 0 0; }
+.studio-steps dt { border-top: 1px solid rgba(83, 57, 39, .16); padding-top: 14px; font-weight: 600; }
+.studio-steps dd { margin: 4px 0 14px; }
+@media (max-width: 700px) {
+  .studio-profile { grid-template-columns: 1fr; }
+}
