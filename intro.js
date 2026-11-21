@@ -11,7 +11,7 @@
   }
   window.addEventListener('keyboard:first-frame', finishLoading, { once: true });
   document.addEventListener('DOMContentLoaded', () => {
-    import('./keyboard.js?v=curtain-15').catch(finishLoading);
+    import('./keyboard.js?v=section-16').catch(finishLoading);
   }, { once: true });
   // Keep the site accessible if the renderer never produces a frame.
   const timeout = setTimeout(finishLoading, 15000);
