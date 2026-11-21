@@ -9,7 +9,7 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=studio-52">
+<link rel="stylesheet" href="landing.css?v=studio-53">
 </head><body class="studio-page">
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
@@ -112,17 +112,43 @@
   <h2 id="studio-heading" data-reveal-title><span>о</span> <span>студии</span></h2>
   <div class="studio-profile">
     <div>
-      <p class="studio-role">фаундер stark lab</p>
-      <h3>Сергей Старк</h3>
+      <p class="studio-role">За студией стоит</p>
+      <h3>основатель <strong>Сергей Старк</strong></h3>
+      <p>с большим опытом в бизнесе и IT.</p>
     </div>
     <div class="studio-story">
-      <p class="studio-lead">что происходит с заявкой после кнопки «отправить»?</p>
-      <p>с этого вопроса удобно начать разговор о сайте. клиент оставил заявку, менеджеру нужно её увидеть, а собственнику — знать, дошло ли дело до продажи.</p>
-      <dl class="studio-steps">
-        <dt>разбираемся</dt><dd>проходим путь заявки вместе с вами и находим места, где приходится переносить данные вручную.</dd>
-        <dt>проектируем</dt><dd>продумываем форму на сайте и решаем, какие сведения понадобятся менеджеру для первого ответа.</dd>
-        <dt>связываем</dt><dd>настраиваем передачу заявки в систему и уведомление в telegram. проверяем весь путь на тестовой заявке.</dd>
-      </dl>
+      <p class="studio-lead">мы встраиваемся в бизнес как стратегические партнёры и отвечаем за результат вместе с вами.</p>
+      <p>stark lab это студия, которая видит бизнес целиком и внедряет то, что действительно работает на результат.</p>
+      <h4>СЕРГЕЙ СТАРК</h4>
+      <p class="studio-role">ФАУНДЕР</p>
+      <p>своя студия дизайна, опыт арт директора сети ресторанов в Москве и госпроектов с внедрением ИИ. За спиной несколько бизнесов в IT и дизайне.</p>
+    </div>
+  </div>
+  <div class="studio-profile">
+    <div>
+      <h3>Команда</h3>
+      <div><strong class="team-number">07</strong></div>
+      <p>над каждым проектом работает команда из семи специалистов.</p>
+    </div>
+    <div class="studio-story">
+      <p>каждый специалист чётко отвечает за свою роль.</p>
+      <table class="studio-roles">
+        <caption>РОЛИ</caption>
+        <tbody>
+          <tr><td>01</td><th scope="row">менеджер</th><td>управление и сроки</td></tr>
+          <tr><td>02</td><th scope="row">копирайтер</th><td>смыслы и тексты</td></tr>
+          <tr><td>03</td><th scope="row">дизайнер</th><td>визуал и интерфейс</td></tr>
+          <tr><td>04</td><th scope="row">разработчик</th><td>фронт и бек</td></tr>
+          <tr><td>05</td><th scope="row">AI-разработчик</th><td>AI и интеграции</td></tr>
+          <tr><td>06</td><th scope="row">аналитик</th><td>данные и рост</td></tr>
+          <tr><td>07</td><th scope="row">AI</th><td>автоматизация</td></tr>
+        </tbody>
+      </table>
+      <p>В нашей команде работают только опытные профессионалы, и вся работа ведётся под чутким присмотром фаундера.</p>
+      <p class="studio-lead">Наша цель вывести бизнес на новый уровень.</p>
+      <p>Мы инноваторы по своей сути: внедряем решения, которые работают уже сейчас и приносят прибыль, о которых многие даже не задумываются.</p>
+      <p>Многие упускают скорость, упускают результаты, упускают свои деньги.</p>
+      <p class="studio-lead">А мы приводим бизнес в ту точку, где он становится первым в технологиях: даём использовать все новейшие инструменты, чтобы расти в прибыли.</p>
     </div>
   </div>
 </section>
@@ -142,7 +168,7 @@
       return word;
     });
     paragraph.replaceChildren(...words.flatMap((word, i) => i ? [' ', word] : [word]));
-    const figures = document.querySelectorAll('.studio-figures strong');
+    const figures = document.querySelectorAll('.studio-figures strong, .team-number');
     const cardGrids = document.querySelectorAll('.offerings, .work-gallery');
     const titles = document.querySelectorAll('[data-reveal-title]');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
