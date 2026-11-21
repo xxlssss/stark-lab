@@ -572,3 +572,6 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 @media (max-width: 700px) {
   .studio-profile { grid-template-columns: 1fr; }
 }
+
+.studio-accent, .studio-roles th { color: #65a8ea; }
+.studio-profile :is(h3, h4, p, table) { transform-origin: left center; }
