@@ -19,7 +19,7 @@
 
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let headlineAnimation;
-  let returnFrame;
+  let awayFromTop = window.scrollY > 8;
   function growHeadline(delay = 0) {
     if (motion.matches) return;
     headlineAnimation?.cancel();
@@ -32,20 +32,29 @@
     );
   }
 
-  function backToTop() {
-    cancelAnimationFrame(returnFrame);
-    document.querySelector('.site-header .brand').focus({preventScroll: true});
-    window.scrollTo({top: 0, behavior: motion.matches ? 'instant' : 'smooth'});
-    const deadline = performance.now() + 3000;
-    function onReturn(now) {
-      if (window.scrollY <= 1) growHeadline();
-      else if (now < deadline) returnFrame = requestAnimationFrame(onReturn);
+  function onPageScroll() {
+    if (window.scrollY > 8) {
+      awayFromTop = true;
+    } else if (window.scrollY <= 1 && awayFromTop) {
+      awayFromTop = false;
+      if (curtain.hidden) growHeadline();
     }
-    returnFrame = requestAnimationFrame(onReturn);
+  }
+  window.addEventListener('scroll', onPageScroll, {passive: true});
+
+  function backToTop() {
+    document.querySelector('.site-header .brand').focus({preventScroll: true});
+    if (window.scrollY <= 1) {
+      awayFromTop = false;
+      growHeadline();
+    } else {
+      awayFromTop = true;
+    }
+    window.scrollTo({top: 0, behavior: motion.matches ? 'instant' : 'smooth'});
   }
 
   function showCurtain() {
-    cancelAnimationFrame(returnFrame);
+    awayFromTop = window.scrollY > 8;
     cancelAnimationFrame(frame);
     clearTimeout(hideTimer);
     curtain.classList.remove('is-leaving');
