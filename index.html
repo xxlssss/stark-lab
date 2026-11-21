@@ -9,7 +9,7 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=words-20">
+<link rel="stylesheet" href="landing.css?v=words-21">
 </head><body class="studio-page">
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
@@ -36,9 +36,11 @@
 <script>
   (() => {
     const paragraph = document.querySelector('.home-statement p');
+    const accents = new Set(['счастливыми', 'прибыли', 'гордости', 'автоматизации']);
     const words = paragraph.textContent.trim().split(/\s+/).map(text => {
       const word = document.createElement('span');
       word.className = 'statement-word';
+      if (accents.has(text.replace(/,$/, ''))) word.classList.add('statement-accent');
       word.textContent = text;
       return word;
     });
