@@ -295,3 +295,17 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   .offerings { grid-template-columns: minmax(0, 1fr); }
   .offering, .offering:nth-child(n+4) { grid-column: 1; border-radius: 22px; }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .offering {
+    --side: clamp(-44px, -3vw, -15px);
+    --turn: -3deg;
+    --travel: 0;
+    transform: translate(calc(var(--side) * var(--travel)), calc(68px * var(--travel)))
+      rotate(calc(var(--turn) * var(--travel))) scale(calc(1 - .055 * var(--travel)));
+  }
+  .offering:nth-child(even) {
+    --side: clamp(15px, 3vw, 44px);
+    --turn: 3deg;
+  }
+}
