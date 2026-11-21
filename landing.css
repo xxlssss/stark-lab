@@ -357,13 +357,13 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   padding: .95% .95% 1.6%;
   background: #101114;
   border: 1px solid #41454b;
-  border-radius: 2.5cqw 2.5cqw .7cqw .7cqw;
+  border-radius: 1.1cqw 1.1cqw .25cqw .25cqw;
 }
 .notebook-lid img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 1.45cqw;
+  border-radius: .65cqw;
 }
 .notebook-lid::after {
   content: "";
@@ -377,28 +377,9 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   background: radial-gradient(circle at 72% 46%, #253246 0 4%, transparent 10%), #050506;
 }
 .notebook-base {
-  position: relative;
-  height: 7.1cqw;
-  background: linear-gradient(92deg, #0b1017 1%, #27323e 16%, #19232e 44%, #51677a 72%, #18232e 91%, #080c11);
-  clip-path: polygon(8.15% 0, 91.85% 0, 100% 83%, 99.8% 97%, 98.5% 100%, 1.5% 100%, .2% 97%, 0 83%);
-  border-bottom: 1cqw solid #161a20;
-}
-.notebook-base::before {
-  content: "";
-  position: absolute;
-  inset: 2% 16% 49%;
-  transform: perspective(12cqw) rotateX(40deg);
-  background: repeating-linear-gradient(0deg, transparent 0 19%, #45505b 20% 23%),
-    repeating-linear-gradient(90deg, #10161e 0 5.9%, #45505b 6% 6.45%);
-  border-radius: .5cqw;
-}
-.notebook-base::after {
-  content: "";
-  position: absolute;
-  inset: 55% 31% 4%;
-  border: 1px solid #202832;
-  transform: perspective(10cqw) rotateX(32deg);
-  border-radius: .4cqw;
+  height: clamp(4px, 1.4cqw, 9px);
+  background: linear-gradient(to bottom, #536778, #2b3743 44%, #151c23 80%);
+  clip-path: polygon(0 0, 100% 0, 100% 54%, 98.8% 100%, 1.2% 100%, 0 54%);
 }
 .restaurant-work figcaption { margin-top: clamp(18px, 2.6vw, 36px); text-align: center; }
 .restaurant-work figcaption span { font-size: clamp(11px, 1vw, 14px); }
