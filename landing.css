@@ -633,7 +633,11 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 @media (max-width: 700px) {
   .work-strip { grid-auto-columns: 100%; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .work-strip { overflow-x: auto; scroll-snap-type: x proximity; }
-  .work-strip > * { scroll-snap-align: start; }
+.work-gallery { grid-template-rows: 1fr 1fr auto; }
+.work-arrows { display: flex; justify-content: flex-end; gap: 8px; }
+.work-arrows button {
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--brand-blue); color: var(--brand-brown);
+  font: 24px/1 system-ui, sans-serif; cursor: pointer;
 }
+.work-arrows button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
