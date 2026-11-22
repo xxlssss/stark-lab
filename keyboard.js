@@ -137,10 +137,10 @@ function labelTexture(n, ink) {
     ctx.fill(new Path2D('M0 -82 L15 0 L-15 0 Z'));
     ctx.lineWidth = 5;
     ctx.stroke(new Path2D('M0 82 L-15 0 L15 0 Z'));
-  } else if (n === 3 || n === 5) {
+  } else if (n === 3 || n === 7) {
     ctx.font = n === 3 ? '600 148px Unbounded' : '184px system-ui';
     ctx.fillText(n === 3 ? 'AI' : '⌘', canvas.width / 2, 134);
-  } else if (n === 7) {
+  } else if (n === 5) {
     ctx.translate(24, 24);
     ctx.scale(8.7, 8.7);
     ctx.fill(new Path2D('M21.5 3.2 18.3 20c-.2 1-1 1.2-1.8.7l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.3-.1-.5-.6-.2L5.8 13.6 1 12.1c-1-.3-1-1 .2-1.5L20 3c.9-.3 1.6.2 1.5.2Z'));
