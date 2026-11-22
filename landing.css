@@ -604,7 +604,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 
 @media (min-width: 701px) {
   .site-header { --header-mark: clamp(48px, 5vw, 70px); }
-  .site-header .brand { width: calc(var(--header-mark) * 1.34); }
+  .site-header .brand { width: clamp(94px, 10vw, 146px); }
   .site-header .header-socials a {
     width: calc(var(--header-mark) * 1.34);
     height: calc(var(--header-mark) * 1.34);
