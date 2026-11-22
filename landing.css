@@ -418,8 +418,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 
 @media (max-width: 700px) {
   .site-header {
-    --header-side: 44px;
-    --menu-mark: clamp(19px, 4.8vw, 24px);
+    --menu-mark: 70px; /* Two 34px menu rows and their 2px gap. */
+    --header-side: calc(var(--menu-mark) * 1.34);
     grid-template-columns: var(--header-side) minmax(0, 1fr) var(--header-side);
     align-items: center;
   }
