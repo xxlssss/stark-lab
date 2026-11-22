@@ -82,10 +82,8 @@ const layout=[{n:1,x:-step,z:-step,w:unit,mat:black,ink:'#ffffff'},{n:2,x:step/2
 await document.fonts.load('600 64px Unbounded');
 
 const keys=[];
-const logo = new Image();
-logo.src = new URL('./assets/stark-logo.png?v=sl-binary', import.meta.url);
-await logo.decode();
-const backdrop = logo.cloneNode();
+const logoUrl = new URL('./assets/stark-logo.png?v=sl-binary', import.meta.url).href;
+const backdrop = new Image();
 backdrop.alt = '';
 backdrop.setAttribute('aria-hidden', 'true');
 Object.assign(backdrop.style, {
@@ -95,7 +93,7 @@ Object.assign(backdrop.style, {
 root.prepend(backdrop);
 // Sole visible RGB value in assets/stark-logo.png; the binary fade changes alpha only.
 const logoInk = '#8EC5FF';
-const artwork = new Map([[1, logo.src]]);
+const artwork = new Map([[1, logoUrl]]);
 const buttons = [...root.querySelectorAll('[data-key]')];
 let visibleKey = null;
 
@@ -198,10 +196,13 @@ function labelTexture(n, ink) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   if (n === 1) {
-    ctx.drawImage(logo, 167, 232, 909, 565, 53, 81, 150, 93);
-    ctx.globalCompositeOperation = 'source-in';
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, 256, 256);
+    // Print the studio mark synchronously onto the cap's own texture.
+    ctx.save();
+    ctx.setTransform(1.15, 0, -0.228, 1.055, 71, 75);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill(new Path2D('M 30 6 L 91 6 Q 94 6 94 9 L 94 20 Q 94 23 91 23 L 30 23 Q 20 23 20 33 Q 20 42 30 42 L 48 42 Q 74 42 74 67 Q 74 93 47 93 L 8 93 Q 5 93 5 90 L 5 79 Q 5 76 8 76 L 47 76 Q 57 76 57 67 Q 57 59 47 59 L 30 59 Q 3 59 3 33 Q 3 6 30 6 Z M 81 29 L 92 29 Q 95 29 95 32 L 95 68 Q 95 76 103 76 L 129 76 Q 132 76 132 79 L 132 90 Q 132 93 129 93 L 102 93 Q 78 93 78 69 L 78 32 Q 78 29 81 29 Z'));
+    ctx.restore();
+    binaryInk(ctx, 54, 130, 4, '#ffffff');
     ctx.globalCompositeOperation = 'destination-over';
     ctx.fillStyle = brand.brown;
     ctx.fillRect(0, 0, 256, 256);
