@@ -93,16 +93,81 @@ Object.assign(backdrop.style, {
   opacity: '0', maxWidth: 'none', height: 'auto'
 });
 root.prepend(backdrop);
-const logoButton = root.querySelector('[data-key="1"]');
-logoButton.setAttribute('aria-label', 'Фоновый логотип STARK LAB');
-logoButton.setAttribute('aria-pressed', 'false');
-function toggleLogo() {
-  const visible = logoButton.getAttribute('aria-pressed') !== 'true';
-  logoButton.setAttribute('aria-pressed', String(visible));
-  backdrop.style.transition = reduced.matches ? 'none' : 'opacity 320ms ease-out';
-  backdrop.style.opacity = visible ? '0.48' : '0';
+const artwork = new Map([[1, logo.src]]);
+const buttons = [...root.querySelectorAll('[data-key]')];
+let visibleKey = null;
+
+function toggleBackdrop(id) {
+  visibleKey = visibleKey === id ? null : id;
+  for (const button of buttons) {
+    button.setAttribute('aria-pressed', String(Number(button.dataset.key) === visibleKey));
+  }
+  if (visibleKey !== null) backdrop.src = artwork.get(visibleKey);
+  backdrop.style.transition = reduced.matches ? 'none' : 'opacity 280ms ease-out';
+  backdrop.style.opacity = visibleKey === null ? '0' : '0.62';
 }
-logoButton.addEventListener('click', toggleLogo);
+
+// A stepped outline keeps the heart crisp even on the small keycap.
+function drawHeart(ctx, x, y, width) {
+  const rows = ['01100110','11111111','11111111','01111110','00111100','00011000'];
+  const step = width / 8;
+  rows.forEach((row, j) => [...row].forEach((pixel, i) => {
+    if (pixel === '1') ctx.fillRect(x + i * step, y + j * step, step, step);
+  }));
+}
+
+function binaryInk(ctx, left, right, step, ink) {
+  const layer = document.createElement('canvas');
+  layer.width = ctx.canvas.width;
+  layer.height = ctx.canvas.height;
+  const paint = layer.getContext('2d');
+  const fade = paint.createLinearGradient(left, 0, right, 0);
+  fade.addColorStop(0, 'transparent');
+  fade.addColorStop(1, ink);
+  paint.fillStyle = fade;
+  paint.fillRect(0, 0, layer.width, layer.height);
+  paint.fillStyle = ink;
+  paint.font = 'bold ' + step + 'px monospace';
+  for (let y = 0, row = 0; y < layer.height + step; y += step, row++) {
+    for (let x = left, col = 0; x < right; x += step * 0.72, col++) {
+      paint.fillText((row * 7 + col * 3 + row * col) % 5 < 2 ? '1' : '0', x, y);
+    }
+  }
+  ctx.save();
+  ctx.globalCompositeOperation = 'source-in';
+  ctx.drawImage(layer, 0, 0);
+  ctx.restore();
+}
+
+await document.fonts.load('700 96px Unbounded', 'САЙТЫ TELEGRAM');
+function backdropArt(id, lines) {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 1024;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = brand.blue;
+  if (id === 6) {
+    drawHeart(ctx, 180, 293, 640);
+  } else if (id === 7) {
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 620px system-ui';
+    ctx.fillText('⌘', 512, 800);
+  } else {
+    ctx.font = '700 100px Unbounded';
+    const widest = Math.max(...lines.map(line => ctx.measureText(line).width));
+    const size = Math.min(218, 83000 / widest);
+    ctx.font = '700 ' + size + 'px Unbounded';
+    lines.forEach((line, i) => ctx.fillText(line, 108, 798 - (lines.length - 1 - i) * size * 1.13));
+  }
+  binaryInk(ctx, 105, 540, 15, brand.blue);
+  return canvas.toDataURL();
+}
+for (const [id, lines] of [[2, ['САЙТЫ']], [3, ['ИИ АГЕНТЫ', 'ДЛЯ БИЗНЕСА']], [5, ['TELEGRAM MINI-APP', 'TELEGRAM БОТЫ']], [6, []], [7, []]]) {
+  artwork.set(id, backdropArt(id, lines));
+}
+for (const button of buttons) {
+  button.setAttribute('aria-pressed', 'false');
+  button.addEventListener('click', () => toggleBackdrop(Number(button.dataset.key)));
+}
 function labelTexture(n, ink) {
   const canvas = document.createElement('canvas');
   canvas.width = [2,3,6].includes(n) ? 768 : 256;
@@ -140,6 +205,9 @@ function labelTexture(n, ink) {
   } else if (n === 3 || n === 7) {
     ctx.font = n === 3 ? '600 148px Unbounded' : '184px system-ui';
     ctx.fillText(n === 3 ? 'AI' : '⌘', canvas.width / 2, 134);
+  } else if (n === 6) {
+    drawHeart(ctx, 256, 32, 256);
+    binaryInk(ctx, 256, 400, 13, brand.brown);
   } else if (n === 5) {
     ctx.translate(24, 24);
     ctx.scale(8.7, 8.7);
@@ -174,7 +242,7 @@ for(const config of layout){
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let active=null,tiltX=0,tiltY=0,audio;
 let recoil=0,recoilV=0,rockX=0,rockXV=0,rockZ=0,rockZV=0;
 function sound(up=false){try{audio??=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const now=audio.currentTime,osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.setValueAtTime(up?480:220,now);osc.frequency.exponentialRampToValueAtTime(up?180:70,now+.035);gain.gain.setValueAtTime(up?.018:.035,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.045);osc.connect(gain).connect(audio.destination);osc.start(now);osc.stop(now+.05);const buffer=audio.createBuffer(1,audio.sampleRate*.018,audio.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.exp(-i/(audio.sampleRate*.003));const noise=audio.createBufferSource(),ng=audio.createGain(),filter=audio.createBiquadFilter();noise.buffer=buffer;filter.type='lowpass';filter.frequency.value=up?2300:1400;ng.gain.value=up?.026:.05;noise.connect(filter).connect(ng).connect(audio.destination);noise.start();}catch{}}
-function setDown(key,down){if(!key||key.down===down)return;key.down=down;if (down && key.n === 1) toggleLogo();sound(!down);if(!reduced.matches){recoilV=THREE.MathUtils.clamp(recoilV+(down?3.6:.45),-4,4);if(down){rockXV+=key.z*1.75;rockZV-=key.x*1.75;}}}
+function setDown(key,down){if(!key||key.down===down)return;key.down=down;if (down) toggleBackdrop(key.n);sound(!down);if(!reduced.matches){recoilV=THREE.MathUtils.clamp(recoilV+(down?3.6:.45),-4,4);if(down){rockXV+=key.z*1.75;rockZV-=key.x*1.75;}}}
 function release(){if(active)setDown(active,false);active=null;}
 function hit(event){const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);return raycaster.intersectObjects(keys.map(k=>k.cap),false)[0]?.object.userData.key;}
 renderer.domElement.addEventListener('pointerdown',e=>{if(e.button!==0)return;release();active=hit(e);if(active){setDown(active,true);renderer.domElement.setPointerCapture(e.pointerId);}});
