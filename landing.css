@@ -575,6 +575,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .studio-profile > div { min-width: 0; }
 .studio-profile + .studio-profile { margin-top: 0; border-top: 0; }
 .studio-profile h3 strong { display: block; }
+.studio-profile .founder-title { display: block; font-size: clamp(18px, 1.35vw, 20px); font-weight: 500; line-height: 1.3; text-transform: lowercase; }
 .studio-profile h4 { margin: 0; }
 .team-number {
   display: inline-block;
