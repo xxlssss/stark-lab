@@ -323,7 +323,7 @@ function resize() {
   const bottom = (1 - anchor.y) * height / 2 + height * 0.045;
   if (captions.has(visibleKey)) {
     const telegram = visibleKey === 5;
-    const textWidth = Math.round(telegram ? Math.min(width * 0.54, height * 0.52) : width * 0.88);
+    const textWidth = Math.round(telegram ? Math.min(width * 0.72, height * 0.70) : width * 0.88);
     backdrop.src = typesetCaption(captions.get(visibleKey), textWidth);
     backdrop.style.width = textWidth + 'px';
     if (telegram) {
