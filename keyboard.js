@@ -101,17 +101,15 @@ let visibleKey = null;
 
 let revealAnimation;
 function activateBackdrop(id) {
-  const isCaption = captions.has(id);
-  visibleKey = (!isCaption && visibleKey === id) ? null : id;
+  visibleKey = id;
   revealAnimation?.cancel();
   for (const button of buttons) {
     button.setAttribute('aria-pressed', String(Number(button.dataset.key) === visibleKey));
   }
-  if (visibleKey !== null && !captions.has(visibleKey)) backdrop.src = artwork.get(visibleKey);
+  if (!captions.has(id)) backdrop.src = artwork.get(visibleKey);
   resize();
-  backdrop.style.transition = isCaption || reduced.matches ? 'none' : 'opacity 280ms ease-out';
-  backdrop.style.opacity = visibleKey === null ? '0' : '0.62';
-  if (isCaption && !reduced.matches) {
+  backdrop.style.opacity = '0.62';
+  if (!reduced.matches) {
     revealAnimation = backdrop.animate([{ opacity: 0 }, { opacity: 0.62 }],
       { duration: 280, easing: 'ease-out' });
   }
@@ -324,11 +322,18 @@ function resize() {
   const right = (anchor.x + 1) * width / 2 + width * 0.035;
   const bottom = (1 - anchor.y) * height / 2 + height * 0.045;
   if (captions.has(visibleKey)) {
-    const textWidth = Math.round(width * 0.88);
+    const telegram = visibleKey === 5;
+    const textWidth = Math.round(telegram ? Math.min(width * 0.54, height * 0.52) : width * 0.88);
     backdrop.src = typesetCaption(captions.get(visibleKey), textWidth);
     backdrop.style.width = textWidth + 'px';
-    backdrop.style.left = (width * 0.035) + 'px';
-    backdrop.style.top = Math.max(0, bottom - height * 0.32) + 'px';
+    if (telegram) {
+      const edge = new THREE.Vector3(logoKey.x - 0.4, 0.78, logoKey.z + 0.28).project(camera);
+      backdrop.style.left = Math.max(width * 0.025, (edge.x + 1) * width / 2 - textWidth * 0.51) + 'px';
+      backdrop.style.top = Math.max(0, (1 - edge.y) * height / 2 - textWidth * 0.32) + 'px';
+    } else {
+      backdrop.style.left = (width * 0.035) + 'px';
+      backdrop.style.top = Math.max(0, bottom - height * 0.32) + 'px';
+    }
     return;
   }
   const side = Math.min(width * 0.73, height * 0.8, right / 0.77, bottom / 0.63);
