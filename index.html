@@ -177,7 +177,7 @@
       const scroll = reduced.matches ? 0 : Math.max(0, -worksHeading.getBoundingClientRect().bottom) * .30;
       strips.forEach((strip, row) => {
         const period = strip.children.length * step;
-        const travel = rowState[row].manual * step + scroll * (row === 0 ? 0.5 : 1);
+        const travel = rowState[row].manual * step + scroll / (row + 1);
         const offset = ((travel % period) + period) % period;
         Array.from(strip.children).forEach((card, i) => {
           const wrap = (i + 1) * step <= offset ? period : 0;
