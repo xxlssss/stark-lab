@@ -99,15 +99,22 @@ const artwork = new Map([[1, logo.src]]);
 const buttons = [...root.querySelectorAll('[data-key]')];
 let visibleKey = null;
 
-function toggleBackdrop(id) {
-  visibleKey = visibleKey === id ? null : id;
+let revealAnimation;
+function activateBackdrop(id) {
+  const isCaption = captions.has(id);
+  visibleKey = (!isCaption && visibleKey === id) ? null : id;
+  revealAnimation?.cancel();
   for (const button of buttons) {
     button.setAttribute('aria-pressed', String(Number(button.dataset.key) === visibleKey));
   }
   if (visibleKey !== null && !captions.has(visibleKey)) backdrop.src = artwork.get(visibleKey);
   resize();
-  backdrop.style.transition = reduced.matches ? 'none' : 'opacity 280ms ease-out';
+  backdrop.style.transition = isCaption || reduced.matches ? 'none' : 'opacity 280ms ease-out';
   backdrop.style.opacity = visibleKey === null ? '0' : '0.62';
+  if (isCaption && !reduced.matches) {
+    revealAnimation = backdrop.animate([{ opacity: 0 }, { opacity: 0.62 }],
+      { duration: 280, easing: 'ease-out' });
+  }
 }
 
 // A stepped outline keeps the heart crisp even on the small keycap.
@@ -146,7 +153,7 @@ await document.fonts.load('700 96px Unbounded', 'САЙТЫ TELEGRAM');
 const captions = new Map([
   [2, ['САЙТЫ']],
   [3, ['ИИ АГЕНТЫ', 'ДЛЯ БИЗНЕСА']],
-  [5, ['TELEGRAM MINI-APP', 'БОТЫ']]
+  [5, ['TELEGRAM', 'MINI-APP', 'БОТЫ']]
 ]);
 
 // Typeset directly at the target width; never scale an existing inscription.
@@ -182,7 +189,7 @@ for (const id of [6, 7]) {
 }
 for (const button of buttons) {
   button.setAttribute('aria-pressed', 'false');
-  button.addEventListener('click', () => toggleBackdrop(Number(button.dataset.key)));
+  button.addEventListener('click', () => activateBackdrop(Number(button.dataset.key)));
 }
 function labelTexture(n, ink) {
   const canvas = document.createElement('canvas');
@@ -258,7 +265,7 @@ for(const config of layout){
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let active=null,tiltX=0,tiltY=0,audio;
 let recoil=0,recoilV=0,rockX=0,rockXV=0,rockZ=0,rockZV=0;
 function sound(up=false){try{audio??=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const now=audio.currentTime,osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.setValueAtTime(up?480:220,now);osc.frequency.exponentialRampToValueAtTime(up?180:70,now+.035);gain.gain.setValueAtTime(up?.018:.035,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.045);osc.connect(gain).connect(audio.destination);osc.start(now);osc.stop(now+.05);const buffer=audio.createBuffer(1,audio.sampleRate*.018,audio.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.exp(-i/(audio.sampleRate*.003));const noise=audio.createBufferSource(),ng=audio.createGain(),filter=audio.createBiquadFilter();noise.buffer=buffer;filter.type='lowpass';filter.frequency.value=up?2300:1400;ng.gain.value=up?.026:.05;noise.connect(filter).connect(ng).connect(audio.destination);noise.start();}catch{}}
-function setDown(key,down){if(!key||key.down===down)return;key.down=down;if (down) toggleBackdrop(key.n);sound(!down);if(!reduced.matches){recoilV=THREE.MathUtils.clamp(recoilV+(down?3.6:.45),-4,4);if(down){rockXV+=key.z*1.75;rockZV-=key.x*1.75;}}}
+function setDown(key,down){if(!key||key.down===down)return;key.down=down;if (down) activateBackdrop(key.n);sound(!down);if(!reduced.matches){recoilV=THREE.MathUtils.clamp(recoilV+(down?3.6:.45),-4,4);if(down){rockXV+=key.z*1.75;rockZV-=key.x*1.75;}}}
 function release(){if(active)setDown(active,false);active=null;}
 function hit(event){const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);return raycaster.intersectObjects(keys.map(k=>k.cap),false)[0]?.object.userData.key;}
 renderer.domElement.addEventListener('pointerdown',e=>{if(e.button!==0)return;release();active=hit(e);if(active){setDown(active,true);renderer.domElement.setPointerCapture(e.pointerId);}});
