@@ -102,7 +102,8 @@ function toggleBackdrop(id) {
   for (const button of buttons) {
     button.setAttribute('aria-pressed', String(Number(button.dataset.key) === visibleKey));
   }
-  if (visibleKey !== null) backdrop.src = artwork.get(visibleKey);
+  if (visibleKey !== null && !captions.has(visibleKey)) backdrop.src = artwork.get(visibleKey);
+  resize();
   backdrop.style.transition = reduced.matches ? 'none' : 'opacity 280ms ease-out';
   backdrop.style.opacity = visibleKey === null ? '0' : '0.62';
 }
@@ -140,29 +141,42 @@ function binaryInk(ctx, left, right, step, ink) {
 }
 
 await document.fonts.load('700 96px Unbounded', 'САЙТЫ TELEGRAM');
-function backdropArt(id, lines) {
+const captions = new Map([
+  [2, ['САЙТЫ']],
+  [3, ['ИИ АГЕНТЫ', 'ДЛЯ БИЗНЕСА']],
+  [5, ['TELEGRAM MINI-APP', 'БОТЫ']]
+]);
+
+// Typeset directly at the target width; never scale an existing inscription.
+function typesetCaption(lines, width) {
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, 3);
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(2, Math.ceil(width * pixelRatio));
+  const ctx = canvas.getContext('2d');
+  ctx.font = '700 100px Unbounded';
+  const widest = Math.max(...lines.map(line => ctx.measureText(line).width));
+  const size = (canvas.width - 4) * 100 / widest;
+  const leading = size * 1.06;
+  canvas.height = Math.ceil(size * 1.24 + leading * (lines.length - 1));
+  ctx.font = '700 ' + size + 'px Unbounded';
+  ctx.fillStyle = brand.blue;
+  lines.forEach((line, i) => ctx.fillText(line, 2, size + i * leading));
+  binaryInk(ctx, 0, canvas.width * 0.52, Math.max(3, size * 0.095), brand.blue);
+  return canvas.toDataURL();
+}
+for (const id of [6, 7]) {
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = 1024;
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = brand.blue;
-  if (id === 6) {
-    drawHeart(ctx, 180, 293, 640);
-  } else if (id === 7) {
+  if (id === 6) drawHeart(ctx, 180, 293, 640);
+  else {
     ctx.textAlign = 'center';
     ctx.font = 'bold 620px system-ui';
     ctx.fillText('⌘', 512, 800);
-  } else {
-    ctx.font = '700 100px Unbounded';
-    const widest = Math.max(...lines.map(line => ctx.measureText(line).width));
-    const size = Math.min(218, 83000 / widest);
-    ctx.font = '700 ' + size + 'px Unbounded';
-    lines.forEach((line, i) => ctx.fillText(line, 108, 798 - (lines.length - 1 - i) * size * 1.13));
   }
   binaryInk(ctx, 105, 540, 15, brand.blue);
-  return canvas.toDataURL();
-}
-for (const [id, lines] of [[2, ['САЙТЫ']], [3, ['ИИ АГЕНТЫ', 'ДЛЯ БИЗНЕСА']], [5, ['TELEGRAM MINI-APP', 'TELEGRAM БОТЫ']], [6, []], [7, []]]) {
-  artwork.set(id, backdropArt(id, lines));
+  artwork.set(id, canvas.toDataURL());
 }
 for (const button of buttons) {
   button.setAttribute('aria-pressed', 'false');
@@ -300,6 +314,14 @@ function resize() {
   const anchor = new THREE.Vector3(logoKey.x, 0.64, logoKey.z).project(camera);
   const right = (anchor.x + 1) * width / 2 + width * 0.035;
   const bottom = (1 - anchor.y) * height / 2 + height * 0.045;
+  if (captions.has(visibleKey)) {
+    const textWidth = Math.round(width * 0.88);
+    backdrop.src = typesetCaption(captions.get(visibleKey), textWidth);
+    backdrop.style.width = textWidth + 'px';
+    backdrop.style.left = (width * 0.035) + 'px';
+    backdrop.style.top = Math.max(0, bottom - height * 0.32) + 'px';
+    return;
+  }
   const side = Math.min(width * 0.73, height * 0.8, right / 0.77, bottom / 0.63);
   backdrop.style.width = side + 'px';
   backdrop.style.left = (right - side * 0.87) + 'px';
