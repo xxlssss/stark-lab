@@ -9,7 +9,7 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=founder-type">
+<link rel="stylesheet" href="landing.css?v=work-strips">
 </head><body class="studio-page">
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
@@ -68,6 +68,7 @@
 </section>
 <h2 class="new-work-title" data-reveal-title id="works" data-page="home"><span>новые</span> <span>работы</span></h2>
 <section class="work-gallery" id="pomestye-park" data-page="home" aria-label="Новые работы">
+<div class="work-strip">
 <figure class="restaurant-work">
   <a class="restaurant-work-link" href="https://pomestie-park.com/" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт ресторана «Поместье-Парк», Москва">
     <div class="notebook-display">
@@ -81,6 +82,15 @@
   </figcaption>
 </figure>
 <div class="restaurant-work work-placeholder">загрузка...</div>
+<div class="restaurant-work work-placeholder">загрузка...</div>
+<div class="restaurant-work work-placeholder">загрузка...</div>
+</div>
+<div class="work-strip">
+<div class="restaurant-work work-placeholder">загрузка...</div>
+<div class="restaurant-work work-placeholder">загрузка...</div>
+<div class="restaurant-work work-placeholder">загрузка...</div>
+<div class="restaurant-work work-placeholder">загрузка...</div>
+</div>
 </section>
 <div class="work-actions" data-page="home">
   <a class="work-pricing-link" href="pricing.html">форматы и цены</a>
@@ -147,9 +157,43 @@
     paragraph.replaceChildren(...words.flatMap((word, i) => i ? [' ', word] : [word]));
     const studioText = document.querySelectorAll('.studio-profile h3, .studio-profile p, .studio-profile h4, .studio-roles');
     const figures = document.querySelectorAll('.studio-figures strong, .team-number');
-    const cardGrids = document.querySelectorAll('.offerings, .work-gallery');
+    const cardGrids = document.querySelectorAll('.offerings');
     const titles = document.querySelectorAll('[data-reveal-title]');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const gallery = document.querySelector('.work-gallery');
+    const strips = [...gallery.querySelectorAll('.work-strip')];
+    let step = 0, elapsed = 0, lastFrame = 0, frame = 0, onScreen = false;
+    function paintStrips(now) {
+      frame = 0;
+      if (!onScreen || document.hidden || reduced.matches) return;
+      if (lastFrame) elapsed += Math.min(64, now - lastFrame);
+      lastFrame = now;
+      const travel = elapsed * .022 + Math.max(0, innerHeight - gallery.getBoundingClientRect().top) * .26;
+      if (step > 0) strips.forEach((strip, row) => {
+        const cards = strip.children;
+        const period = cards.length * step;
+        const offset = travel / (row + 1) % period;
+        Array.from(cards).forEach((card, index) => {
+          const wrap = index * step - offset <= -step ? period : 0;
+          card.style.transform = 'translateX(' + (wrap - offset) + 'px)';
+        });
+      });
+      frame = requestAnimationFrame(paintStrips);
+    }
+    function syncStrips() {
+      cancelAnimationFrame(frame);
+      lastFrame = 0;
+      if (reduced.matches) {
+        strips.forEach(strip => Array.from(strip.children).forEach(card => card.style.removeProperty('transform')));
+      } else if (onScreen && !document.hidden) frame = requestAnimationFrame(paintStrips);
+    }
+    new ResizeObserver(() => {
+      const strip = strips[0];
+      step = strip.firstElementChild.offsetWidth + parseFloat(getComputedStyle(strip).columnGap);
+    }).observe(strips[0]);
+    new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; syncStrips(); }).observe(gallery);
+    reduced.addEventListener('change', syncStrips);
+    document.addEventListener('visibilitychange', syncStrips);
     let pending = false;
     function draw() {
       pending = false;
