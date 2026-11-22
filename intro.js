@@ -12,7 +12,7 @@
   window.addEventListener('keyboard:first-frame', finishLoading, { once: true });
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.back-to-top').addEventListener('click', backToTop);
-    import('./keyboard.js?v=sl-binary').catch(finishLoading);
+    import('./keyboard.js?v=sl-backdrop').catch(finishLoading);
   }, { once: true });
   // Keep the site accessible if the renderer never produces a frame.
   const timeout = setTimeout(finishLoading, 15000);
