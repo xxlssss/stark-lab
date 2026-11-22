@@ -83,7 +83,7 @@ await document.fonts.load('600 64px Unbounded');
 
 const keys=[];
 const logo = new Image();
-logo.src = new URL('./assets/stark-logo.png', import.meta.url);
+logo.src = new URL('./assets/stark-logo.png?v=sl-binary', import.meta.url);
 await logo.decode();
 function labelTexture(n, ink) {
   const canvas = document.createElement('canvas');
@@ -94,7 +94,7 @@ function labelTexture(n, ink) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   if (n === 1) {
-    ctx.drawImage(logo, 180, 155, 900, 812, 63, 69, 130, 118);
+    ctx.drawImage(logo, 167, 232, 909, 565, 53, 81, 150, 93);
     ctx.globalCompositeOperation = 'source-in';
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, 256, 256);
