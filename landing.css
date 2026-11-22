@@ -299,14 +299,14 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  :is(.offerings, .work-gallery) > * {
+  .offerings > * {
     --side: clamp(-44px, -3vw, -15px);
     --turn: -3deg;
     --travel: 0;
     transform: translate(calc(var(--side) * var(--travel)), calc(68px * var(--travel)))
       rotate(calc(var(--turn) * var(--travel))) scale(calc(1 - .055 * var(--travel)));
   }
-  :is(.offerings, .work-gallery) > :nth-child(even) {
+  .offerings > :nth-child(even) {
     --side: clamp(15px, 3vw, 44px);
     --turn: 3deg;
   }
@@ -616,4 +616,24 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
     width: calc(var(--header-mark) * 1.16);
     height: calc(var(--header-mark) * 1.16);
   }
+}
+
+.work-gallery {
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-rows: 1fr;
+}
+.work-strip {
+  --work-gap: clamp(12px, 1.5vw, 22px);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--work-gap)) / 2);
+  gap: var(--work-gap);
+  overflow: clip;
+}
+@media (max-width: 700px) {
+  .work-strip { grid-auto-columns: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-strip { overflow-x: auto; scroll-snap-type: x proximity; }
+  .work-strip > * { scroll-snap-align: start; }
 }
