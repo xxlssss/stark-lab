@@ -158,29 +158,10 @@ function backdropArt(id, lines) {
     ctx.font = '700 ' + size + 'px Unbounded';
     lines.forEach((line, i) => ctx.fillText(line, 108, 798 - (lines.length - 1 - i) * size * 1.13));
   }
-  // Fit the visible strokes, excluding transparent space and font metrics.
-  const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-  let left = canvas.width, top = canvas.height, right = 0, bottom = 0;
-  for (let y = 0; y < canvas.height; y++) {
-    for (let x = 0; x < canvas.width; x++) {
-      if (!pixels[(y * canvas.width + x) * 4 + 3]) continue;
-      left = Math.min(left, x);
-      top = Math.min(top, y);
-      right = Math.max(right, x);
-      bottom = Math.max(bottom, y);
-    }
-  }
-  const fitted = document.createElement('canvas');
-  fitted.width = logo.naturalWidth;
-  fitted.height = logo.naturalHeight;
-  const paint = fitted.getContext('2d');
-  // The SL artwork occupies this rectangle in the published 1254px logo.
-  paint.drawImage(canvas, left, top, right - left + 1, bottom - top + 1,
-    157, 232, 940, 789);
-  binaryInk(paint, 157, 625, 17, brand.blue);
-  return fitted.toDataURL();
+  binaryInk(ctx, 105, 540, 15, brand.blue);
+  return canvas.toDataURL();
 }
-for (const [id, lines] of [[2, ['САЙТЫ']], [3, ['ИИ АГЕНТЫ', 'ДЛЯ БИЗНЕСА']], [5, ['TELEGRAM', 'MINI-APP', 'TELEGRAM БОТЫ']], [6, []], [7, []]]) {
+for (const [id, lines] of [[2, ['САЙТЫ']], [3, ['ИИ АГЕНТЫ', 'ДЛЯ БИЗНЕСА']], [5, ['TELEGRAM MINI-APP', 'TELEGRAM БОТЫ']], [6, []], [7, []]]) {
   artwork.set(id, backdropArt(id, lines));
 }
 for (const button of buttons) {
@@ -317,9 +298,9 @@ function resize() {
   // Keep the lower right of the printed logo underneath the rear logo key.
   const logoKey = keys.find(key => key.n === 1);
   const anchor = new THREE.Vector3(logoKey.x, 0.64, logoKey.z).project(camera);
-  const right = (anchor.x + 1) * width / 2 + width * 0.09;
-  const bottom = (1 - anchor.y) * height / 2 + height * 0.10;
-  const side = Math.min(width * 0.91, height * 1.02, right / 0.75, bottom / 0.63);
+  const right = (anchor.x + 1) * width / 2 + width * 0.035;
+  const bottom = (1 - anchor.y) * height / 2 + height * 0.045;
+  const side = Math.min(width * 0.73, height * 0.8, right / 0.77, bottom / 0.63);
   backdrop.style.width = side + 'px';
   backdrop.style.left = (right - side * 0.87) + 'px';
   backdrop.style.top = (bottom - side * 0.81) + 'px';
