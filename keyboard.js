@@ -85,6 +85,24 @@ const keys=[];
 const logo = new Image();
 logo.src = new URL('./assets/stark-logo.png?v=sl-binary', import.meta.url);
 await logo.decode();
+const backdrop = logo.cloneNode();
+backdrop.alt = '';
+backdrop.setAttribute('aria-hidden', 'true');
+Object.assign(backdrop.style, {
+  position: 'absolute', zIndex: '-1', pointerEvents: 'none',
+  opacity: '0', maxWidth: 'none', height: 'auto'
+});
+root.prepend(backdrop);
+const logoButton = root.querySelector('[data-key="1"]');
+logoButton.setAttribute('aria-label', 'Фоновый логотип STARK LAB');
+logoButton.setAttribute('aria-pressed', 'false');
+function toggleLogo() {
+  const visible = logoButton.getAttribute('aria-pressed') !== 'true';
+  logoButton.setAttribute('aria-pressed', String(visible));
+  backdrop.style.transition = reduced.matches ? 'none' : 'opacity 320ms ease-out';
+  backdrop.style.opacity = visible ? '0.48' : '0';
+}
+logoButton.addEventListener('click', toggleLogo);
 function labelTexture(n, ink) {
   const canvas = document.createElement('canvas');
   canvas.width = [2,3,6].includes(n) ? 768 : 256;
@@ -156,7 +174,7 @@ for(const config of layout){
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let active=null,tiltX=0,tiltY=0,audio;
 let recoil=0,recoilV=0,rockX=0,rockXV=0,rockZ=0,rockZV=0;
 function sound(up=false){try{audio??=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const now=audio.currentTime,osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.setValueAtTime(up?480:220,now);osc.frequency.exponentialRampToValueAtTime(up?180:70,now+.035);gain.gain.setValueAtTime(up?.018:.035,now);gain.gain.exponentialRampToValueAtTime(.0001,now+.045);osc.connect(gain).connect(audio.destination);osc.start(now);osc.stop(now+.05);const buffer=audio.createBuffer(1,audio.sampleRate*.018,audio.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*Math.exp(-i/(audio.sampleRate*.003));const noise=audio.createBufferSource(),ng=audio.createGain(),filter=audio.createBiquadFilter();noise.buffer=buffer;filter.type='lowpass';filter.frequency.value=up?2300:1400;ng.gain.value=up?.026:.05;noise.connect(filter).connect(ng).connect(audio.destination);noise.start();}catch{}}
-function setDown(key,down){if(!key||key.down===down)return;key.down=down;sound(!down);if(!reduced.matches){recoilV=THREE.MathUtils.clamp(recoilV+(down?3.6:.45),-4,4);if(down){rockXV+=key.z*1.75;rockZV-=key.x*1.75;}}}
+function setDown(key,down){if(!key||key.down===down)return;key.down=down;if (down && key.n === 1) toggleLogo();sound(!down);if(!reduced.matches){recoilV=THREE.MathUtils.clamp(recoilV+(down?3.6:.45),-4,4);if(down){rockXV+=key.z*1.75;rockZV-=key.x*1.75;}}}
 function release(){if(active)setDown(active,false);active=null;}
 function hit(event){const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);raycaster.setFromCamera(pointer,camera);return raycaster.intersectObjects(keys.map(k=>k.cap),false)[0]?.object.userData.key;}
 renderer.domElement.addEventListener('pointerdown',e=>{if(e.button!==0)return;release();active=hit(e);if(active){setDown(active,true);renderer.domElement.setPointerCapture(e.pointerId);}});
@@ -209,6 +227,15 @@ function resize() {
       -center.y * camera.zoom * height / 2, width, height);
   }
   renderer.setSize(width, height);
+  // Keep the lower right of the printed logo underneath the rear logo key.
+  const logoKey = keys.find(key => key.n === 1);
+  const anchor = new THREE.Vector3(logoKey.x, 0.64, logoKey.z).project(camera);
+  const right = (anchor.x + 1) * width / 2 + width * 0.035;
+  const bottom = (1 - anchor.y) * height / 2 + height * 0.045;
+  const side = Math.min(width * 0.73, height * 0.8, right / 0.77, bottom / 0.63);
+  backdrop.style.width = side + 'px';
+  backdrop.style.left = (right - side * 0.87) + 'px';
+  backdrop.style.top = (bottom - side * 0.81) + 'px';
 }
 new ResizeObserver(resize).observe(root);resize();
 
