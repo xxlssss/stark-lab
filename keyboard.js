@@ -151,7 +151,7 @@ await document.fonts.load('700 96px Unbounded', 'САЙТЫ TELEGRAM');
 const captions = new Map([
   [2, ['САЙТЫ']],
   [3, ['ИИ АГЕНТЫ', 'ДЛЯ БИЗНЕСА']],
-  [5, ['TELEGRAM', 'MINI-APP', 'БОТЫ']]
+  [5, ['TELEGRAM', 'MINI-APP /', 'БОТЫ']]
 ]);
 
 // Typeset directly at the target width; never scale an existing inscription.
