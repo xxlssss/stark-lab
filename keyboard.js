@@ -93,6 +93,8 @@ Object.assign(backdrop.style, {
   opacity: '0', maxWidth: 'none', height: 'auto'
 });
 root.prepend(backdrop);
+// Sole visible RGB value in assets/stark-logo.png; the binary fade changes alpha only.
+const logoInk = '#8EC5FF';
 const artwork = new Map([[1, logo.src]]);
 const buttons = [...root.querySelectorAll('[data-key]')];
 let visibleKey = null;
@@ -123,7 +125,7 @@ function binaryInk(ctx, left, right, step, ink) {
   layer.height = ctx.canvas.height;
   const paint = layer.getContext('2d');
   const fade = paint.createLinearGradient(left, 0, right, 0);
-  fade.addColorStop(0, 'transparent');
+  fade.addColorStop(0, ink + '00');
   fade.addColorStop(1, ink);
   paint.fillStyle = fade;
   paint.fillRect(0, 0, layer.width, layer.height);
@@ -159,23 +161,23 @@ function typesetCaption(lines, width) {
   const leading = size * 1.06;
   canvas.height = Math.ceil(size * 1.24 + leading * (lines.length - 1));
   ctx.font = '700 ' + size + 'px Unbounded';
-  ctx.fillStyle = brand.blue;
+  ctx.fillStyle = logoInk;
   lines.forEach((line, i) => ctx.fillText(line, 2, size + i * leading));
-  binaryInk(ctx, 0, canvas.width * 0.52, Math.max(3, size * 0.095), brand.blue);
+  binaryInk(ctx, 0, canvas.width * 0.52, Math.max(3, size * 0.095), logoInk);
   return canvas.toDataURL();
 }
 for (const id of [6, 7]) {
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = 1024;
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = brand.blue;
+  ctx.fillStyle = logoInk;
   if (id === 6) drawHeart(ctx, 180, 293, 640);
   else {
     ctx.textAlign = 'center';
     ctx.font = 'bold 620px system-ui';
     ctx.fillText('⌘', 512, 800);
   }
-  binaryInk(ctx, 105, 540, 15, brand.blue);
+  binaryInk(ctx, 105, 540, 15, logoInk);
   artwork.set(id, canvas.toDataURL());
 }
 for (const button of buttons) {
