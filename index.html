@@ -9,7 +9,7 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=work-arrows">
+<link rel="stylesheet" href="landing.css?v=row-controls">
 </head><body class="studio-page">
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
@@ -68,8 +68,7 @@
 </section>
 <h2 class="new-work-title" data-reveal-title id="works" data-page="home"><span>новые</span> <span>работы</span></h2>
 <section class="work-gallery" id="pomestye-park" data-page="home" aria-label="Новые работы">
-<div class="work-strip">
-<figure class="restaurant-work">
+<div class="work-strip" id="work-row-1"><figure class="restaurant-work">
   <a class="restaurant-work-link" href="https://pomestie-park.com/" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт ресторана «Поместье-Парк», Москва">
     <div class="notebook-display">
       <img src="assets/pomestye-four-seasons.jpg" width="1555" height="1011" loading="lazy" decoding="async" alt="Сайт ресторана весной, летом, осенью и зимой">
@@ -85,15 +84,18 @@
 <div class="restaurant-work work-placeholder">загрузка...</div>
 <div class="restaurant-work work-placeholder">загрузка...</div>
 </div>
-<div class="work-strip">
-<div class="restaurant-work work-placeholder">загрузка...</div>
+<div class="work-arrows" role="group" aria-label="Стрелки: первый ряд">
+  <button type="button" aria-controls="work-row-1" data-direction="-1" aria-label="Прокрутить первый ряд влево">←</button>
+  <button type="button" aria-controls="work-row-1" data-direction="1" aria-label="Прокрутить первый ряд вправо">→</button>
+</div>
+<div class="work-strip" id="work-row-2"><div class="restaurant-work work-placeholder">загрузка...</div>
 <div class="restaurant-work work-placeholder">загрузка...</div>
 <div class="restaurant-work work-placeholder">загрузка...</div>
 <div class="restaurant-work work-placeholder">загрузка...</div>
 </div>
-<div class="work-arrows" role="group" aria-label="Прокрутка работ">
-  <button type="button" data-direction="-1" aria-label="Прокрутить работы влево">←</button>
-  <button type="button" data-direction="1" aria-label="Прокрутить работы вправо">→</button>
+<div class="work-arrows" role="group" aria-label="Стрелки: второй ряд">
+  <button type="button" aria-controls="work-row-2" data-direction="-1" aria-label="Прокрутить второй ряд влево">←</button>
+  <button type="button" aria-controls="work-row-2" data-direction="1" aria-label="Прокрутить второй ряд вправо">→</button>
 </div>
 </section>
 <div class="work-actions" data-page="home">
@@ -166,15 +168,16 @@
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const gallery = document.querySelector('.work-gallery');
     const strips = [...gallery.querySelectorAll('.work-strip')];
-    let manual = 0, target = 0, frame = 0;
+    const worksHeading = document.getElementById('works');
+    const rowState = strips.map(() => ({ manual: 0, target: 0, frame: 0 }));
     function paintStrips() {
       const card = strips[0].firstElementChild;
       const step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(strips[0]).columnGap);
       if (!step) return;
-      const scroll = reduced.matches ? 0 : Math.max(0, innerHeight - gallery.getBoundingClientRect().top) * .26;
+      const scroll = reduced.matches ? 0 : Math.max(0, -worksHeading.getBoundingClientRect().bottom) * .26;
       strips.forEach((strip, row) => {
         const period = strip.children.length * step;
-        const travel = (manual * step + scroll) / (row + 1);
+        const travel = rowState[row].manual * step + scroll / (row + 1);
         const offset = ((travel % period) + period) % period;
         Array.from(strip.children).forEach((card, i) => {
           const wrap = (i + 1) * step <= offset ? period : 0;
@@ -183,18 +186,19 @@
       });
     }
     gallery.querySelectorAll('.work-arrows button').forEach(button => {
+      const state = rowState[strips.indexOf(document.getElementById(button.getAttribute('aria-controls')))];
       button.addEventListener('click', () => {
-        cancelAnimationFrame(frame);
-        const from = manual;
-        target += Number(button.dataset.direction);
+        cancelAnimationFrame(state.frame);
+        const from = state.manual;
+        state.target += Number(button.dataset.direction);
         const start = performance.now();
         function advance(now) {
           const t = reduced.matches ? 1 : Math.min(1, (now - start) / 320);
-          manual = from + (target - from) * (1 - (1 - t) ** 3);
+          state.manual = from + (state.target - from) * (1 - (1 - t) ** 3);
           paintStrips();
-          if (t < 1) frame = requestAnimationFrame(advance);
+          if (t < 1) state.frame = requestAnimationFrame(advance);
         }
-        frame = requestAnimationFrame(advance);
+        state.frame = requestAnimationFrame(advance);
       });
     });
     new ResizeObserver(paintStrips).observe(strips[0]);
