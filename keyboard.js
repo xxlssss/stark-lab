@@ -103,14 +103,10 @@ function labelTexture(n, ink) {
     ctx.fillRect(0, 0, 256, 256);
   } else if (n === 2) {
     ctx.translate(canvas.width / 2, canvas.height / 2);
-    const ocean = ctx.createLinearGradient(0, -95, 0, 95);
-    ocean.addColorStop(0, '#39d7ff');
-    ocean.addColorStop(1, '#0766de');
-    ctx.fillStyle = ocean;
+    ctx.lineWidth = 8;
     ctx.beginPath();
     ctx.arc(0, 0, 96, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.strokeStyle = '#fff';
+    ctx.stroke();
     ctx.lineWidth = 3;
     for (let tick = 0; tick < 36; tick++) {
       ctx.beginPath();
@@ -120,10 +116,9 @@ function labelTexture(n, ink) {
       ctx.rotate(Math.PI / 18);
     }
     ctx.rotate(Math.PI / 4);
-    ctx.fillStyle = '#f33b42';
     ctx.fill(new Path2D('M0 -82 L15 0 L-15 0 Z'));
-    ctx.fillStyle = '#fff';
-    ctx.fill(new Path2D('M0 82 L-15 0 L15 0 Z'));
+    ctx.lineWidth = 5;
+    ctx.stroke(new Path2D('M0 82 L-15 0 L15 0 Z'));
   } else if (n === 3 || n === 5) {
     ctx.font = n === 3 ? '600 148px Unbounded' : '184px system-ui';
     ctx.fillText(n === 3 ? 'AI' : '⌘', canvas.width / 2, 134);
