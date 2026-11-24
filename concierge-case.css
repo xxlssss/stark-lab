@@ -1,17 +1,15 @@
-/* Concierge case — scoped to the second portfolio card and its detail page. */
+/* Concierge case — portfolio card and accessible modal. */
 .concierge-work{position:relative;cursor:pointer}
-.concierge-work-link{display:block;color:inherit;text-decoration:none}
+.concierge-work-link{display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;text-decoration:none;cursor:pointer;font:inherit}
 .concierge-work-link::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit}
 .concierge-work-link:focus-visible{outline:3px solid var(--brand-blue);outline-offset:5px;border-radius:18px}
 .concierge-card-visual{aspect-ratio:884/544;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(4px,1vw,12px);align-items:center;overflow:hidden;border-radius:14px}
 .concierge-card-visual img{width:100%;height:100%;max-height:100%;min-width:0;object-fit:contain;display:block;border-radius:10px;transition:transform .3s ease}
 .concierge-work:hover .concierge-card-visual img{transform:translateY(-3px)}
-.concierge-case-page .concierge-case{position:relative;z-index:1;grid-column:1/-1;width:min(100%,1320px);margin:0 auto;padding:clamp(20px,4vw,56px) clamp(20px,5vw,72px) clamp(48px,7vw,100px)}
-.case-back{display:inline-block;color:var(--brand-brown);text-decoration:none;font-size:12px;padding:12px 0}
-.case-back:hover{text-decoration:underline}
+.concierge-dialog .concierge-case{position:relative;width:100%;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(32px,5vw,72px)}
 .case-heading{padding:clamp(28px,5vw,72px) 0 clamp(32px,5vw,64px)}
 .case-kicker{font-size:clamp(10px,1.1vw,14px);color:#795c49;margin:0 0 22px}
-.case-heading h1{font-size:clamp(32px,6.3vw,88px);font-weight:500;line-height:1.08;letter-spacing:-.06em;margin:0;overflow-wrap:anywhere}
+.case-heading .case-title{font-size:clamp(32px,6.3vw,88px);font-weight:500;line-height:1.08;letter-spacing:-.06em;margin:0;overflow-wrap:anywhere}
 .case-subtitle{font-size:clamp(16px,2.4vw,30px);margin:20px 0 0;line-height:1.5;letter-spacing:-.03em}
 .case-section{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:clamp(20px,4vw,68px);border-top:1px solid var(--brand-line);padding:clamp(24px,4vw,52px) 0}
 .case-section h2{font-size:clamp(24px,3vw,42px);letter-spacing:-.045em;font-weight:500;margin:0}
@@ -27,6 +25,19 @@
 .case-result{padding-bottom:0}
 .case-open{display:inline-flex;align-items:center;padding:15px 20px;margin-top:12px;border-radius:16px;background:var(--brand-brown);color:var(--brand-surface);font-size:12px;text-decoration:none}
 .case-open:hover{background:#5a3a27}
-.case-back:focus-visible,.case-open:focus-visible{outline:3px solid var(--brand-blue);outline-offset:4px}
+.case-open:focus-visible{outline:3px solid var(--brand-blue);outline-offset:4px}
 @media(max-width:700px){.case-section{grid-template-columns:1fr;gap:16px}.case-screens{grid-template-columns:1fr;gap:30px}.case-screens figure{width:min(100%,420px);margin:0 auto}.case-screens figcaption{text-align:center}.case-heading{padding-top:26px}}
 @media(prefers-reduced-motion:reduce){.concierge-card-visual img{transition:none}.concierge-work:hover .concierge-card-visual img{transform:none}}
+
+html:has(.studio-page):has(.concierge-dialog[open]){overflow:hidden;overscroll-behavior:none}
+body.studio-page:has(.concierge-dialog[open]){overflow:hidden;overscroll-behavior:none}
+.concierge-dialog{position:fixed;inset:0;box-sizing:border-box;width:min(1120px,calc(100% - 48px));max-width:none;max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);height:auto;margin:auto;padding:0;border:1px solid var(--brand-line);border-radius:28px;background:var(--brand-cream);color:var(--brand-brown);font-family:var(--brand-font);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;box-shadow:0 24px 100px rgba(45,26,17,.25)}
+.concierge-dialog:not([open]){display:none}
+.concierge-dialog::backdrop{background:rgba(39,25,17,.56);backdrop-filter:blur(6px)}
+.concierge-dialog-toolbar{position:sticky;top:0;z-index:4;display:flex;justify-content:flex-end;padding:14px 16px 0;pointer-events:none}
+.concierge-dialog-close{pointer-events:auto;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--brand-line);background:var(--brand-surface);color:var(--brand-brown);cursor:pointer;box-shadow:0 3px 16px rgba(59,36,24,.10)}
+.concierge-dialog-close svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.concierge-dialog-close:hover{background:#fff}
+.concierge-dialog-close:focus-visible{outline:3px solid var(--brand-blue);outline-offset:3px}
+.concierge-dialog .case-heading{padding-top:10px}
+@media(max-width:700px){.concierge-dialog{width:calc(100% - 16px);max-height:calc(100dvh - 20px);border-radius:22px}.concierge-dialog-toolbar{padding:10px 10px 0}.concierge-dialog .case-heading{padding-top:10px}.concierge-dialog .case-screens{gap:24px}}
