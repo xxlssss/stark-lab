@@ -184,13 +184,12 @@
       return strip.firstElementChild.getBoundingClientRect().width +
         (parseFloat(getComputedStyle(strip).columnGap) || 0);
     }
-    // The second row snaps to the visible grid, including the scroll-driven offset.
+    // Both rows snap to the visible grid, including the scroll-driven offset.
     function stripScrollOffset(row) {
       return reduced.matches ? 0 : Math.max(0, -worksHeading.getBoundingClientRect().top) * .30 / (row + 1);
     }
     function snapTarget(strip, base, direction) {
       const row = strips.indexOf(strip);
-      if (row !== 1) return base + direction;
       const step = stripStep(strip);
       if (!step) return base + direction;
       const phase = stripScrollOffset(row) / step;
