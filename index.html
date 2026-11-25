@@ -178,6 +178,7 @@
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const gallery = document.querySelector('.work-gallery');
     const strips = [...gallery.querySelectorAll('.work-strip')];
+    const worksHeading = document.getElementById('works');
     const rowState = strips.map(() => ({ manual: 0, target: 0, frame: 0 }));
     function stripStep(strip) {
       return strip.firstElementChild.getBoundingClientRect().width +
@@ -188,7 +189,8 @@
         const step = stripStep(strip);
         if (!step) return;
         const period = strip.children.length * step;
-        const travel = rowState[row].manual * step;
+        const scroll = reduced.matches ? 0 : Math.max(0, -worksHeading.getBoundingClientRect().top) * .30;
+        const travel = rowState[row].manual * step + scroll / (row + 1);
         const offset = ((travel % period) + period) % period;
         Array.from(strip.children).forEach((card, i) => {
           const wrap = (i + 1) * step <= offset + 0.01 ? period : 0;
