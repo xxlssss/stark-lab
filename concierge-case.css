@@ -41,3 +41,16 @@ body.studio-page:has(.concierge-dialog[open]){overflow:hidden;overscroll-behavio
 .concierge-dialog-close:focus-visible{outline:3px solid var(--brand-blue);outline-offset:3px}
 .concierge-dialog .case-heading{padding-top:10px}
 @media(max-width:700px){.concierge-dialog{width:calc(100% - 16px);max-height:calc(100dvh - 20px);border-radius:22px}.concierge-dialog-toolbar{padding:10px 10px 0}.concierge-dialog .case-heading{padding-top:10px}.concierge-dialog .case-screens{gap:24px}}
+
+/* A common case toolbar, visible throughout the internal scroll. */
+.website-work{position:relative;cursor:pointer}
+.website-work-trigger{width:100%;padding:0;border:0;background:transparent;cursor:pointer;font:inherit}
+.website-work:focus-within{outline:3px solid var(--brand-blue);outline-offset:3px}
+.concierge-dialog-toolbar{justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;background:var(--brand-cream);border-bottom:1px solid var(--brand-line);pointer-events:auto}
+.concierge-dialog-close{flex:0 0 44px}
+.case-toolbar-link{margin:0;min-height:44px;padding:10px 16px;gap:8px;line-height:1.35;text-align:center;justify-content:center}
+.case-toolbar-link span{font:18px/1 system-ui,sans-serif}
+.website-case-visual{margin:clamp(16px,3vw,36px) auto clamp(32px,5vw,60px);width:min(100%,860px)}
+.website-case-visual figcaption{text-align:center;font-size:clamp(11px,1.2vw,14px);line-height:1.6;margin-top:14px}
+.case-notebook{width:100%;pointer-events:none}
+@media(max-width:700px){.concierge-dialog-toolbar{padding:10px 12px;gap:8px}.case-toolbar-link{font-size:10px;padding:9px 12px}}

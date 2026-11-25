@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="privacy.css?v=6">
 <link rel="stylesheet" href="landing.css?v=portfolio-gestures-1">
-<link rel="stylesheet" href="concierge-case.css?v=2">
+<link rel="stylesheet" href="concierge-case.css?v=3">
 </head><body class="studio-page">
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
@@ -69,12 +69,12 @@
 </section>
 <h2 class="new-work-title" data-reveal-title id="works" data-page="home"><span>новые</span> <span>работы</span></h2>
 <section class="work-gallery" id="pomestye-park" data-page="home" aria-label="Новые работы">
-<div class="work-strip" id="work-row-1" tabindex="0" aria-label="Работы, ряд 1. Прокрутка влево и вправо"><figure class="restaurant-work">
-  <a class="restaurant-work-link" href="https://pomestie-park.com/" target="_blank" rel="noopener noreferrer" aria-label="Открыть сайт ресторана «Поместье-Парк», Москва">
+<div class="work-strip" id="work-row-1" tabindex="0" aria-label="Работы, ряд 1. Прокрутка влево и вправо"><figure class="restaurant-work website-work">
+  <button type="button" class="restaurant-work-link website-work-trigger" aria-haspopup="dialog" aria-controls="website-dialog" aria-label="Подробнее о сайте ресторана «Поместье-Парк», Москва">
     <div class="notebook-display">
       <img src="assets/pomestye-four-seasons.jpg" width="1555" height="1011" loading="lazy" decoding="async" alt="Сайт ресторана весной, летом, осенью и зимой">
     </div>
-  </a>
+  </button>
   <figcaption>
     <span>сайт ресторана</span>
     <h3>Поместье-Парк</h3>
@@ -401,8 +401,45 @@
 <button class="back-to-top" type="button">НАВЕРХ</button>
 
 <footer class="legal-footer"><a href="privacy.html">конфиденциальность</a><a href="consent.html">согласие</a><button type="button" data-privacy-settings>cookies</button></footer><section id="privacy-banner" class="privacy-banner" role="region" aria-label="настройки cookies" hidden><p>мы используем cookies. подробнее — в <a href="privacy.html">политике конфиденциальности</a>.</p><a class="privacy-consent-link" href="consent.html">согласие на обработку персональных данных</a><div class="privacy-actions"><button type="button" data-reject>Отклонить</button><button type="button" data-accept>Принять</button></div></section><p id="privacy-status" class="privacy-status" role="status" aria-live="polite"></p><script src="consent.js?v=3" defer></script>
+<dialog id="website-dialog" class="concierge-dialog website-dialog" aria-labelledby="website-dialog-title">
+  <div class="concierge-dialog-toolbar"><button type="button" class="concierge-dialog-close" aria-label="Закрыть описание проекта" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button><a class="case-open case-toolbar-link" href="https://pomestie-park.com/" target="_blank" rel="noopener noreferrer">посетить сайт <span aria-hidden="true">↗</span></a></div>
+  <article class="concierge-case">
+    <header class="case-heading">
+      <p class="case-kicker">Имиджевый сайт клуба-ресторана · Москва</p>
+      <h2 class="case-title" id="website-dialog-title">Поместье-Парк</h2>
+    </header>
+    <section class="case-section" aria-labelledby="website-task">
+      <h2 id="website-task">задача</h2>
+      <div><p>Создать премиальный сайт, который передаёт атмосферу ресторана, подчёркивает его индивидуальность и объединяет все основные услуги и онлайн-сервисы в едином цифровом пространстве.</p></div>
+    </section>
+    <section class="case-section" aria-labelledby="website-concept">
+      <h2 id="website-concept">концепция</h2>
+      <div><p>В основу дизайна легла идея четырёх времён года. Визуальное оформление главной страницы меняется в зависимости от сезона, отражая красоту природы и атмосферу ресторана.</p><p>Особое внимание уделили эстетике, удобству взаимодействия и простоте пользовательских сценариев.</p></div>
+    </section>
+    <figure class="website-case-visual"><div class="restaurant-work-link case-notebook" aria-hidden="true"><div class="notebook-display"><img src="assets/pomestye-four-seasons.jpg" width="1555" height="1011" loading="lazy" decoding="async" alt=""></div></div><figcaption>Сайт ресторана в четырёх сезонах</figcaption></figure>
+    <section class="case-section" aria-labelledby="website-implementation">
+      <h2 id="website-implementation">реализация</h2>
+      <div><ul class="case-features">
+        <li>Индивидуальный дизайн.</li>
+        <li>Динамическое сезонное оформление сайта.</li>
+        <li>Адаптация под мобильные устройства.</li>
+        <li>Интерактивная презентация ресторанных и банкетных залов.</li>
+        <li>Электронное меню ресторана.</li>
+        <li>Возможность оформления доставки блюд.</li>
+        <li>Онлайн-оплата депозита за столик.</li>
+        <li>Интеграция с системой бронирования столиков.</li>
+        <li>Интеграция с системой оформления автомобильных пропусков.</li>
+        <li>Подключение веб-аналитики.</li>
+      </ul></div>
+    </section>
+    <section class="case-section case-result" aria-labelledby="website-result">
+      <h2 id="website-result">результат</h2>
+      <div><p>Создана полноценная цифровая экосистема ресторана, объединяющая имиджевый сайт, онлайн-бронирование, доставку, оплату депозитов и автоматизированные сервисы для гостей.</p><p>Гость может познакомиться с рестораном, выбрать зал, изучить меню, заказать доставку, забронировать столик, оплатить депозит и оформить автомобильный пропуск.</p><p>Сайт стал не просто визитной карточкой ресторана, а полноценным инструментом продаж, коммуникации и обслуживания гостей.</p></div>
+    </section>
+  </article>
+</dialog>
 <dialog id="concierge-dialog" class="concierge-dialog" aria-labelledby="concierge-dialog-title">
-  <div class="concierge-dialog-toolbar"><button type="button" class="concierge-dialog-close" aria-label="Закрыть описание проекта" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+  <div class="concierge-dialog-toolbar"><button type="button" class="concierge-dialog-close" aria-label="Закрыть описание проекта" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button><a class="case-open case-toolbar-link" href="https://t.me/pomestye_concierge_bot" target="_blank" rel="noopener noreferrer">открыть приложение <span aria-hidden="true">↗</span></a></div>
   <article class="concierge-case">
   <header class="case-heading">
     <p class="case-kicker">Telegram Mini App · Москва</p>
@@ -424,10 +461,10 @@
   </section>
   <section class="case-section case-result" aria-labelledby="case-result">
     <h2 id="case-result">результат</h2>
-    <div><p>Запущено единое мини-приложение для гостей ресторана. Заявки поступают всем подключённым администраторам; после решения одного сотрудника статус обновляется у остальных и гость получает уведомление.</p><p>Цифровой консьерж доступен непосредственно в Telegram, без установки отдельного приложения.</p><a class="case-open" href="https://t.me/pomestye_concierge_bot" target="_blank" rel="noopener noreferrer">открыть приложение ↗</a></div>
+    <div><p>Запущено единое мини-приложение для гостей ресторана. Заявки поступают всем подключённым администраторам; после решения одного сотрудника статус обновляется у остальных и гость получает уведомление.</p><p>Цифровой консьерж доступен непосредственно в Telegram, без установки отдельного приложения.</p></div>
   </section>
 
   </article>
 </dialog>
-<script src="concierge-modal.js?v=1" defer></script>
+<script src="concierge-modal.js?v=2" defer></script>
 </body></html>
