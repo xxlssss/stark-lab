@@ -184,13 +184,31 @@
       return strip.firstElementChild.getBoundingClientRect().width +
         (parseFloat(getComputedStyle(strip).columnGap) || 0);
     }
+    // The second row snaps to the visible grid, including the scroll-driven offset.
+    function stripScrollOffset(row) {
+      return reduced.matches ? 0 : Math.max(0, -worksHeading.getBoundingClientRect().top) * .30 / (row + 1);
+    }
+    function snapTarget(strip, base, direction) {
+      const row = strips.indexOf(strip);
+      if (row !== 1) return base + direction;
+      const step = stripStep(strip);
+      if (!step) return base + direction;
+      const phase = stripScrollOffset(row) / step;
+      const position = base + phase;
+      const nearest = Math.round(position);
+      // Advance to the next boundary in the requested direction, not past it.
+      const aligned = Math.abs(position - nearest) < .002;
+      const slot = direction === 0 ? nearest :
+        aligned ? nearest + direction :
+        direction > 0 ? Math.ceil(position) : Math.floor(position);
+      return slot - phase;
+    }
     function paintStrips() {
       strips.forEach((strip, row) => {
         const step = stripStep(strip);
         if (!step) return;
         const period = strip.children.length * step;
-        const scroll = reduced.matches ? 0 : Math.max(0, -worksHeading.getBoundingClientRect().top) * .30;
-        const travel = rowState[row].manual * step + scroll / (row + 1);
+        const travel = rowState[row].manual * step + stripScrollOffset(row);
         const offset = ((travel % period) + period) % period;
         Array.from(strip.children).forEach((card, i) => {
           const wrap = (i + 1) * step <= offset + 0.01 ? period : 0;
@@ -218,8 +236,9 @@
       state.frame = requestAnimationFrame(advance);
     }
     gallery.querySelectorAll('.work-arrows button').forEach(button => {
-      const state = rowState[strips.indexOf(document.getElementById(button.getAttribute('aria-controls')))];
-      button.addEventListener('click', () => settle(state, state.target + Number(button.dataset.direction)));
+      const strip = document.getElementById(button.getAttribute('aria-controls'));
+      const state = rowState[strips.indexOf(strip)];
+      button.addEventListener('click', () => settle(state, snapTarget(strip, state.target, Number(button.dataset.direction))));
     });
     function installStripGestures(strip, state) {
       let gesture = null;
@@ -261,7 +280,7 @@
           strip.classList.remove('is-dragging');
           const threshold = Math.min(65, Math.max(24, stripStep(strip) * .10));
           const direction = e.type === 'pointerup' && Math.abs(g.delta) >= threshold ? Math.sign(g.delta) : 0;
-          settle(state, g.base + direction);
+          settle(state, snapTarget(strip, g.base, direction));
           try { if (strip.hasPointerCapture(e.pointerId)) strip.releasePointerCapture(e.pointerId); } catch {}
         }
       };
@@ -286,13 +305,13 @@
         wheelTotal += horizontal * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? strip.clientWidth : 1);
         if (Math.abs(wheelTotal) >= 22) {
           wheelConsumed = true;
-          settle(state, state.target + Math.sign(wheelTotal));
+          settle(state, snapTarget(strip, state.target, Math.sign(wheelTotal)));
         }
       }, {passive:false});
       strip.addEventListener('keydown', e => {
         if (e.target !== strip || !['ArrowLeft','ArrowRight'].includes(e.key)) return;
         e.preventDefault();
-        settle(state, state.target + (e.key === 'ArrowLeft' ? -1 : 1));
+        settle(state, snapTarget(strip, state.target, e.key === 'ArrowLeft' ? -1 : 1));
       });
     }
     strips.forEach((strip, i) => installStripGestures(strip, rowState[i]));
