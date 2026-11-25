@@ -643,3 +643,9 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   font: 24px/1 system-ui, sans-serif; cursor: pointer;
 }
 .work-arrows button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+/* Direct swipe, trackpad and mouse drag for the existing looping work rows. */
+.work-strip { touch-action: pan-y pinch-zoom; cursor: grab; }
+.work-strip.is-dragging, .work-strip.is-dragging * { cursor: grabbing !important; user-select: none; -webkit-user-select: none; }
+.work-strip img { -webkit-user-drag: none; }
+.work-strip:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 4px; border-radius: 16px; }
