@@ -436,8 +436,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   .site-header .header-socials { justify-self: end; }
   .site-header .header-socials a { background: transparent; }
   .site-header .header-socials svg {
-    width: calc(var(--menu-mark) * 1.115);
-    height: calc(var(--menu-mark) * 1.115);
+    width: calc(var(--menu-mark) * .88);
+    height: calc(var(--menu-mark) * .88);
   }
   .site-header nav {
     width: fit-content;
@@ -615,8 +615,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
     background: transparent;
   }
   .site-header .header-socials svg {
-    width: calc(var(--header-mark) * 1.16);
-    height: calc(var(--header-mark) * 1.16);
+    width: calc(var(--header-mark) * .92);
+    height: calc(var(--header-mark) * .92);
   }
 }
 
