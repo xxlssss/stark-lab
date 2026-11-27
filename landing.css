@@ -188,7 +188,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   justify-content: space-between;
   padding: clamp(18px, 3vw, 52px);
   color: var(--brand-brown);
-  background: #f2e8da;
+  background: var(--brand-page-bg);
   touch-action: none;
   transition: transform 330ms cubic-bezier(.76, 0, .92, .48);
 }
