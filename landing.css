@@ -685,6 +685,22 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .work-strip:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 4px; border-radius: 16px; }
 
 .work-actions .mechanical-key.blue-key { color: var(--brand-blue); }
+.studio-page .work-actions { gap: 12px; align-items: center; }
+.studio-page .work-actions .mechanical-key {
+  width: clamp(64px, 6vw, 80px);
+  height: clamp(64px, 6vw, 80px);
+}
+.studio-page .work-actions .work-pricing-link.mechanical-key {
+  width: auto;
+  min-width: clamp(208px, 22vw, 280px);
+  font-size: clamp(16px, 1.6vw, 21px);
+}
+.work-actions .work-pricing-link .keytop { padding-inline: clamp(18px, 2.2vw, 28px); }
+.work-actions .mechanical-key > .keytop { border-radius: 18px; }
+.studio-page .work-actions .header-socials svg {
+  width: clamp(30px, 3.3vw, 42px);
+  height: clamp(30px, 3.3vw, 42px);
+}
 .studio-page .contact-glass.mechanical-key {
   --glass-tint: transparent;
   width: min(100%, 550px);
