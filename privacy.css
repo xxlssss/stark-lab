@@ -28,3 +28,11 @@ html:has(.legal-page),body.legal-page{height:auto;min-height:100%;overflow-x:hid
 @media(min-width:701px) and (max-height:700px){.legal-page .legal-header{height:129px}}
 
 .legal-settings{border:0}
+
+/* Liquid Glass key, matching the portfolio controls. */
+.legal-page .legal-settings{position:relative;isolation:isolate;display:inline-grid;place-items:center;min-height:48px;padding:0;border:0;border-radius:14px;background:transparent;box-shadow:none;color:var(--brand-blue);font:500 13px/1.4 var(--brand-font);cursor:pointer}
+.legal-page .legal-settings > .keytop{position:relative;display:grid;place-items:center;align-self:stretch;justify-self:stretch;margin:3px;padding:10px 20px;border-radius:14px;background:rgba(142,197,255,.01);box-shadow:0 1px 2px #3b241810;transition:transform 120ms ease-out,box-shadow 120ms ease-out}
+.legal-page .legal-settings > .keytop::before{content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(140deg,#ffffffa6,#ffffff26 38%,#795e4838 76%,#ffffff80);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;backdrop-filter:blur(4px);backdrop-filter:url("#glass-ripple")}
+.legal-page .legal-settings:active > .keytop{transform:translateY(1px) scale(.985);box-shadow:inset 0 1px 1px #7057441a}
+.legal-page .legal-settings:focus-visible{outline:2px solid var(--brand-brown);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.legal-page .legal-settings > .keytop{transition:none}}
