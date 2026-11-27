@@ -398,6 +398,9 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   margin: clamp(32px, 5vw, 72px) clamp(18px, 4vw, 60px) 0 auto;
 }
 .back-to-top:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
+@media (max-width: 700px) {
+  .studio-page .back-to-top.mechanical-key { display: grid; }
+}
 
 #uslugi, #works { scroll-margin-top: 20px; }
 .site-header nav [aria-disabled="true"] { opacity: .58; }
