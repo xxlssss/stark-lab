@@ -66,3 +66,13 @@ body.studio-page:has(.concierge-dialog[open]){overflow:hidden;overscroll-behavio
 #menu-dialog .menu-spread-row > img{grid-column:2;justify-self:start;display:block;width:100%;max-width:100%;height:auto;margin:0;object-fit:contain}
 #menu-dialog .menu-cover-row{margin-bottom:clamp(32px,5vw,64px)}
 @media(max-width:700px){#menu-dialog .menu-spread-row{grid-template-columns:minmax(0,1fr);gap:16px}#menu-dialog .menu-spread-row > img{grid-column:1}}
+
+/* Reuse the site's Liquid Glass keys inside every portfolio modal. */
+.studio-page .concierge-dialog-toolbar .mechanical-key{flex-shrink:0;background:transparent;box-shadow:none;border:0;padding:0;height:48px;min-height:48px;border-radius:14px}
+.studio-page .concierge-dialog-toolbar .concierge-dialog-close.mechanical-key{width:48px;flex:0 0 48px}
+.studio-page .concierge-dialog-toolbar .case-toolbar-link.mechanical-key{width:auto;flex:0 0 auto;min-width:0;margin:0;color:var(--brand-blue);font:500 13px/1.4 var(--brand-font)}
+.concierge-dialog-toolbar .case-toolbar-link > .keytop{display:flex;align-items:center;justify-content:center;gap:8px;padding-inline:16px;font:inherit}
+.concierge-dialog-toolbar .case-toolbar-link > .keytop > span{font:18px/1 system-ui,sans-serif}
+.concierge-dialog-toolbar .mechanical-key > .keytop{border-radius:14px}
+.concierge-dialog-toolbar .mechanical-key:focus-visible{outline:2px solid var(--brand-brown);outline-offset:3px}
+@media(max-width:700px){.studio-page .concierge-dialog-toolbar .case-toolbar-link.mechanical-key{font-size:11px}.concierge-dialog-toolbar .case-toolbar-link > .keytop{padding-inline:12px;gap:6px}}
