@@ -1,0 +1,50 @@
+/* STARK LAB — pricing, isolated from the home page. */
+.pricing-page .pricing-content{width:min(100%,1440px);padding:clamp(24px,4vw,64px) clamp(20px,4vw,60px);min-width:0;color:var(--brand-brown)}
+.pricing-content .price-hero{max-width:1000px;margin:0 0 clamp(48px,7vw,100px)}
+.pricing-content h1{font-size:clamp(36px,6vw,86px);font-weight:500;line-height:1.1;margin:0 0 22px;letter-spacing:-.065em}
+.pricing-content .price-accent{color:#65A8EA}
+.pricing-content p{font-size:clamp(12px,1.1vw,15px);line-height:1.8;margin:0}
+.pricing-content .price-hero p,.pricing-content .price-intro{max-width:740px}
+.pricing-content .price-section{margin-top:clamp(48px,7vw,100px);scroll-margin-top:24px}
+.pricing-content .price-section h2{font-size:clamp(25px,3.5vw,48px);font-weight:500;letter-spacing:-.05em;line-height:1.2;margin:0 0 16px}
+.pricing-content .price-eyebrow{font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;color:#795c49}
+.pricing-content .price-special{position:relative;padding:clamp(22px,4vw,50px);border-radius:28px;background:linear-gradient(145deg,#ffffff36,#ffffff08);isolation:isolate}
+.pricing-content .price-special h2{max-width:900px;font-size:clamp(27px,4.3vw,58px)}
+.pricing-content .price-special .price-intro{margin-bottom:26px}
+.pricing-content .price-highlight{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 28px;margin:24px 0 36px}
+.pricing-content .price-highlight strong{font-size:clamp(30px,4vw,58px);font-weight:500;letter-spacing:-.07em}
+.pricing-content .price-highlight small{font-size:12px}
+.pricing-content .price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.5vw,22px);margin-top:28px}
+.pricing-content .price-card{position:relative;isolation:isolate;display:flex;flex-direction:column;min-width:0;gap:16px;padding:clamp(20px,2.5vw,32px);border-radius:24px;background:linear-gradient(145deg,#fff9f238,#fff9f208)}
+.pricing-content .price-card.blue{background:linear-gradient(145deg,#c8e2ff65,#8ec5ff0d)}
+.pricing-content .price-special::before,.pricing-content .price-card::before{content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(140deg,#ffffffa6,#ffffff26 38%,#795e4838 76%,#ffffff80);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;backdrop-filter:blur(4px);backdrop-filter:url("#glass-ripple")}
+.pricing-content .price-card h3{font-size:clamp(18px,1.8vw,25px);font-weight:500;line-height:1.35;letter-spacing:-.04em;margin:0;overflow-wrap:anywhere}
+.pricing-content .price-icon{display:block;width:100px;height:86px;object-fit:contain;margin-bottom:0}
+.pricing-content .price-amount{font-size:clamp(22px,2.5vw,34px);font-weight:500;line-height:1.2;letter-spacing:-.06em;margin:0;font-variant-numeric:tabular-nums}
+.pricing-content .price-amount small{font-size:11px;letter-spacing:0;font-weight:400}
+.pricing-content .price-zero{color:#3b2418;font-size:11px}
+.pricing-content .price-features{margin:0;padding:14px 0 0;list-style:none;border-top:1px solid #795e4830;display:grid;gap:9px}
+.pricing-content .price-features li{font-size:11px;line-height:1.7;padding-left:18px;position:relative;overflow-wrap:anywhere}
+.pricing-content .price-features li::before{content:"✓";position:absolute;left:0;font-weight:600}
+.pricing-content .price-card .price-duration{font-size:10px;color:#795c49;margin-top:auto}
+.studio-page .pricing-content .price-cta.mechanical-key{display:inline-grid;width:100%;height:auto;min-height:54px;margin-top:auto;color:#498ac5;font:500 12px/1.5 var(--brand-font)}
+.pricing-content .price-cta .keytop{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 10px;text-align:center}
+.pricing-content .price-cta .keytop span{font:18px/1 system-ui,sans-serif}
+.pricing-content .price-note{font-size:11px;color:#795c49;margin-top:24px;line-height:1.8}
+.pricing-content .price-terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;margin:24px 0 0;padding:20px 0 0;list-style:none;border-top:1px solid #795e4830}
+.pricing-content .price-terms li{font-size:11px;line-height:1.8}
+.pricing-content .price-table{width:100%;margin:24px 0 0;border-collapse:collapse;font-size:clamp(11px,1vw,14px);table-layout:fixed}
+.pricing-content .price-table th,.pricing-content .price-table td{text-align:left;vertical-align:top;padding:16px 0;border-bottom:1px solid #795e4830;line-height:1.6;overflow-wrap:anywhere}
+.pricing-content .price-table th{color:#795c49;font-size:10px;font-weight:500}
+.pricing-content .price-table th:last-child,.pricing-content .price-table td:last-child{width:36%;text-align:right;padding-left:12px}
+.pricing-content .price-steps{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.pricing-content .price-steps li{border-top:1px solid #795e4830;padding-top:18px;min-width:0}
+.pricing-content .price-steps strong{color:#65A8EA;display:block;font-size:32px;font-weight:500;margin-bottom:12px}
+.pricing-content .price-steps h3{font-size:14px;font-weight:500;margin:0 0 10px}
+.pricing-content .price-steps p{font-size:11px}
+.pricing-content .price-end{text-align:center;max-width:780px;margin-inline:auto}
+.pricing-content .price-end .price-cta{max-width:440px;margin-top:22px}
+.pricing-content .price-end p{margin-inline:auto}
+@media(max-width:1000px){.pricing-content .price-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pricing-content .price-subscriptions{grid-template-columns:1fr}.pricing-content .price-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.pricing-content .price-grid,.pricing-content .price-terms,.pricing-content .price-steps{grid-template-columns:1fr}.pricing-content .price-special{padding:20px 14px}.pricing-content .price-card{padding:22px 18px}.pricing-content .price-highlight{gap:12px;flex-direction:column}.pricing-content .price-table th:last-child,.pricing-content .price-table td:last-child{width:42%}.pricing-content .price-steps li{display:grid;grid-template-columns:48px 1fr;gap:0 12px}.pricing-content .price-steps strong{grid-row:span 2}.pricing-content .price-steps p{grid-column:2}}
+@media(prefers-reduced-transparency:reduce){.pricing-content .price-special,.pricing-content .price-card{background:#f2e5d5}.pricing-content .price-card.blue{background:#e4eaf0}.pricing-content .price-special::before,.pricing-content .price-card::before{backdrop-filter:none}}
