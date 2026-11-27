@@ -616,7 +616,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 .glass-filter-defs { position: absolute; pointer-events: none; }
 .studio-page .mechanical-key {
-  --glass-tint: rgba(255, 250, 240, .18);
+  --glass-tint: rgba(255, 250, 240, .01);
   appearance: none;
   position: relative;
   isolation: isolate;
@@ -642,29 +642,25 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   align-self: stretch;
   margin: 3px;
   border-radius: 14px;
-  background: linear-gradient(145deg, #fffc 0%, transparent 26%, transparent 68%, #fff7),
-    radial-gradient(ellipse at 20% 0%, #fff6, transparent 65%), var(--glass-tint);
-  box-shadow: inset 1px 1px 1px #fffffff2, inset -1px -2px 2px #795e483d,
-    inset 0 -3px 5px #fff9, 0 3px 6px -2px #4f40344a;
-  -webkit-backdrop-filter: blur(1px) saturate(1.25);
-  backdrop-filter: blur(1px) saturate(1.25);
+  background: var(--glass-tint);
+  box-shadow: 0 1px 2px #3b241810;
   transition: transform 120ms ease-out, box-shadow 120ms ease-out;
 }
 .mechanical-key > .keytop::before {
   content: "";
   position: absolute;
   inset: 0;
-  padding: 3px;
+  padding: 1px;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(125deg, #fff9, transparent 28%, #93bcdc42 70%, #fff9);
+  background: linear-gradient(140deg, #ffffffa6, #ffffff26 38%, #795e4838 76%, #ffffff80);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   backdrop-filter: url("#glass-ripple");
 }
 .studio-page .mechanical-key.blue-key {
-  --glass-tint: rgba(104, 181, 255, .49);
+  --glass-tint: rgba(142, 197, 255, .01);
 }
 .studio-page .work-pricing-link.mechanical-key {
   width: auto;
@@ -673,8 +669,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 .work-pricing-link .keytop { padding-inline: 16px; }
 .mechanical-key:active > .keytop {
-  transform: translateY(2px) scale(.97);
-  box-shadow: inset 0 1px 3px #70574442, inset 0 -1px 2px #fffd, 0 1px 2px #51413230;
+  transform: translateY(1px) scale(.985);
+  box-shadow: inset 0 1px 1px #7057441a;
 }
 .mechanical-key:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) {
