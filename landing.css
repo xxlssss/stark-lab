@@ -754,6 +754,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 }
 
 .menu-work-photo { display: block; width: 100%; max-width: min(432px, 48svh); height: auto; margin-inline: auto; }
+/* Keep the menu preview fully visible, without shrinking the original case image. */
+.work-gallery .menu-work-photo { width: 100%; max-width: min(360px, 42svh, 88%); height: auto; object-fit: contain; margin-inline: auto; }
 
 .work-gallery .website-work-trigger { max-width: 78svh; margin-inline: auto; }
 .work-gallery .concierge-card-visual { width: min(100%, 60svh); margin-inline: auto; }
