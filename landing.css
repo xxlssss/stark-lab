@@ -393,18 +393,9 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .restaurant-work h3 { font-size: clamp(22px, 3vw, 40px); font-weight: 500; margin: .18em 0; letter-spacing: -.04em; }
 
 .back-to-top {
-  position: relative;
-  display: block;
   grid-column: 1 / -1;
   justify-self: end;
   margin: clamp(32px, 5vw, 72px) clamp(18px, 4vw, 60px) 0 auto;
-  padding: 12px 18px;
-  border: 0;
-  border-radius: 16px;
-  background: linear-gradient(150deg, #fffcf7, #fbf3e9);
-  color: var(--brand-brown);
-  font: 500 12px/1.5 var(--brand-font);
-  cursor: pointer;
 }
 .back-to-top:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
 
@@ -665,7 +656,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   justify-self: stretch;
   justify-content: space-between;
 }
-.work-arrows button {
+:is(.work-arrows button, .back-to-top) {
   position: relative;
   isolation: isolate;
   display: grid;
@@ -680,7 +671,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   font: 600 23px/1 system-ui, sans-serif;
   cursor: pointer;
 }
-.work-arrows button::before {
+:is(.work-arrows button, .back-to-top)::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -691,14 +682,14 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   box-shadow: 0 1px 2px #3b241824;
 }
 @media (hover: hover) {
-  .work-arrows button:hover::before { background: #d8eaff; }
+  :is(.work-arrows button, .back-to-top):hover::before { background: #d8eaff; }
 }
-.work-arrows button:active::before {
+:is(.work-arrows button, .back-to-top):active::before {
   inset: 4px;
   background: var(--brand-blue);
   box-shadow: inset 0 1px 3px #3b241833;
 }
-.work-arrows button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+:is(.work-arrows button, .back-to-top):focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 
 /* Direct swipe, trackpad and mouse drag for the existing looping work rows. */
 .work-strip { touch-action: pan-y pinch-zoom; cursor: grab; }
