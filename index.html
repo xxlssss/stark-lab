@@ -9,9 +9,15 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=frameless-keys">
+<link rel="stylesheet" href="landing.css?v=liquid-controls">
 <link rel="stylesheet" href="concierge-case.css?v=3">
 </head><body class="studio-page">
+<svg width="0" height="0" aria-hidden="true" focusable="false" class="glass-filter-defs"><defs>
+  <filter id="glass-ripple" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency=".034 .055" numOctaves="1" seed="8" result="ripple"/>
+    <feDisplacementMap in="SourceGraphic" in2="ripple" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
 <div id="intro-curtain" hidden role="status" aria-label="Загрузка клавиатуры">
   <div class="intro-masthead">
     <img src="assets/stark-logo.png?v=sl-binary" alt="STARK LAB" width="72" height="72">
