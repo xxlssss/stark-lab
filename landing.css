@@ -614,7 +614,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   justify-self: stretch;
   justify-content: space-between;
 }
-/* One switch body, socket and moving keytop for the gallery controls. */
+/* Freestanding plastic keycaps for the gallery controls. */
 .studio-page .mechanical-key {
   --plastic: #f2e8da;
   --dish: #e5d8c8;
@@ -631,23 +631,13 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   height: 52px;
   box-sizing: border-box;
   padding: 0;
-  border: 1px solid #998d80;
+  border: 0;
   border-radius: 13px;
-  background: linear-gradient(145deg,#f8f5ef,#c7beb3 38%,#eee8df 62%,#a99e90);
+  background: transparent;
   color: var(--brand-brown);
-  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 1px #71645677,
-    0 2px 2px #44301d30, 0 5px 9px -5px #44301d70;
   font: 600 24px/1 system-ui, sans-serif;
   text-decoration: none;
   cursor: pointer;
-}
-.mechanical-key::before {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border-radius: 10px;
-  background: #6d6358;
-  box-shadow: inset 0 2px 3px #36291dc4, 0 1px 0 #fff9;
 }
 .mechanical-key > .keytop {
   position: relative;
