@@ -258,10 +258,10 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   min-width: 0;
   padding: clamp(24px, 2.6vw, 42px);
   border-radius: 28px;
-  background: linear-gradient(150deg, #fffcf7, #fbf3e9);
+  background: linear-gradient(145deg, rgba(255,250,242,.24), rgba(255,250,242,.035) 68%, rgba(255,250,242,.12));
 }
 .offering:nth-child(n+4) { grid-column: span 3; }
-.offering-blue { background: linear-gradient(145deg, #eff6fe, #dceafa); }
+.offering-blue { background: linear-gradient(145deg, rgba(200,226,255,.25), rgba(142,197,255,.035) 68%, rgba(210,232,255,.12)); }
 .offering-icon {
   display: block;
   width: clamp(120px, 10vw, 140px);
@@ -700,3 +700,32 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   border-radius: 20px;
 }
 .contact-glass svg { width: 1.2em; height: 1.2em; flex: none; fill: currentColor; }
+
+/* Liquid glass service cards: the same refractive rim as the existing keytops. */
+.offering {
+  isolation: isolate;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.26),
+    0 8px 24px rgba(59,36,24,.055);
+}
+.offering::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(140deg, #ffffffa6, #ffffff26 38%, #795e4838 76%, #ffffff80);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  backdrop-filter: url("#glass-ripple");
+}
+.offering .service-link::after { border-radius: inherit; }
+@media (prefers-reduced-transparency: reduce) {
+  .offering { background: #f2e5d5; }
+  .offering-blue { background: #e4eaf0; }
+  .offering::before { -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
