@@ -751,3 +751,5 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   .offering-blue { background: #e4eaf0; }
   .offering::before, .work-gallery .restaurant-work::before { -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
+
+.menu-work-photo { display: block; width: 100%; max-width: 460px; height: auto; margin-inline: auto; }
