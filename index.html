@@ -188,7 +188,7 @@
     }
     // Both rows snap to the visible grid, including the scroll-driven offset.
     function stripScrollOffset(row) {
-      return reduced.matches ? 0 : Math.max(0, -worksHeading.getBoundingClientRect().top) * .30 / (row + 1);
+      return reduced.matches ? 0 : Math.max(0, -worksHeading.getBoundingClientRect().top) * (row === 0 ? .30 : .10);
     }
     function snapTarget(strip, base, direction) {
       const row = strips.indexOf(strip);
