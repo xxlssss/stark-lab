@@ -17,7 +17,8 @@ html:has(.legal-page),body.legal-page{height:auto;min-height:100%;overflow-x:hid
 .privacy-actions button{border-color:transparent}
 
 .legal-footer{background:transparent}
-.legal-footer a,.legal-footer button,.privacy-banner a{text-decoration:none}
+.legal-footer a,.legal-footer button{text-decoration:none}
+.privacy-banner a{text-decoration:underline;text-underline-offset:3px}
 .privacy-banner a:hover,.legal-footer a:hover,.legal-footer button:hover{opacity:.75}
 
 .privacy-banner p,.privacy-banner a,.privacy-banner .privacy-actions button{font-size:10px}
