@@ -759,3 +759,38 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 
 .work-gallery .website-work-trigger { max-width: 78svh; margin-inline: auto; }
 .work-gallery .concierge-card-visual { width: min(100%, 60svh); margin-inline: auto; }
+
+
+/* Main-screen project call to action. */
+.studio-page .home-hero .hero-description {
+  width: 100%;
+  max-width: 530px;
+  margin: clamp(18px, 2.4vw, 32px) 0 0;
+  padding: 0;
+  border: 0;
+  color: var(--brand-brown);
+  font-size: clamp(12px, 1.05vw, 16px);
+  line-height: 1.7;
+}
+.studio-page .hero-project-cta.mechanical-key {
+  --glass-tint: rgba(142, 197, 255, .17);
+  width: max-content;
+  max-width: 100%;
+  height: 58px;
+  margin-top: 22px;
+  color: var(--brand-brown);
+  font: 500 clamp(12px, 1.1vw, 15px)/1.4 var(--brand-font);
+}
+.hero-project-cta .keytop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-inline: 22px;
+  border-radius: 16px;
+}
+.hero-project-cta svg { width: 20px; height: 20px; flex: none; fill: #498ac5; }
+@media (max-width: 700px) {
+  .studio-page .home-hero .hero-description { margin-top: 18px; }
+  .studio-page .hero-project-cta.mechanical-key { margin-top: 16px; height: 54px; }
+}
