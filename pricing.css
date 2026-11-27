@@ -9,7 +9,7 @@
 .pricing-content .price-section h2{font-size:clamp(25px,3.5vw,48px);font-weight:500;letter-spacing:-.05em;line-height:1.2;margin:0 0 16px}
 .pricing-content .price-eyebrow{font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;color:#795c49}
 .pricing-content .price-special{position:relative;padding:clamp(22px,4vw,50px);border-radius:28px;background:linear-gradient(145deg,#ffffff36,#ffffff08);isolation:isolate}
-.pricing-content .price-special h2{max-width:900px;font-size:clamp(27px,4.3vw,58px)}
+.pricing-content .price-special h1{max-width:900px;font-size:clamp(27px,4.3vw,58px);font-weight:700;line-height:normal;letter-spacing:normal;margin:.83em 0}
 .pricing-content .price-special .price-intro{margin-bottom:26px}
 .pricing-content .price-highlight{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 28px;margin:24px 0 36px}
 .pricing-content .price-highlight strong{color:#65A8EA;font-size:clamp(30px,4vw,58px);font-weight:500;letter-spacing:-.07em}
@@ -54,7 +54,7 @@
 @media(prefers-reduced-motion:no-preference){
   .pricing-content .price-card{--price-travel:0;--price-side:clamp(-38px,-3vw,-12px);--price-turn:-2.5deg;transform:translate(calc(var(--price-side) * var(--price-travel)),calc(58px * var(--price-travel))) rotate(calc(var(--price-turn) * var(--price-travel))) scale(calc(1 - .045 * var(--price-travel)))}
   .pricing-content .price-card:nth-child(even){--price-side:clamp(12px,3vw,38px);--price-turn:2.5deg}
-  .pricing-content h2{--price-travel:0;transform:translateY(calc(22px * var(--price-travel)));opacity:calc(1 - .35 * var(--price-travel))}
+  .pricing-content h2,.pricing-content .price-special h1{--price-travel:0;transform:translateY(calc(22px * var(--price-travel)));opacity:calc(1 - .35 * var(--price-travel))}
   .pricing-content .price-steps li{--price-travel:0;transform:translateY(calc(28px * var(--price-travel)));opacity:calc(1 - .3 * var(--price-travel))}
   .pricing-content .price-steps strong{transform:scale(calc(1 - .23 * var(--price-travel)));transform-origin:left center}
   .pricing-content .price-icon{transition:transform .3s ease}
