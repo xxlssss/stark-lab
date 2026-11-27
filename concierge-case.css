@@ -12,7 +12,7 @@
 .case-heading .case-title{font-size:clamp(32px,6.3vw,88px);font-weight:500;line-height:1.08;letter-spacing:-.06em;margin:0;overflow-wrap:anywhere}
 .case-subtitle{font-size:clamp(16px,2.4vw,30px);margin:20px 0 0;line-height:1.5;letter-spacing:-.03em}
 .case-section{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:clamp(20px,4vw,68px);border-top:1px solid var(--brand-line);padding:clamp(24px,4vw,52px) 0}
-.case-section h2{font-size:clamp(24px,3vw,42px);letter-spacing:-.045em;font-weight:500;margin:0}
+.case-section h2{font-size:clamp(24px,3vw,42px);letter-spacing:-.045em;font-weight:500;margin:0;color:#65A8EA}
 .case-section p,.case-features{font-size:clamp(13px,1.25vw,17px);line-height:1.85;margin:0 0 16px;font-weight:400;overflow-wrap:anywhere}
 .case-section p:last-child{margin-bottom:0}
 .case-screens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.7vw,24px);margin:clamp(16px,3vw,40px) 0 clamp(36px,6vw,80px)}
