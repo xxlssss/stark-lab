@@ -60,3 +60,7 @@ body.studio-page:has(.concierge-dialog[open]){overflow:hidden;overscroll-behavio
 .case-single-screen figure{width:min(100%,290px);margin:0 auto}
 .case-single-screen img{background:transparent;border-radius:0}
 .case-single-screen figcaption{text-align:center}
+
+/* Printed menu spread: fit the dialog and preserve the original image for zoom. */
+#menu-dialog .menu-spread-link{display:block;width:min(100%,680px,72svh);max-width:100%;margin-inline:auto;cursor:zoom-in}
+#menu-dialog .menu-spread-link img{display:block;width:100%;max-width:100%;height:auto;object-fit:contain}
