@@ -604,7 +604,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   grid-auto-flow: column;
   grid-auto-columns: calc((100% - var(--work-gap)) / 2);
   gap: var(--work-gap);
-  overflow: clip;
+  min-width: 0;
+  overflow: visible;
 }
 @media (max-width: 700px) {
   .work-strip { grid-auto-columns: 100%; }

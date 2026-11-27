@@ -9,7 +9,7 @@
 <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 
 <link rel="stylesheet" href="privacy.css?v=6">
-<link rel="stylesheet" href="landing.css?v=compact-work-cards">
+<link rel="stylesheet" href="landing.css?v=edge-work-cards">
 <link rel="stylesheet" href="concierge-case.css?v=larger-card-phones">
 </head><body class="studio-page">
 <svg width="0" height="0" aria-hidden="true" focusable="false" class="glass-filter-defs"><defs>
@@ -217,9 +217,10 @@
         if (!step) return;
         const period = strip.children.length * step;
         const travel = rowState[row].manual * step + stripScrollOffset(row);
-        const offset = ((travel % period) + period) % period;
+        const inset = strip.getBoundingClientRect().left;
+        const offset = (((travel - inset) % period) + period) % period + inset;
         Array.from(strip.children).forEach((card, i) => {
-          const wrap = (i + 1) * step <= offset + 0.01 ? period : 0;
+          const wrap = (i + 1) * step + inset <= offset + 0.01 ? period : 0;
           card.style.transform = 'translateX(' + (wrap - offset) + 'px)';
         });
       });
