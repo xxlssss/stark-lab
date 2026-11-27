@@ -1,6 +1,6 @@
 .legal-footer{position:fixed;bottom:0;left:0;width:100%;z-index:3;display:flex;justify-content:center;gap:18px;padding:10px 16px;background:rgba(242,232,218,.94);font-size:10px;line-height:1.5;flex-wrap:wrap;color:var(--brand-brown)}
 .legal-footer a,.legal-footer button{color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px}.legal-footer button{border:0;padding:0;background:none;cursor:pointer}
-.privacy-banner{position:fixed;bottom:54px;left:24px;z-index:20;width:min(420px,calc(100% - 48px));max-height:calc(100dvh - 90px);overflow:auto;background:var(--brand-surface);border:1px solid var(--brand-line);border-radius:18px;padding:20px;box-shadow:0 8px 30px rgba(59,36,24,.12);color:var(--brand-brown)}
+.privacy-banner{position:fixed;bottom:54px;left:24px;z-index:20;width:min(420px,calc(100% - 48px));max-height:calc(100dvh - 90px);overflow:auto;background:var(--brand-page-bg);border:1px solid var(--brand-line);border-radius:18px;padding:20px;box-shadow:0 8px 30px rgba(59,36,24,.12);color:var(--brand-brown)}
 .privacy-banner h2{font-size:16px;line-height:1.45;margin:0 0 12px}.privacy-banner p{font-size:11px;line-height:1.7;margin:10px 0}.privacy-banner a{color:inherit;text-underline-offset:3px}.privacy-actions{display:flex;gap:12px;margin-top:14px}.privacy-actions button,.legal-settings{font:500 12px var(--brand-font);padding:14px 24px;border:1px solid var(--brand-brown);border-radius:12px;background:var(--brand-surface);color:var(--brand-brown);cursor:pointer;min-height:46px}.privacy-actions button{flex:1}.privacy-actions [data-accept]{background:var(--brand-blue)}
 .privacy-actions button:hover,.legal-settings:hover{box-shadow:0 3px 12px var(--brand-shadow)}.privacy-actions button:focus-visible,.legal-footer :focus-visible,.legal-settings:focus-visible,.legal-document a:focus-visible{outline:3px solid var(--brand-brown);outline-offset:4px}
 .privacy-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
@@ -53,3 +53,6 @@ html:has(.legal-page){scroll-behavior:smooth}
 .privacy-actions button:active > .keytop{transform:translateY(1px) scale(.985);box-shadow:inset 0 1px 1px #7057441a}
 .privacy-actions button:focus-visible{outline:2px solid var(--brand-brown);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.privacy-actions button > .keytop{transition:none}}
+
+.privacy-banner .privacy-actions button[data-reject]{color:var(--brand-brown)}
+.privacy-actions button[data-reject] > .keytop{background:rgba(255,250,240,.01)}
