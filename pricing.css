@@ -12,7 +12,7 @@
 .pricing-content .price-special h2{max-width:900px;font-size:clamp(27px,4.3vw,58px)}
 .pricing-content .price-special .price-intro{margin-bottom:26px}
 .pricing-content .price-highlight{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 28px;margin:24px 0 36px}
-.pricing-content .price-highlight strong{font-size:clamp(30px,4vw,58px);font-weight:500;letter-spacing:-.07em}
+.pricing-content .price-highlight strong{color:#65A8EA;font-size:clamp(30px,4vw,58px);font-weight:500;letter-spacing:-.07em}
 .pricing-content .price-highlight small{font-size:12px}
 .pricing-content .price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.5vw,22px);margin-top:28px}
 .pricing-content .price-card{position:relative;isolation:isolate;display:flex;flex-direction:column;min-width:0;gap:16px;padding:clamp(20px,2.5vw,32px);border-radius:24px;background:linear-gradient(145deg,#fff9f238,#fff9f208)}
