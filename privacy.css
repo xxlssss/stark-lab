@@ -45,3 +45,11 @@ html:has(.legal-page){scroll-behavior:smooth}
 .legal-page .back-to-top:active > .keytop{transform:translateY(1px) scale(.985);box-shadow:inset 0 1px 1px #7057441a}
 .legal-page .back-to-top:focus-visible{outline:2px solid var(--brand-brown);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){html:has(.legal-page),html:has(.pricing-page){scroll-behavior:auto}.legal-page .back-to-top > .keytop{transition:none}}
+
+/* Matching Liquid Glass controls for both cookie choices. */
+.privacy-banner .privacy-actions button{appearance:none;position:relative;isolation:isolate;display:grid;place-items:center;flex:1 1 0;min-width:0;min-height:46px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--brand-blue);box-shadow:none;font:500 12px/1.4 var(--brand-font);cursor:pointer}
+.privacy-actions button > .keytop{position:relative;display:grid;place-items:center;align-self:stretch;justify-self:stretch;margin:3px;padding:10px 8px;border-radius:14px;background:rgba(142,197,255,.01);box-shadow:0 1px 2px #3b241810;transition:transform 120ms ease-out,box-shadow 120ms ease-out}
+.privacy-actions button > .keytop::before{content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(140deg,#ffffffa6,#ffffff26 38%,#795e4838 76%,#ffffff80);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;backdrop-filter:blur(4px);backdrop-filter:url("#glass-ripple")}
+.privacy-actions button:active > .keytop{transform:translateY(1px) scale(.985);box-shadow:inset 0 1px 1px #7057441a}
+.privacy-actions button:focus-visible{outline:2px solid var(--brand-brown);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.privacy-actions button > .keytop{transition:none}}
