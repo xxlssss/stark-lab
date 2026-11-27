@@ -55,5 +55,6 @@ html:has(.legal-page){scroll-behavior:smooth}
 .privacy-actions button:focus-visible{outline:2px solid var(--brand-brown);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.privacy-actions button > .keytop{transition:none}}
 
-.privacy-banner .privacy-actions button[data-reject]{color:var(--brand-brown)}
-.privacy-actions button[data-reject] > .keytop{background:rgba(255,250,240,.01)}
+.privacy-banner .privacy-actions button[data-accept]{color:var(--brand-brown)}
+.privacy-banner .privacy-actions button[data-reject]{color:var(--brand-blue)}
+.privacy-actions button[data-accept] > .keytop{background:rgba(255,250,240,.01)}
