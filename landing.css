@@ -797,12 +797,19 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 
 
 /* Homepage website subscription offer. */
-.home-subscription {
+.offerings > .home-subscription {
   grid-column: 1 / -1;
-  width: min(100%, 1440px);
-  margin-inline: auto;
-  padding: 0 clamp(18px, 4vw, 60px) clamp(36px, 6vw, 88px);
+  display: block;
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   color: var(--brand-brown);
+  opacity: 1;
+  visibility: visible;
+  transform: none;
 }
 .home-subscription-card {
   display: grid;
@@ -819,7 +826,7 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .home-subscription h2 span, .home-subscription-prices strong { color: #65A8EA; }
 .home-subscription-description { margin: 18px 0 0; font-size: clamp(12px, 1.05vw, 16px); line-height: 1.75; max-width: 42em; }
 .home-subscription-prices { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 16px; }
-.home-subscription-prices strong { display: block; font-size: clamp(25px, 3.2vw, 48px); font-weight: 500; line-height: 1.2; letter-spacing: -.065em; white-space: nowrap; }
+.home-subscription-prices strong { display: block; font-size: clamp(25px, 3.2vw, 48px); font-weight: 500; line-height: 1.2; letter-spacing: -.065em; white-space: normal; }
 .home-subscription-prices small { display: block; margin-top: 8px; font-size: clamp(10px, .9vw, 13px); line-height: 1.5; }
 .home-subscription-terms { margin: 20px 0 0; font-size: 11px; color: #795c49; line-height: 1.7; }
 .studio-page .home-subscription-cta.mechanical-key { width: max-content; max-width: 100%; min-height: 54px; height: auto; margin-top: 18px; color: var(--brand-brown); --glass-tint: rgba(142,197,255,.17); font: 500 13px/1.4 var(--brand-font); }
