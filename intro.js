@@ -1,7 +1,8 @@
 (() => {
   const curtain = document.getElementById('intro-curtain');
   const counter = curtain.querySelector('.intro-progress span');
-  const duration = 2500;
+  const exitDuration = 350;
+  const duration = 1500 - exitDuration; // Include the curtain exit in the 1.5 s intro.
   let ready = false;
   let frame;
   let hideTimer;
@@ -87,7 +88,7 @@
           headline.style.transform = 'scale(.72)';
           syncScale();
         }
-        hideTimer = setTimeout(() => { curtain.hidden = true; }, reducedMotion ? 0 : 350);
+        hideTimer = setTimeout(() => { curtain.hidden = true; }, reducedMotion ? 0 : exitDuration);
       });
     }
     frame = requestAnimationFrame(advance);
