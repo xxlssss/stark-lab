@@ -363,8 +363,8 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
   content: "";
   position: absolute;
   inset: 0;
-  background: url("assets/macbook-front.webp") center / 113.1222% auto no-repeat;
-  mix-blend-mode: multiply;
+  background: url("assets/macbook-front-cutout.svg") center / 100% 100% no-repeat;
+  mix-blend-mode: normal;
 }
 .restaurant-work-link:focus-visible { outline: 3px solid #65a8ea; outline-offset: 5px; border-radius: 12px; }
 .notebook-display {
