@@ -29,7 +29,7 @@
 .pricing-content .price-card .price-duration{font-size:10px;color:#795c49;margin-top:auto}
 .studio-page .pricing-content .price-cta.mechanical-key{display:inline-grid;width:100%;height:auto;min-height:54px;margin-top:auto;color:#498ac5;font:500 12px/1.5 var(--brand-font)}
 .pricing-content .price-cta .keytop{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 10px;text-align:center}
-.pricing-content .price-cta .keytop span{font:18px/1 system-ui,sans-serif}
+.pricing-content .price-cta .keytop svg{width:1.25em;height:1.25em;flex:none;fill:currentColor}
 .pricing-content .price-note{font-size:11px;color:#795c49;margin-top:24px;line-height:1.8}
 .pricing-content .price-terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;margin:24px 0 0;padding:20px 0 0;list-style:none;border-top:1px solid #795e4830}
 .pricing-content .price-terms li{font-size:11px;line-height:1.8}
