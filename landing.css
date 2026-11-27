@@ -537,7 +537,31 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 
 .work-actions .header-socials a { width: 44px; height: 44px; }
 .work-actions a { --action-radius: 16px; }
-.work-actions .work-pricing-link, .work-actions .header-socials a { border-radius: var(--action-radius); }
+.work-actions .work-pricing-link, .work-actions .header-socials a {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid #679acc;
+  border-radius: 10px;
+  background: linear-gradient(155deg, #b4d9ff, #6499cf);
+  color: var(--brand-brown);
+  box-shadow: 0 1px 2px #3b241824;
+}
+.work-actions a::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  border: 1px solid #c9e4ff;
+  border-radius: 7px;
+  background: linear-gradient(150deg, #a9d3ff, var(--brand-blue));
+}
+.work-actions .header-socials a:hover { transform: none; }
+.work-actions a:active::before {
+  inset: 4px;
+  background: var(--brand-blue);
+  box-shadow: inset 0 1px 3px #3b241833;
+}
+.work-actions a:focus-visible { outline: 2px solid var(--brand-brown); outline-offset: 3px; }
 
 .studio-about, .studio-contacts { position: relative; grid-column: 1 / -1; padding-bottom: clamp(28px, 4vw, 60px); scroll-margin-top: 20px; }
 
