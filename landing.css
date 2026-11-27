@@ -703,11 +703,14 @@ html:has(.studio-page),body.studio-page{height:auto;min-height:100%;overflow-x:c
 .contact-glass svg { width: 1.2em; height: 1.2em; flex: none; fill: currentColor; }
 
 /* Shared liquid glass treatment for service and portfolio cards. */
-.offering,
-.work-gallery .restaurant-work {
+.offering {
   isolation: isolate;
   box-shadow: inset 0 1px 1px rgba(255,255,255,.26),
     0 8px 24px rgba(59,36,24,.055);
+}
+.work-gallery .restaurant-work {
+  isolation: isolate;
+  box-shadow: none;
 }
 .offering::before,
 .work-gallery .restaurant-work::before {
